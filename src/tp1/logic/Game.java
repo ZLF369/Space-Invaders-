@@ -3,6 +3,7 @@ package tp1.logic;
 import javafx.scene.shape.Polygon;
 import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.UCMShip;
+import tp1.view.BoardPrinter;
 
 
 public class Game implements GameStatus {
@@ -59,13 +60,12 @@ public class Game implements GameStatus {
 	// TODO fill with your code
 	
 	//VIEW METHODS
-	
+
+
 	public String positionToString(int col, int row) {
 		/*return container.toString(new Position(col, row));*/
-
-		return "gragas";
+		return null;
 	}
-	
 	
 
 	@Override

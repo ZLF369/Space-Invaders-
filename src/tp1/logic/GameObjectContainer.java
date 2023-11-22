@@ -22,10 +22,9 @@ public class GameObjectContainer {
 	}
 
 	public void automaticMoves() {
-		for (int i=0;i<objects.size();i++) {
-				GameObject object = objects.get(i);
-			//TODO fill with your code
-		}
+        for (GameObject object : objects) {
+            //TODO fill with your code
+        }
 		//TODO fill with your code
 	}
 
