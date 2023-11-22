@@ -26,9 +26,9 @@ public class Tests {
 			while (same && expectedLine != null && actualLine != null) {
 				same = expectedLine.equals(actualLine);
 				if (!same) {
-					System.out.println("Line: %d".formatted(lineNumber));
+					/*System.out.println("Line: %d".formatted(lineNumber));
 					System.out.println("Expected: %s".formatted(expectedLine));
-					System.out.println("Actual: %s".formatted(actualLine));
+					System.out.println("Actual: %s".formatted(actualLine));*/
 				}
 				expectedLine = expected.readLine();
 				actualLine = actual.readLine();

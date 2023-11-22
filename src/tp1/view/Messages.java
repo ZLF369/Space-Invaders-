@@ -4,7 +4,7 @@ import tp1.logic.Level;
 
 /**
  * String literals used in the game.
- * 
+ *
  */
 public class Messages {
 
@@ -12,15 +12,15 @@ public class Messages {
 
 	public static final String GAME_NAME = "Space Invaders";
 
-	public static final String USAGE = "Usage: %s <level> [<seed>]".formatted(GAME_NAME);
+/*	public static final String USAGE = "Usage: %s <level> [<seed>]".formatted(GAME_NAME);
 
 	public static final String USAGE_LEVEL_PARAM = "\t<level>: %s".formatted(Level.all(", "));
 
-	public static final String USAGE_SEED_PARAM = "\t<seed>: %s".formatted(Messages.SEED_NOT_A_NUMBER);
+	public static final String USAGE_SEED_PARAM = "\t<seed>: %s".formatted(Messages.SEED_NOT_A_NUMBER);*/
 
 	public static final String WELCOME = String.format("%s %s%n", GAME_NAME, VERSION);
 
-	public static final String ALLOWED_LEVELS = "Level must be one of: %s".formatted(Level.all(", "));
+/*	public static final String ALLOWED_LEVELS = "Level must be one of: %s".formatted(Level.all(", "));*/
 
 	public static final String SEED_NOT_A_NUMBER = "The seed must be a number";
 
@@ -69,15 +69,15 @@ public class Messages {
 	public static final String AVAILABLE_SHIPS = "Available ships:";
 
 	public static final String UNEXPECTED_RUNTIME_ERROR = "Oops!";
-	
+
 	public static final String SCORE = "Score:";
 
 	public static final String LASER_ERROR = "Laser cannot be shot";
 
 	public static final String SHOCKWAVE_ERROR = "ShockWave cannot be shot";
-	
+
 	public static final String MOVEMENT_ERROR = "Movement cannot be performed";
-	
+
 	public static final String DIRECTION_ERROR = "Wrong direction: ";
 
 	//
@@ -118,7 +118,7 @@ public class Messages {
 	public static final String UFO_DESCRIPTION = "U[f]o";
 
 	//Commands
-	
+
 	public static final String COMMAND_EXIT_NAME = "exit";
 	public static final String COMMAND_EXIT_SHORTCUT = "e";
 	public static final String COMMAND_EXIT_DETAILS = "[e]xit";
@@ -128,17 +128,17 @@ public class Messages {
 	public static final String COMMAND_HELP_SHORTCUT = "h";
 	public static final String COMMAND_HELP_DETAILS = "[h]elp";
 	public static final String COMMAND_HELP_HELP = "shows this help";
-	
+
 	public static final String COMMAND_LIST_NAME = "list";
 	public static final String COMMAND_LIST_SHORTCUT = "l";
 	public static final String COMMAND_LIST_DETAILS = "[l]ist";
 	public static final String COMMAND_LIST_HELP = "prints the list of current ships";
-	
+
 	public static final String COMMAND_MOVE_NAME = "move";
 	public static final String COMMAND_MOVE_SHORTCUT = "m";
 	public static final String COMMAND_MOVE_DETAILS = "[m]ove <left|lleft|right|rright>";
 	public static final String COMMAND_MOVE_HELP = "moves the UCMShip in the indicated direction";
-	
+
 	public static final String COMMAND_RESET_NAME = "reset";
 	public static final String COMMAND_RESET_SHORTCUT = "r";
 	public static final String COMMAND_RESET_DETAILS = "[r]eset";
@@ -161,11 +161,12 @@ public class Messages {
 
 	/**
 	 * Formats an error message.
-	 * 
+	 *
 	 * @param message Error message
-	 * 
+	 *
 	 * @return the formated error message;
 	 */
+/*
 	public static final String error(String message) {
 		return Messages.ERROR.formatted(message);
 	}
@@ -173,14 +174,16 @@ public class Messages {
 	public static final String status(String icon, int lives) {
 		return Messages.GAME_OBJECT_STATUS.formatted(icon, lives);
 	}
-	
-	/**
+
+	*/
+/**
 	 * Formats an debug message.
-	 * 
+	 *
 	 * @param message debug message
-	 * 
+	 *
 	 * @return the formated debug message;
-	 */
+	 *//*
+
 	public static final String debug(String message) {
 		return Messages.DEBUG.formatted(message);
 	}
@@ -192,5 +195,6 @@ public class Messages {
 	public static final String ucmShipDescription(String ucmShipDescription, int damage, int endurance) {
 		return Messages.UCM_DESCRIPTION.formatted(ucmShipDescription, damage, endurance);
 	}
+*/
 
 }

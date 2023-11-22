@@ -1,6 +1,6 @@
 package tp1.control.commands;
 
-import tp1.control.ExecutionResult;
+/*import tp1.control.ExecutionResult;*/
 import tp1.logic.Game;
 import tp1.logic.Move;
 import tp1.view.Messages;
@@ -35,11 +35,11 @@ public class MoveCommand extends Command {
 		return Messages.COMMAND_MOVE_HELP;
 	}
 
-	@Override
+/*	@Override
 	public ExecutionResult execute(Game game) {
 		//TODO fill with your code
 		return null;
-	}
+	}*/
 
 
 	@Override

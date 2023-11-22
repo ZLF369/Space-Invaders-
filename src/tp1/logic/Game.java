@@ -1,5 +1,6 @@
 package tp1.logic;
 
+import javafx.scene.shape.Polygon;
 import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.UCMShip;
 
@@ -60,8 +61,9 @@ public class Game implements GameStatus {
 	//VIEW METHODS
 	
 	public String positionToString(int col, int row) {
-		return null;
-		//return container.toString(new Position(col, row));
+		/*return container.toString(new Position(col, row));*/
+
+		return "gragas";
 	}
 	
 	
@@ -74,8 +76,11 @@ public class Game implements GameStatus {
 
 	@Override
 	public String stateToString() {
-		// TODO fill with your code
-		return null;
+		return "Life: " + player.getArmour() + "\n" +
+				"Points: " + /*player.getPoints()
+				+*/ "\n" +
+				"shockWave: " /*+ (ucmShip.isShockwaveEnabled() ? "ON" : "OFF")*/
+				+ "\n";
 	}
 
 	@Override

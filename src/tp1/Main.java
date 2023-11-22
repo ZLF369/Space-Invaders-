@@ -7,7 +7,7 @@ import tp1.control.Controller;
 import tp1.logic.Game;
 import tp1.logic.Level;
 import tp1.view.Messages;
-import static tp1.view.Messages.error;
+/*import static tp1.view.Messages.error;*/
 
 
 public class Main {
@@ -16,9 +16,9 @@ public class Main {
 	 * Show application help message
 	 */
 	private static void usage() {
-		System.out.println(Messages.USAGE);
+		/*System.out.println(Messages.USAGE);
 		System.out.println(Messages.USAGE_LEVEL_PARAM);
-		System.out.println(Messages.USAGE_SEED_PARAM);
+		System.out.println(Messages.USAGE_SEED_PARAM);*/
 	}
 
     /**
@@ -35,7 +35,7 @@ public class Main {
         } else {
             Level level = Level.valueOfIgnoreCase(args[0]);
             if (level == null) {
-                System.out.println(Messages.ALLOWED_LEVELS);
+                /*System.out.println(Messages.ALLOWED_LEVELS);*/
                 usage();
             } else {
                 long seed = System.currentTimeMillis() % 1000;
@@ -60,7 +60,7 @@ public class Main {
                     System.out.println(String.format(Messages.SEED_NOT_A_NUMBER_ERROR, seedParam));
                     usage();
                 } catch (Exception e) {
-                    System.out.println(error(e.getMessage()));
+                    /*System.out.println(error(e.getMessage()));*/
                 }
             }
         }

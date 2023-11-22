@@ -3,6 +3,7 @@ package tp1.logic.gameobjects;
 import tp1.logic.AlienManager;
 import tp1.logic.Game;
 import tp1.logic.Position;
+import tp1.view.Messages;
 
 public class RegularAlien extends GameObject {
 
@@ -19,8 +20,7 @@ public class RegularAlien extends GameObject {
 
 	@Override
 	protected String getSymbol() {
-		// TODO fill with your code
-		return null;
+		return String.format(Messages.GAME_OBJECT_STATUS, Messages.REGULAR_ALIEN_SYMBOL, this.getArmour());
 	}
 
 	@Override
