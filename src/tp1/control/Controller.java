@@ -1,12 +1,13 @@
 package tp1.control;
 
-/*import static tp1.view.Messages.debug;*/
+import static tp1.view.Messages.debug;
 
 import java.util.Scanner;
 
 import tp1.control.commands.Command;
 import tp1.control.commands.CommandGenerator;
 import tp1.logic.Game;
+import tp1.logic.GameModel;
 import tp1.view.BoardPrinter;
 import tp1.view.GamePrinter;
 import tp1.view.Messages;
@@ -16,7 +17,7 @@ import tp1.view.Messages;
  */
 public class Controller {
 
-	private Game game;
+	private GameModel game;
 	private Scanner scanner;
 	private GamePrinter printer;
 
@@ -36,7 +37,7 @@ public class Controller {
 		String line = scanner.nextLine();
 		String[] words = line.toLowerCase().trim().split("\\s+");
 
-		/*System.out.println(debug(line));*/
+		System.out.println(debug(line));
 
 		return words;
 	}
@@ -50,7 +51,7 @@ public class Controller {
 
 			Command command = CommandGenerator.parse(parameters);
 
-			/*if (command != null) {
+			if (command != null) {
 				ExecutionResult result = command.execute(game);
 				if (result.success()) {
 					if (result.draw())
@@ -60,7 +61,7 @@ public class Controller {
 					System.out.println(result.errorMessage());
 			} else {
 				System.out.println(Messages.UNKNOWN_COMMAND);
-			}*/
+			}
 		}
 
 		printEndMessage();

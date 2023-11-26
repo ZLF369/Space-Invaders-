@@ -21,19 +21,19 @@ public class GameObjectContainer {
 		objects.remove(object);
 	}
 
-	public void automaticMoves() {
-        for (GameObject object : objects) {
-            //TODO fill with your code
-        }
-		//TODO fill with your code
-	}
+	/*public void automaticMoves() {
+		for (GameObject o: objects) {
+			o.automaticMove();
+		}
+	}*/
 
 	public void computerActions() {
-		// TODO fill with your code
+		for (GameObject objects: objects) {
+			objects.computerAction();
+		}
 	}
 
-
-
-    //TODO fill with your code
-	
+	public List<GameObject> getObjects() {
+		return objects;
+	}
 }

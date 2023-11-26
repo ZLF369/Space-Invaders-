@@ -1,4 +1,4 @@
-package tp1;
+/*package tp1;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -26,9 +26,9 @@ public class Tests {
 			while (same && expectedLine != null && actualLine != null) {
 				same = expectedLine.equals(actualLine);
 				if (!same) {
-					/*System.out.println("Line: %d".formatted(lineNumber));
+					*//*System.out.println("Line: %d".formatted(lineNumber));
 					System.out.println("Expected: %s".formatted(expectedLine));
-					System.out.println("Actual: %s".formatted(actualLine));*/
+					System.out.println("Actual: %s".formatted(actualLine));*//*
 				}
 				expectedLine = expected.readLine();
 				actualLine = actual.readLine();
@@ -90,4 +90,4 @@ public class Tests {
 				Paths.get("tests/p2/01-insane_25-output.txt"), new String[] { "INSANE", "25" });
 	}
 	
-}
+}*/

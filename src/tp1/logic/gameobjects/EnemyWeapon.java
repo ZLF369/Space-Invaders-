@@ -1,7 +1,20 @@
 package tp1.logic.gameobjects;
 
-public class EnemyWeapon {
+import tp1.logic.Game;
+import tp1.logic.Position;
 
-	//TODO fill with your code
-	
+public abstract class EnemyWeapon extends Weapon{
+
+    public EnemyWeapon(Game game, Position pos, int life) {
+        super(game, pos, life);
+    }
+
+    @Override
+    public boolean performAttack(GameItem other) {
+        //Todo: implement attack
+        return false;
+    }
+
+    @Override
+    public boolean receiveAttack(UCMWeapon weapon) {return false;}
 }

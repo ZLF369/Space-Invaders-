@@ -1,6 +1,5 @@
 package tp1.logic.gameobjects;
 
-import tp1.logic.AlienManager;
 import tp1.logic.Game;
 import tp1.logic.Move;
 import tp1.logic.Position;
@@ -8,24 +7,22 @@ import tp1.view.Messages;
 
 /**
  * 
- * Class representing a regular alien. <br>
- * Extends the abstract class of Alien.
+ * Class that represents the laser fired by {@link UCMShip}
  *
  */
-public class RegularAlien extends AlienShip {
-
-	public RegularAlien(Game game, Position pos, int life) {
+public class UCMLaser extends UCMWeapon {
+	public UCMLaser(Game game, Position pos, int life) {
 		super(game, pos, life);
 	}
 
 	@Override
 	protected String getSymbol() {
-		return Messages.REGULAR_ALIEN_SYMBOL;
+		return null;
 	}
 
 	@Override
 	protected int getDamage() {
-		return 0;
+		return 1;
 	}
 
 	@Override
@@ -42,4 +39,7 @@ public class RegularAlien extends AlienShip {
 	public void automaticMove() {
 
 	}*/
+
+	@Override
+	public boolean receiveAttack(EnemyWeapon weapon) {return false;}
 }
