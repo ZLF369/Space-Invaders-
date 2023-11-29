@@ -43,12 +43,23 @@ public class UCMShip extends Ship{
     }*/
 
     public boolean move(Move move) {
-        if (super.pos.col <= 0 || super.pos.col < Game.DIM_X) {
-            super.pos = pos.move(move);
-            return true;
-        } else {
+        if (onBorderLeft() && move.equals(Move.LEFT)) {
             return false;
         }
+        else if(onBorderRight() && move.equals(Move.RIGHT)){
+            return false;
+        }
+        else {
+            super.pos = pos.move(move);
+            return true;
+        }
+    }
+
+    public boolean onBorderLeft(){
+        return super.pos.col == 0;
+    }
+    public boolean onBorderRight(){
+        return super.pos.col == Game.DIM_X - 1;
     }
 
 

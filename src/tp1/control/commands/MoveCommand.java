@@ -35,14 +35,15 @@ public class MoveCommand extends Command {
 	}
 
 	@Override
-	public ExecutionResult execute(GameModel game) {
+	public ExecutionResult execute(GameModel game) { //DEBUG
 		if (move == Move.UP || move == Move.DOWN)
-			return new ExecutionResult(false);
+			return new ExecutionResult(true);
 
 		boolean siu = game.move(move);
+		if (!siu)
+			return new ExecutionResult(true);
 		game.update();
-
-		return new ExecutionResult(siu, true, "unmovable");
+		return new ExecutionResult(siu, true, Messages.MOVEMENT_ERROR);
 	}
 
 	@Override
