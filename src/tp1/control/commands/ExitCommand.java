@@ -17,7 +17,22 @@ public class ExitCommand extends NoParamsCommand{
 			return Messages.COMMAND_EXIT_NAME;
 		}
 
-		@Override
+	@Override
+	protected boolean matchCommandName(String name) {
+		return super.matchCommandName(name);
+	}
+
+	@Override
+	public String helpText() {
+		return super.helpText();
+	}
+
+	@Override
+	public Command parse(String[] commandWords) {
+		return super.parse(commandWords);
+	}
+
+	@Override
 		protected String getShortcut() {
 			return Messages.COMMAND_EXIT_SHORTCUT;
 		}

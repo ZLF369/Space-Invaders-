@@ -40,7 +40,7 @@ public class MoveCommand extends Command {
 			return new ExecutionResult(false);
 
 		boolean siu = game.move(move);
-		//game.update();
+		game.update();
 
 		return new ExecutionResult(siu, true, "unmovable");
 	}
@@ -50,7 +50,7 @@ public class MoveCommand extends Command {
 		// commandWords[2] == null
 		// commandWords[0] == null;
 
-	    Move move = Move.valueOf(commandWords[1].toUpperCase());
+		Move move = Move.valueOf(commandWords[1].toUpperCase());
 		return new MoveCommand(move);
 	}
 

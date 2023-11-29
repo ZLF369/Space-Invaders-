@@ -124,7 +124,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 
-
 	@Override
 	public boolean shootLaser() {
 		return false;

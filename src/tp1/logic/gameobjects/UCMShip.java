@@ -15,6 +15,7 @@ public class UCMShip extends Ship{
      */
     public UCMShip(Game game, Position position) {
         super(game, position, 3);
+        this.dir = Move.NONE;
     }
 
     @Override
@@ -42,10 +43,14 @@ public class UCMShip extends Ship{
     }*/
 
     public boolean move(Move move) {
-        //condition pa ver si esta feka ()
-        this.dir = move;
-        return true;
+        if (super.pos.col <= 0 || super.pos.col < Game.DIM_X) {
+            super.pos = pos.move(move);
+            return true;
+        } else {
+            return false;
+        }
     }
+
 
     @Override
     public boolean receiveAttack(EnemyWeapon weapon) {
