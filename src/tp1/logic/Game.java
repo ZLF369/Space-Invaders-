@@ -16,7 +16,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private UCMShip player;
 	private AlienManager alienManager;
 	private int currentCycle;
-	
+
+	private Move move;
 	//TODO fill with your code
 
 	public Level getLevel() {
@@ -45,6 +46,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	public void exit() {
+		System.exit(0);
 		// TODO fill with your code
 	}
 
@@ -75,8 +77,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		}
 		return "";
 	}
-	
-	
 
 	@Override
 	public String infoToString() {
@@ -116,8 +116,14 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public boolean move(Move move) {
-		return false;
+		return this.player.move(move);
 	}
+
+	public UCMShip getPlayer() {
+		return player;
+	}
+
+
 
 	@Override
 	public boolean shootLaser() {

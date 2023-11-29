@@ -4,12 +4,12 @@ public abstract class NoParamsCommand extends Command {
 
 	@Override
 	public Command parse(String[] commandWords) {
-		/*return switch(commandWords[0]) {
+		return switch(commandWords[0]) {
 			case "help" -> new HelpCommand();
 			case "exit" -> new ExitCommand();
+			case "none" -> new NoneCommand();
 			default -> null;
-		};*/
-		return null;
+		};
 	}
 	
 }

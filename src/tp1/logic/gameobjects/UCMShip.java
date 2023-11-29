@@ -41,6 +41,12 @@ public class UCMShip extends Ship{
     public void automaticMove() {
     }*/
 
+    public boolean move(Move move) {
+        //condition pa ver si esta feka ()
+        this.dir = move;
+        return true;
+    }
+
     @Override
     public boolean receiveAttack(EnemyWeapon weapon) {
         if(!this.pos.equals(weapon.pos)) return false;

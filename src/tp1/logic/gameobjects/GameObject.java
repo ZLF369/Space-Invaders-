@@ -15,7 +15,6 @@ public abstract class GameObject implements GameItem {
 	protected Game game;
 	protected Move dir;
 
-
 	public GameObject(Game game, Position pos, int life) {	
 		this.pos = pos;
 		this.game = game;
@@ -32,8 +31,6 @@ public abstract class GameObject implements GameItem {
 	}
 
 	//TODO fill with your code
-
-	
 	protected abstract String getSymbol();
 	protected abstract int getDamage();
 	protected abstract int getArmour();

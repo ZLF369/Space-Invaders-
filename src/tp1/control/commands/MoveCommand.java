@@ -7,11 +7,9 @@ import tp1.logic.Move;
 import tp1.view.Messages;
 
 public class MoveCommand extends Command {
-
 	private Move move;
 
 	public MoveCommand() {}
-
 	protected MoveCommand(Move move) {
 		this.move = move;
 	}
@@ -38,13 +36,22 @@ public class MoveCommand extends Command {
 
 	@Override
 	public ExecutionResult execute(GameModel game) {
-		//TODO fill with your code
-		return null;
+		if (move == Move.UP || move == Move.DOWN)
+			return new ExecutionResult(false);
+
+		boolean siu = game.move(move);
+		//game.update();
+
+		return new ExecutionResult(siu, true, "unmovable");
 	}
 
 	@Override
 	public Command parse(String[] commandWords) {
-	    return new MoveCommand(Move.valueOf(commandWords[1]));
+		// commandWords[2] == null
+		// commandWords[0] == null;
+
+	    Move move = Move.valueOf(commandWords[1].toUpperCase());
+		return new MoveCommand(move);
 	}
 
 }

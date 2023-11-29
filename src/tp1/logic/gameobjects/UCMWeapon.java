@@ -16,6 +16,5 @@ public abstract class UCMWeapon extends Weapon{
 
     public void receiveAttack() {
 
-
     }
 }
