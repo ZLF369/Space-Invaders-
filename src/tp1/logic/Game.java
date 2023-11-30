@@ -53,6 +53,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public void update() {
 	    this.currentCycle++;
 	    this.container.computerActions();
+		alienManager.moveAlienList();
 	    /*this.container.automaticMoves();*/
 	}
 
@@ -64,6 +65,9 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	    this.container.add(object);
 	}
 
+	public GameObjectContainer getContainer() {
+		return container;
+	}
 	// TODO fill with your code
 	
 	//VIEW METHODS
