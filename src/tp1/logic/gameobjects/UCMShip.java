@@ -46,17 +46,16 @@ public class UCMShip extends Ship{
     }*/
 
     public boolean move(Move move) {
-        if (onBorderLeft() && move.equals(Move.LEFT)) {
+        if (onBorderLeft() && (move.equals(Move.LEFT) || move.equals(Move.LLEFT))) {
             return false;
-        }
-        else if (onBorderRight() && move.equals(Move.RIGHT)){
+        } else if (onBorderRight() && (move.equals(Move.RIGHT) || move.equals(Move.RRIGHT))) {
             return false;
-        }
-        else {
+        } else {
             super.pos = pos.move(move);
             return true;
         }
     }
+
 
     public boolean onBorderLeft(){
         return super.pos.col == 0;
@@ -76,7 +75,6 @@ public class UCMShip extends Ship{
     @Override
     public boolean receiveAttack(EnemyWeapon weapon) {
         if(!this.pos.equals(weapon.pos)) return false;
-
         this.dealDamage(weapon);
         return true;
     }

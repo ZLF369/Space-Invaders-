@@ -40,7 +40,10 @@ public class ShootCommand extends Command {
 
     @Override
     public Command parse(String[] commandWords) {
-        return null;
+        // commandWords[2] == null
+        // commandWords[0] == null;
+
+        return new ShootCommand(laser);
     }
 
 }
