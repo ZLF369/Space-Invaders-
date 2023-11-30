@@ -28,7 +28,7 @@ public abstract class GameObject implements GameItem {
 		return this.life > 0;
 	}
 
-	protected int getLife() {
+	public int getLife() {
 		return this.life;
 	}
 
@@ -98,6 +98,10 @@ public abstract class GameObject implements GameItem {
 	@Override
 	public String toString() {
 		return this.getSymbol();
+	}
+
+	public void setLife(int life) {
+		this.life = life;
 	}
 
 	@Override

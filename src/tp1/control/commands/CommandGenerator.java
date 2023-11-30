@@ -11,7 +11,8 @@ public class CommandGenerator {
 		new ExitCommand(),
 		new NoneCommand(),
 		new ResetCommand(),
-		new ShootCommand()
+		new ShootCommand(),
+		new ShockwaveCommand()
 		//TODO fill with your code
 	);
 

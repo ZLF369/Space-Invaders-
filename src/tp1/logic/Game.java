@@ -86,7 +86,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public String positionToString(int col, int row) {
 		Position position = new Position(col, row);
 		for (GameObject objects: this.container.getObjects()) {
-			if(objects.isOnPosition(position)) {
+			if(objects.isOnPosition(position) && objects.getLife() > 0) {
 				return objects.toString();
 			}
 		}
@@ -152,10 +152,25 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
+	public boolean shockWave() {
+		if(player.hasShockWave()) {
+			for (GameObject objects: this.container.getObjects()) {
+				if(objects instanceof EnemyShip) {
+					objects.setLife(objects.getLife() - 1);
+				}
+			}
+			player.setShockWave(false);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
 	public void reset() {
 		this.container = alienManager.initialize();
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		this.container.add(player);
 		this.currentCycle = 0;
 	}
+
 }

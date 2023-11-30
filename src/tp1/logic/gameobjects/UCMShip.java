@@ -15,10 +15,13 @@ public class UCMShip extends Ship{
      */
     private UCMLaser laser;
 
+    private boolean hasShockWave;
+
     public UCMShip(Game game, Position position, UCMLaser laser) {
         super(game, position, 3);
         this.dir = Move.NONE;
         this.laser = laser;
+        hasShockWave = true; //false in real case
     }
 
     @Override
@@ -82,4 +85,11 @@ public class UCMShip extends Ship{
     public GameObject getLaser() {
         return laser;
     }
+
+    public boolean hasShockWave() {
+    	return hasShockWave;
+    }
+
+    public void setShockWave(boolean hasShockWave){ this.hasShockWave = hasShockWave; }
+
 }
