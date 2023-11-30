@@ -14,10 +14,9 @@ public class UCMLaser extends UCMWeapon {
 	public UCMLaser(Game game, Position pos, int life) {
 		super(game, pos, life);
 	}
-
 	@Override
 	protected String getSymbol() {
-		return null;
+		return Messages.LASER_SYMBOL;
 	}
 
 	@Override
@@ -29,8 +28,7 @@ public class UCMLaser extends UCMWeapon {
 	protected int getArmour() {
 		return 0;
 	}
-
-/*	@Override
+	/*@Override
 	public void onDelete() {
 
 	}

@@ -13,9 +13,12 @@ public class UCMShip extends Ship{
     /**
      * Constructor for the UCMShip.
      */
-    public UCMShip(Game game, Position position) {
+    private UCMLaser laser;
+
+    public UCMShip(Game game, Position position, UCMLaser laser) {
         super(game, position, 3);
         this.dir = Move.NONE;
+        this.laser = laser;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class UCMShip extends Ship{
         if (onBorderLeft() && move.equals(Move.LEFT)) {
             return false;
         }
-        else if(onBorderRight() && move.equals(Move.RIGHT)){
+        else if (onBorderRight() && move.equals(Move.RIGHT)){
             return false;
         }
         else {
@@ -62,6 +65,13 @@ public class UCMShip extends Ship{
         return super.pos.col == Game.DIM_X - 1;
     }
 
+    public boolean shootLaser(){
+        if (laser == null) {
+            laser = new UCMLaser(game, pos.move(Move.UP), 1);
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public boolean receiveAttack(EnemyWeapon weapon) {

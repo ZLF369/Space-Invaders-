@@ -34,7 +34,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		
 	private void initGame () {
 		this.container = alienManager.initialize();
-		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1));
+		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		this.container.add(player);
 	}
 
@@ -126,11 +126,13 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public boolean shootLaser() {
-		return false;
+		return this.player.shootLaser();
 	}
 
 	@Override
 	public void reset() {
-
+		this.container = alienManager.initialize();
+		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
+		this.container.add(player);
 	}
 }

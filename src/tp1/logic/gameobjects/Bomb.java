@@ -9,7 +9,6 @@ public class Bomb extends EnemyWeapon {
     public Bomb(Game game, Position pos, int life) {
         super(game, pos, life);
     }
-
     @Override
     protected String getSymbol() {
         return null;
