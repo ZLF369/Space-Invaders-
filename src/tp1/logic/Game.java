@@ -1,5 +1,6 @@
 package tp1.logic;
 
+import tp1.logic.gameobjects.EnemyShip;
 import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.UCMShip;
 import tp1.util.MyStringUtils;
@@ -18,6 +19,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private int currentCycle;
 
 	private Move move;
+
 	//TODO fill with your code
 
 	public Level getLevel() {
@@ -30,8 +32,17 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.level = level;
 		this.alienManager = new AlienManager(this);
 		initGame();
+		this.currentCycle = 0;
 	}
-		
+
+	public int getCurrentCycle() {
+		return currentCycle;
+	}
+
+	public void setCurrentCycle(int currentCycle) {
+		this.currentCycle = currentCycle;
+	}
+
 	private void initGame () {
 		this.container = alienManager.initialize();
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
@@ -51,7 +62,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	public void update() {
-	    this.currentCycle++;
+		setCurrentCycle(getCycle() + 1);
 	    this.container.computerActions();
 		alienManager.moveAlienList();
 	    /*this.container.automaticMoves();*/
@@ -109,13 +120,18 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	@Override
 	public int getCycle() {
 		// TODO fill with your code
-		return 0;
+		return currentCycle;
 	}
 
 	@Override
 	public int getRemainingAliens() {
-		// TODO fill with your code
-		return 0;
+		int i=0;
+		for (GameObject objects: this.container.getObjects()) {
+			if(objects instanceof EnemyShip) {
+				i++;
+			}
+		}
+		return i;
 	}
 
 	@Override
@@ -130,7 +146,9 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public boolean shootLaser() {
-		return this.player.shootLaser();
+		boolean shot = this.player.shootLaser();
+		container.add(player.getLaser());
+		return shot;
 	}
 
 	@Override
@@ -138,5 +156,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.container = alienManager.initialize();
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		this.container.add(player);
+		this.currentCycle = 0;
 	}
 }

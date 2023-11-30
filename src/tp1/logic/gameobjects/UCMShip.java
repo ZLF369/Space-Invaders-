@@ -78,4 +78,8 @@ public class UCMShip extends Ship{
         this.dealDamage(weapon);
         return true;
     }
+
+    public GameObject getLaser() {
+        return laser;
+    }
 }

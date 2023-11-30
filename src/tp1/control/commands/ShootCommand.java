@@ -7,16 +7,31 @@ import tp1.logic.Move;
 import tp1.logic.gameobjects.UCMLaser;
 import tp1.view.Messages;
 
-public class ShootCommand extends Command {
-    private UCMLaser laser;
-
-    public ShootCommand() {}
-    protected ShootCommand(UCMLaser laser) {
-        this.laser = laser;
+public class ShootCommand extends NoParamsCommand{
+    @Override
+    public ExecutionResult execute(GameModel game) {
+        boolean z;
+        z = game.shootLaser();
+        return new ExecutionResult(z,true, Messages.LASER_ERROR);
     }
     @Override
     protected String getName() {
         return Messages.COMMAND_SHOOT_NAME;
+    }
+
+    @Override
+    protected boolean matchCommandName(String name) {
+        return super.matchCommandName(name);
+    }
+
+    @Override
+    public String helpText() {
+        return super.helpText();
+    }
+
+    @Override
+    public Command parse(String[] commandWords) {
+        return super.parse(commandWords);
     }
 
     @Override
@@ -32,18 +47,6 @@ public class ShootCommand extends Command {
     @Override
     protected String getHelp() {
         return Messages.COMMAND_SHOOT_HELP;
-    }
-    @Override
-    public ExecutionResult execute(GameModel game) { //DEBUG
-        return null;
-    }
-
-    @Override
-    public Command parse(String[] commandWords) {
-        // commandWords[2] == null
-        // commandWords[0] == null;
-
-        return new ShootCommand(laser);
     }
 
 }

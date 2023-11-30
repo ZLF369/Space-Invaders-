@@ -37,8 +37,20 @@ public class UCMLaser extends UCMWeapon {
 	public void automaticMove() {
 
 	}*/
-	boolean isValidPosition(int column, int row) {
-		return row >= 0 && row < game.DIM_Y;
+	public boolean isValidPosition(Position position) {
+		return position.row >= 0 && position.row < game.DIM_Y;
+	}
+
+
+
+	@Override
+	public void computerAction(){
+		if (isValidPosition(getPos())){
+			pos = pos.move(Move.UP);
+		}
+		else {
+			life = 0;
+		}
 	}
 
 
