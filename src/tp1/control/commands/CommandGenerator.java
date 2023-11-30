@@ -9,7 +9,9 @@ public class CommandGenerator {
 		new HelpCommand(),
 		new MoveCommand(),
 		new ExitCommand(),
-		new NoneCommand()
+		new NoneCommand(),
+		new ResetCommand(),
+		new ShootCommand()
 		//TODO fill with your code
 	);
 
