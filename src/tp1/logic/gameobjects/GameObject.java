@@ -5,11 +5,6 @@ import tp1.logic.Move;
 import tp1.logic.Position;
 
 public abstract class GameObject implements GameItem {
-
-	public Position getPos() {
-		return pos;
-	}
-
 	protected Position pos;
 	protected int life;
 	protected Game game;
@@ -20,7 +15,14 @@ public abstract class GameObject implements GameItem {
 		this.game = game;
 		this.life = life;
 	}
-	
+	public Position getPos() {
+		return pos;
+	}
+
+	public void setPos(Position pos) {
+		this.pos = pos;
+	}
+
 	@Override
 	public boolean isAlive() {
 		return this.life > 0;
