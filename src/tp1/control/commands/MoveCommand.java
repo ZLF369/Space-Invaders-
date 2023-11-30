@@ -35,7 +35,7 @@ public class MoveCommand extends Command {
 	}
 
 	@Override
-	public ExecutionResult execute(GameModel game) { //DEBUG
+	public ExecutionResult execute(GameModel game) {
 		if (move == Move.UP || move == Move.DOWN)
 			return new ExecutionResult(true);
 

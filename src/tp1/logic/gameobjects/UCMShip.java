@@ -46,10 +46,10 @@ public class UCMShip extends Ship{
     }*/
 
     public boolean move(Move move) {
-        if (onBorderLeft() && move.equals(Move.LEFT)) {
+        if (onBorderLeft() && (move.equals(Move.LEFT) || move.equals(Move.LLEFT))) {
             return false;
         }
-        else if (onBorderRight() && move.equals(Move.RIGHT)){
+        else if (onBorderRight() && (move.equals(Move.RIGHT) || move.equals(Move.RRIGHT))){
             return false;
         }
         else {

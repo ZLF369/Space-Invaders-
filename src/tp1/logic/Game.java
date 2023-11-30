@@ -16,10 +16,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private UCMShip player;
 	private AlienManager alienManager;
 	private int currentCycle;
-
 	private Move move;
 	//TODO fill with your code
-
 	public Level getLevel() {
 		return level;
 	}
@@ -30,6 +28,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.level = level;
 		this.alienManager = new AlienManager(this);
 		initGame();
+		currentCycle = 0;
 	}
 		
 	private void initGame () {
@@ -108,8 +107,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public int getCycle() {
-		// TODO fill with your code
-		return 0;
+		return currentCycle;
 	}
 
 	@Override
