@@ -1,5 +1,6 @@
 package tp1.logic;
 
+import tp1.logic.gameobjects.EnemyShip;
 import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.UCMShip;
 import tp1.util.MyStringUtils;
@@ -16,8 +17,11 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private UCMShip player;
 	private AlienManager alienManager;
 	private int currentCycle;
+
 	private Move move;
+
 	//TODO fill with your code
+
 	public Level getLevel() {
 		return level;
 	}
@@ -28,9 +32,17 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.level = level;
 		this.alienManager = new AlienManager(this);
 		initGame();
-		currentCycle = 0;
+		this.currentCycle = 0;
 	}
-		
+
+	public int getCurrentCycle() {
+		return currentCycle;
+	}
+
+	public void setCurrentCycle(int currentCycle) {
+		this.currentCycle = currentCycle;
+	}
+
 	private void initGame () {
 		this.container = alienManager.initialize();
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
@@ -50,7 +62,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	public void update() {
-	    this.currentCycle++;
+		setCurrentCycle(getCycle() + 1);
 	    this.container.computerActions();
 		alienManager.moveAlienList();
 	    /*this.container.automaticMoves();*/
@@ -74,7 +86,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public String positionToString(int col, int row) {
 		Position position = new Position(col, row);
 		for (GameObject objects: this.container.getObjects()) {
-			if(objects.isOnPosition(position)) {
+			if(objects.isOnPosition(position) && objects.getLife() > 0) {
 				return objects.toString();
 			}
 		}
@@ -107,13 +119,19 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public int getCycle() {
+		// TODO fill with your code
 		return currentCycle;
 	}
 
 	@Override
 	public int getRemainingAliens() {
-		// TODO fill with your code
-		return 0;
+		int i=0;
+		for (GameObject objects: this.container.getObjects()) {
+			if(objects instanceof EnemyShip) {
+				i++;
+			}
+		}
+		return i;
 	}
 
 	@Override
@@ -128,7 +146,23 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public boolean shootLaser() {
-		return this.player.shootLaser();
+		boolean shot = this.player.shootLaser();
+		container.add(player.getLaser());
+		return shot;
+	}
+
+	@Override
+	public boolean shockWave() {
+		if(player.hasShockWave()) {
+			for (GameObject objects: this.container.getObjects()) {
+				if(objects instanceof EnemyShip) {
+					objects.setLife(objects.getLife() - 1);
+				}
+			}
+			player.setShockWave(false);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -136,5 +170,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.container = alienManager.initialize();
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		this.container.add(player);
+		this.currentCycle = 0;
 	}
+
 }

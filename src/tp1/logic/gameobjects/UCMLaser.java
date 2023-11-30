@@ -37,6 +37,23 @@ public class UCMLaser extends UCMWeapon {
 	public void automaticMove() {
 
 	}*/
+	public boolean isValidPosition(Position position) {
+		return position.row >= 0 && position.row < game.DIM_Y;
+	}
+
+
+
+	@Override
+	public void computerAction(){
+		if (isValidPosition(getPos())){
+			pos = pos.move(Move.UP);
+		}
+		else {
+			life = 0;
+		}
+	}
+
+
 
 	@Override
 	public boolean receiveAttack(EnemyWeapon weapon) {return false;}

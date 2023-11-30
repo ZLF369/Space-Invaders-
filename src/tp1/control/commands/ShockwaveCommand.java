@@ -7,16 +7,16 @@ import tp1.logic.Move;
 import tp1.logic.gameobjects.UCMLaser;
 import tp1.view.Messages;
 
-public class ShootCommand extends NoParamsCommand{
+public class ShockwaveCommand extends NoParamsCommand{
     @Override
     public ExecutionResult execute(GameModel game) {
         boolean z;
-        z = game.shootLaser();
-        return new ExecutionResult(z,true, Messages.LASER_ERROR);
+        z = game.shockWave();
+        return new ExecutionResult(z,true, Messages.SHOCKWAVE_ERROR);
     }
     @Override
     protected String getName() {
-        return Messages.COMMAND_SHOOT_NAME;
+        return Messages.COMMAND_SHOCKWAVE_NAME;
     }
 
     @Override
@@ -36,17 +36,17 @@ public class ShootCommand extends NoParamsCommand{
 
     @Override
     protected String getShortcut() {
-        return Messages.COMMAND_SHOOT_SHORTCUT;
+        return Messages.COMMAND_SHOCKWAVE_SHORTCUT;
     }
 
     @Override
     protected String getDetails() {
-        return Messages.COMMAND_SHOOT_DETAILS;
+        return Messages.COMMAND_SHOCKWAVE_DETAILS;
     }
 
     @Override
     protected String getHelp() {
-        return Messages.COMMAND_SHOOT_HELP;
+        return Messages.COMMAND_SHOCKWAVE_HELP;
     }
 
 }

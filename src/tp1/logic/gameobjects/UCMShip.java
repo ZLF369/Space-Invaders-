@@ -15,10 +15,13 @@ public class UCMShip extends Ship{
      */
     private UCMLaser laser;
 
+    private boolean hasShockWave;
+
     public UCMShip(Game game, Position position, UCMLaser laser) {
         super(game, position, 3);
         this.dir = Move.NONE;
         this.laser = laser;
+        hasShockWave = true; //false in real case
     }
 
     @Override
@@ -48,15 +51,14 @@ public class UCMShip extends Ship{
     public boolean move(Move move) {
         if (onBorderLeft() && (move.equals(Move.LEFT) || move.equals(Move.LLEFT))) {
             return false;
-        }
-        else if (onBorderRight() && (move.equals(Move.RIGHT) || move.equals(Move.RRIGHT))){
+        } else if (onBorderRight() && (move.equals(Move.RIGHT) || move.equals(Move.RRIGHT))) {
             return false;
-        }
-        else {
+        } else {
             super.pos = pos.move(move);
             return true;
         }
     }
+
 
     public boolean onBorderLeft(){
         return super.pos.col == 0;
@@ -76,8 +78,18 @@ public class UCMShip extends Ship{
     @Override
     public boolean receiveAttack(EnemyWeapon weapon) {
         if(!this.pos.equals(weapon.pos)) return false;
-
         this.dealDamage(weapon);
         return true;
     }
+
+    public GameObject getLaser() {
+        return laser;
+    }
+
+    public boolean hasShockWave() {
+    	return hasShockWave;
+    }
+
+    public void setShockWave(boolean hasShockWave){ this.hasShockWave = hasShockWave; }
+
 }
