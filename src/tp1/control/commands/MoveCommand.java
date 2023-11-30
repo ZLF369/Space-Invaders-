@@ -42,7 +42,7 @@ public class MoveCommand extends Command {
 		boolean siu = game.move(move);
 		if (!siu)
 			return new ExecutionResult(true);
-		game.update();
+
 		return new ExecutionResult(siu, true, Messages.MOVEMENT_ERROR);
 	}
 
