@@ -53,6 +53,4 @@ public class UCMLaser extends UCMWeapon {
 		}
 	}
 
-	@Override
-	public boolean receiveAttack(EnemyWeapon weapon) {return false;}
 }

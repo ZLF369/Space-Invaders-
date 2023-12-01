@@ -15,6 +15,6 @@ public abstract class UCMWeapon extends Weapon{
     }
 
     public void receiveAttack() {
-
+        this.life = 0;
     }
 }
