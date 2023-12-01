@@ -65,6 +65,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		setCurrentCycle(getCycle() + 1);
 	    this.container.computerActions();
 		alienManager.moveAlienList();
+		getRemainingAliens();
 	    /*this.container.automaticMoves();*/
 	}
 
@@ -127,7 +128,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public int getRemainingAliens() {
 		int i=0;
 		for (GameObject objects: this.container.getObjects()) {
-			if(objects instanceof EnemyShip) {
+			if(objects instanceof EnemyShip && objects.getLife() > 0) {
 				i++;
 			}
 		}
