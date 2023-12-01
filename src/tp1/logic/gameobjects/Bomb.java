@@ -11,26 +11,32 @@ public class Bomb extends EnemyWeapon {
     }
     @Override
     protected String getSymbol() {
-        return null;
+        return Messages.BOMB_SYMBOL;
     }
 
     @Override
     protected int getDamage() {
-        return 0;
+        return 1;
     }
 
     @Override
     protected int getArmour() {
-        return 0;
-    }
-
-/*    @Override
-    public void onDelete() {
-
+        return life;
     }
 
     @Override
-    public void automaticMove() {
+    public void computerAction() {
+        if (isValidPosition(getPos())){
+            pos = pos.move(Move.UP);
+        }
+        else {
+            life = 0;
+        }
+    }
 
-    }*/
+    public boolean isValidPosition(Position position) {
+        return position.row >= 0 && position.row < game.DIM_Y;
+    }
+
+
 }

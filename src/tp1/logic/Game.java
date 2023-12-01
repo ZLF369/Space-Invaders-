@@ -5,6 +5,8 @@ import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.UCMShip;
 import tp1.util.MyStringUtils;
 
+import java.util.Random;
+
 
 public class Game implements GameStatus, GameModel, GameWorld {
 
@@ -17,6 +19,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private UCMShip player;
 	private AlienManager alienManager;
 	private int currentCycle;
+	private long seed;
+	private Random random;
 
 	private Move move;
 
@@ -29,7 +33,9 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private Level level;
 
 	public Game (Level level, long seed){
+
 		this.level = level;
+		this.random = new Random(seed);
 		this.alienManager = new AlienManager(this);
 		initGame();
 		this.currentCycle = 0;
@@ -46,7 +52,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private void initGame () {
 		this.container = alienManager.initialize();
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
-		this.container.add(player);
+		addObject(player);
 	}
 
 	//CONTROL METHODS
@@ -108,14 +114,13 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public boolean playerWin() {
-		// TODO fill with your code
-		return false;
-	}
+        return getRemainingAliens() == 0;
+    }
 
 	@Override
 	public boolean aliensWin() {
 		// TODO fill with your code
-		return false;
+		return !player.isAlive();
 	}
 
 	@Override
@@ -173,5 +178,10 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.container.add(player);
 		this.currentCycle = 0;
 	}
+
+	public Random getRandom() {
+		return random;
+	}
+
 
 }
