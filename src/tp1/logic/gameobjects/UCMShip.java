@@ -69,7 +69,7 @@ public class UCMShip extends Ship{
 
     public boolean shootLaser(){
         if (laser == null) {
-            laser = new UCMLaser(game, pos.move(Move.UP), 1);
+            laser = new UCMLaser(game, pos, 1);
             return true;
         }
         return false;
