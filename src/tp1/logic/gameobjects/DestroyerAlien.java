@@ -42,8 +42,6 @@ public class DestroyerAlien extends AlienShip
         //NULLPTR EXCEPTIONS
     }
 
-
-
     public void moveBomb(){
         if (bomb != null && bomb.isAlive()){
             bomb.computerAction();
