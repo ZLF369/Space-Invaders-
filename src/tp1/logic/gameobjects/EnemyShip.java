@@ -16,4 +16,8 @@ public abstract class EnemyShip extends Ship{
         return true;
     }
 
+    public void delete(){
+            this.game.getContainer().remove(this);
+    }
+
 }

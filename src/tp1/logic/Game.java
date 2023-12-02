@@ -5,6 +5,7 @@ import tp1.logic.gameobjects.EnemyShip;
 import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.UCMShip;
 import tp1.util.MyStringUtils;
+import tp1.view.Messages;
 
 import java.util.Random;
 
@@ -69,6 +70,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	public void update() {
+		//check priorities of actions
 		setCurrentCycle(getCycle() + 1);
 	    this.container.computerActions();
 		alienManager.moveAlienList();
@@ -124,13 +126,11 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public boolean aliensWin() {
-		// TODO fill with your code
-		return !player.isAlive();
+		return (!player.isAlive() || alienManager.landed());
 	}
 
 	@Override
 	public int getCycle() {
-		// TODO fill with your code
 		return currentCycle;
 	}
 
