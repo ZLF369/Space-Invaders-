@@ -1,5 +1,6 @@
 package tp1.logic;
 
+import tp1.logic.gameobjects.DestroyerAlien;
 import tp1.logic.gameobjects.EnemyShip;
 import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.UCMShip;

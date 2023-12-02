@@ -17,7 +17,7 @@ public class Ufo extends EnemyShip {
 
 	@Override
 	protected String getSymbol() {
-		return Messages.UFO_SYMBOL +"[" + life + "]";
+		return Messages.UFO_SYMBOL +"[" + "0" + life + "]";
 	}
 
 	@Override
