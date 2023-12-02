@@ -109,9 +109,12 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
-	public String stateToString() {
-		// TODO fill with your code
-		return null;
+	public String stateToString() { //to display state of game
+		return "Life: " + player.getLife() + "\n" +
+				"Points: " + player.getPoints()
+				+ "\n" +
+				"shockWave: " + (player.hasShockWave() ? "ON" : "OFF")
+				+ "\n";
 	}
 
 	@Override
