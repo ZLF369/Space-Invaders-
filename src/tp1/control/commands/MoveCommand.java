@@ -48,10 +48,20 @@ public class MoveCommand extends Command {
 
 	@Override
 	public Command parse(String[] commandWords) {
-		// commandWords[2] == null
-		// commandWords[0] == null;
+		if (commandWords.length != 2) return null;
+		if (!matchCommandName(commandWords[0])) return null;
 
-		Move move = Move.valueOf(commandWords[1].toUpperCase());
+		Move move;
+
+		switch (Move.valueOf(commandWords[1].toUpperCase())) {
+			case LEFT -> move = Move.LEFT;
+			case RIGHT -> move = Move.RIGHT;
+			case RRIGHT -> move = Move.RRIGHT;
+			case LLEFT -> move = Move.LLEFT;
+			default -> {
+				return null;
+			}
+		}
 		return new MoveCommand(move);
 	}
 

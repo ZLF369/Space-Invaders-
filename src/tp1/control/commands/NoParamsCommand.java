@@ -8,11 +8,10 @@ public abstract class NoParamsCommand extends Command {
 			case "help", "h" -> new HelpCommand();
 			case "exit", "e" -> new ExitCommand();
 			case "none", "n" -> new NoneCommand();
-			case "reset", "r" -> new ResetCommand();
+            case "reset", "r" -> new ResetCommand();
 			case "shoot", "s" -> new ShootCommand();
 			case "shockwave", "w" -> new ShockwaveCommand();
-
-            default -> null;
+			default -> null;
 		};
 	}
 	
