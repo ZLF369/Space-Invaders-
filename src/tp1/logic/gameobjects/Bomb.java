@@ -26,8 +26,8 @@ public class Bomb extends EnemyWeapon {
 
     @Override
     public void computerAction() {
-        if (isValidPosition(getPos())){
-            pos = pos.move(Move.UP);
+        if (this != null && isValidPosition(getPos())){
+            pos = pos.move(Move.DOWN);
         }
         else {
             life = 0;

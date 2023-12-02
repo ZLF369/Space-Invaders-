@@ -72,6 +72,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		setCurrentCycle(getCycle() + 1);
 	    this.container.computerActions();
 		alienManager.moveAlienList();
+		alienManager.CheckHostileShot(player);
 		getRemainingAliens();
 	    /*this.container.automaticMoves();*/
 	}
@@ -81,7 +82,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	//CALLBACK METHODS
 	
 	public void addObject(GameObject object) {
-	    this.container.add(object);
+	   	 this.container.add(object);
 	}
 
 	public GameObjectContainer getContainer() {
