@@ -1,4 +1,5 @@
 package tp1.control.commands;
+import tp1.view.Messages;
 
 public abstract class NoParamsCommand extends Command {
 
@@ -11,6 +12,7 @@ public abstract class NoParamsCommand extends Command {
             case "reset", "r" -> new ResetCommand();
 			case "shoot", "s" -> new ShootCommand();
 			case "shockwave", "w" -> new ShockwaveCommand();
+			case "list", "l" -> new ListCommand();
 			default -> null;
 		};
 	}
