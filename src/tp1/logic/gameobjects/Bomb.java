@@ -26,7 +26,7 @@ public class Bomb extends EnemyWeapon {
 
     @Override
     public void computerAction() {
-        if (isValidPosition(this.pos)){
+        if (isValidPosition(this.pos) && this.isAlive()) {
             pos = pos.move(Move.DOWN);
         }
         else {
@@ -37,6 +37,5 @@ public class Bomb extends EnemyWeapon {
     public boolean isValidPosition(Position position) {
         return position.row >= 0 && position.row < Game.DIM_Y;
     }
-
 
 }

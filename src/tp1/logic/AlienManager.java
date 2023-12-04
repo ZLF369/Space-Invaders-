@@ -162,7 +162,6 @@ public class AlienManager {
         List<DestroyerAlien> aliensToShoot = new ArrayList<>();
         for (GameObject gameObject : game.getContainer().getObjects()){
             if (gameObject instanceof DestroyerAlien){
-                ((DestroyerAlien) gameObject).moveBomb();
                 DestroyerAlien alien = (DestroyerAlien) gameObject;
                 if (shootChance()) {
                     aliensToShoot.add(alien);
@@ -171,7 +170,9 @@ public class AlienManager {
         }
         for (DestroyerAlien alien : aliensToShoot) {
             alien.shootBomb();
+            alien.setBomb(null);
         }
+        aliensToShoot.clear();
     }
 
 
