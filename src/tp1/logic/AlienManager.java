@@ -162,7 +162,7 @@ public class AlienManager {
         List<DestroyerAlien> aliensToShoot = new ArrayList<>();
         for (GameObject gameObject : game.getContainer().getObjects()){
             if (gameObject instanceof DestroyerAlien){
-                ((DestroyerAlien) gameObject).moveBomb();
+                //((DestroyerAlien) gameObject).moveBomb();
                 DestroyerAlien alien = (DestroyerAlien) gameObject;
                 if (shootChance()) {
                     aliensToShoot.add(alien);
@@ -207,7 +207,7 @@ public class AlienManager {
     public boolean landed() {
         for (GameObject gameObject : game.getContainer().getObjects()){
             if (gameObject instanceof AlienShip){
-                if (gameObject.getPos().row == Game.DIM_Y){
+                if (gameObject.getPos().row == Game.DIM_Y - 1){
                     return true;
                 }
             }
