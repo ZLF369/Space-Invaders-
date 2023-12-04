@@ -35,9 +35,9 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private final Level level;
 
 	public Game (Level level, long seed){
-
 		this.level = level;
-		this.random = new Random(seed);
+		this.seed = seed;
+		this.random = new Random(this.seed);
 		this.alienManager = new AlienManager(this);
 		initGame();
 		this.currentCycle = 0;
@@ -187,6 +187,5 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public Random getRandom() {
 		return random;
 	}
-
 
 }
