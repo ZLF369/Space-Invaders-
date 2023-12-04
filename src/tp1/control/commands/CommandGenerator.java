@@ -32,7 +32,7 @@ public class CommandGenerator {
 	public static String commandHelp() {
 		StringBuilder commands = new StringBuilder();	
 		for (Command c: availableCommands) {
-			//TODO fill with your code
+			commands.append(c.helpText());
 		}
 		return commands.toString();
 	}
