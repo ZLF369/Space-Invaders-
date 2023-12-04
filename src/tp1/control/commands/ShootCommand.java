@@ -10,9 +10,9 @@ import tp1.view.Messages;
 public class ShootCommand extends NoParamsCommand{
     @Override
     public ExecutionResult execute(GameModel game) {
-        boolean z;
-        z = game.shootLaser();
-        return new ExecutionResult(z,true, Messages.LASER_ERROR);
+        boolean shoot;
+        shoot = game.shootLaser();
+        return new ExecutionResult(shoot,true, Messages.LASER_ERROR);
     }
     @Override
     protected String getName() {

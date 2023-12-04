@@ -38,10 +38,8 @@ public class UCMLaser extends UCMWeapon {
 
 	}*/
 	public boolean isValidPosition(Position position) {
-		return position.row >= 0 && position.row < game.DIM_Y;
+		return position.row >= 0 && position.row < Game.DIM_Y;
 	}
-
-
 
 	@Override
 	public void computerAction(){

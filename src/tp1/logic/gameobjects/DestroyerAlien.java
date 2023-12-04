@@ -38,8 +38,10 @@ public class DestroyerAlien extends AlienShip
             return;
         }
         setCantShootBomb(true);
-        bomb = new Bomb(game, pos, 1); //CREATION OF BOMB IS CORRECT, BUT NEED TO ADD IT TO GAME WITHOUT MAKING
-        //NULLPTR EXCEPTIONS
+        Position position = new Position(this.pos.col, this.pos.row + 1);
+        bomb = new Bomb(this.game, position, 1);
+        game.getContainer().add(bomb);
+
     }
 
     public void moveBomb(){

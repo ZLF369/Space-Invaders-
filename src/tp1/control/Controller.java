@@ -64,7 +64,6 @@ public class Controller {
 				System.out.println(Messages.UNKNOWN_COMMAND);
 			}
 		}
-
 		printEndMessage();
 	}
 	

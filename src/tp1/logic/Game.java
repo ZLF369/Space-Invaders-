@@ -19,7 +19,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	
 	private GameObjectContainer container;
 	private UCMShip player;
-	private AlienManager alienManager;
+	private final AlienManager alienManager;
 	private int currentCycle;
 	private long seed;
 	private Random random;
@@ -32,7 +32,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		return level;
 	}
 
-	private Level level;
+	private final Level level;
 
 	public Game (Level level, long seed){
 
