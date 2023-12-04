@@ -29,7 +29,10 @@ public class UCMShip extends Ship{
 
     @Override
     protected String getSymbol() {
-        return Messages.UCMSHIP_SYMBOL;
+        if (!game.aliensWin())
+            return Messages.UCMSHIP_SYMBOL;
+        else
+            return Messages.UCMSHIP_DEAD_SYMBOL;
     }
 
     @Override
