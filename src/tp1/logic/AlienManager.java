@@ -194,7 +194,7 @@ public class AlienManager {
 
     public void CheckHostileShot(UCMShip player) {
         for (GameObject gameObject : game.getContainer().getObjects()) {
-            if (gameObject instanceof EnemyShip && player.getLaser() != null) {
+            if ((gameObject instanceof EnemyShip || gameObject instanceof EnemyWeapon) && player.getLaser() != null) {
                 if (gameObject.isAlive() && player.getLaser().getPos().equals(gameObject.getPos())) {
                     gameObject.setLife(gameObject.getLife() - 1); //equivalent of receiving damage i guess?
                     //need logic to enable shockwave to true after killing ufo and getting points

@@ -157,9 +157,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public boolean shootLaser() {
-		boolean shot = this.player.shootLaser();
-		container.add(player.getLaser());
-		return shot;
+        return this.player.shootLaser();
 	}
 
 	@Override
