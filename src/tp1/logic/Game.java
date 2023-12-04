@@ -61,7 +61,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	
 	public boolean isFinished() {
 		// TODO fill with your code
-		return false;
+		return (playerWin() || aliensWin());
 	}
 
 	public void exit() {
