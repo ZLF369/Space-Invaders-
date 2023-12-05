@@ -177,6 +177,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	@Override
 	public void reset() {
 		this.container = alienManager.initialize();
+		this.random = new Random(this.seed);
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		this.container.add(player);
 		this.currentCycle = 0;
