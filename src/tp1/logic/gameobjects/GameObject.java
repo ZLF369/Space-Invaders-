@@ -10,13 +10,25 @@ public abstract class GameObject implements GameItem {
 	protected Game game;
 	protected Move dir;
 
+	public int points;
+
+	private boolean hasGivenPoints;
 	public GameObject(Game game, Position pos, int life) {
 		this.pos = pos;
 		this.game = game;
 		this.life = life;
+		this.hasGivenPoints = false;
 	}
 
-    public GameObject() {
+	public int getPoints() {
+		return 0;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public GameObject() {
     }
 
     public Position getPos() {
@@ -114,5 +126,11 @@ public abstract class GameObject implements GameItem {
 	}
 
 
+	public boolean hasGivenPoints() {
+		return hasGivenPoints;
+	}
 
+	public void setHasGivenPoints(boolean b) {
+		this.hasGivenPoints = b;
+	}
 }

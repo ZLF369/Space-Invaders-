@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tp1.logic.gameobjects.GameObject;
+import tp1.logic.gameobjects.UCMShip;
 
 public class GameObjectContainer {
 	private List<GameObject> objects;
@@ -29,6 +30,15 @@ public class GameObjectContainer {
 	public void computerActions() {
 		for (GameObject objects: objects) {
 			objects.computerAction();
+		}
+	}
+
+	public void givePoints(UCMShip player) {
+		for (GameObject objects: objects) {
+			if (!objects.isAlive() && !objects.hasGivenPoints()) {
+				player.setPoints(player.getPoints() + objects.getPoints());
+				objects.setHasGivenPoints(true);
+			}
 		}
 	}
 

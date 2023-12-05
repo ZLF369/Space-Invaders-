@@ -13,6 +13,7 @@ import tp1.view.Messages;
 public class Ufo extends EnemyShip {
 	public Ufo(Game game, Position pos, int life) {
 		super(game, pos, life);
+		this.points = 25;
 	}
 
 	@Override

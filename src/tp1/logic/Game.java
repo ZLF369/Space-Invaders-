@@ -73,6 +73,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		alienManager.moveAlienList();
 		alienManager.CheckHostileShot(player);
 		alienManager.explosiveAlienExplodes();
+		container.givePoints(player);
 		getRemainingAliens();
 	    /*this.container.automaticMoves();*/
 	}

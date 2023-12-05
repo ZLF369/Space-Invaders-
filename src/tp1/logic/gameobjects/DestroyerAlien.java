@@ -19,6 +19,7 @@ public class DestroyerAlien extends AlienShip
         super(game, pos, life);
         this.bomb = null;
         cantShootBomb = false;
+        this.points = 10;
     }
 
     public DestroyerAlien() {
