@@ -21,7 +21,6 @@ public class ShipFactory {
                 return ship.copy(game, pos, am);
             }
         }
-        // If no match is found, return null or throw an exception based on your requirements
         return null;
     }
 }

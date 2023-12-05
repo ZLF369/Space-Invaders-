@@ -6,8 +6,8 @@ import tp1.logic.Position;
 import tp1.view.Messages;
 
 public class ExplosiveAlien extends RegularAlien {
-    public ExplosiveAlien(Game game, Position pos, int life) {
-        super(game, pos, life);
+    public ExplosiveAlien(Game game, Position pos, AlienManager am) {
+        super(game, pos, am);
         this.points = 12;
     }
 

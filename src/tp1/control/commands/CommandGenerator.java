@@ -1,5 +1,7 @@
 package tp1.control.commands;
 
+import tp1.control.InitialConfiguration;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +12,10 @@ public class CommandGenerator {
 		new MoveCommand(),
 		new ExitCommand(),
 		new NoneCommand(),
-		new ResetCommand(),
+		new ResetCommand(InitialConfiguration.NONE),
+		new ResetCommand(InitialConfiguration.CONF_1),
+		new ResetCommand(InitialConfiguration.CONF_2),
+		new ResetCommand(InitialConfiguration.CONF_3),
 		new ShootCommand(),
 		new ShockwaveCommand(),
 		new ListCommand(),

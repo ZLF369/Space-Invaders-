@@ -15,8 +15,8 @@ public class DestroyerAlien extends AlienShip
     private Bomb bomb;
     private boolean cantShootBomb;
 
-    public DestroyerAlien(Game game, Position pos, int life) {
-        super(game, pos, life);
+    public DestroyerAlien(Game game, Position pos, AlienManager alienManager) {
+        super(game, pos, 1);
         this.bomb = null;
         cantShootBomb = false;
         this.points = 10;
@@ -28,7 +28,7 @@ public class DestroyerAlien extends AlienShip
 
     @Override
     protected AlienShip copy(Game game, Position pos, AlienManager am) {
-        return new DestroyerAlien(game, pos, life);
+        return new DestroyerAlien(game, pos, am);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package tp1.logic;
 
+import tp1.control.InitialConfiguration;
 import tp1.logic.gameobjects.*;
 import tp1.util.MyStringUtils;
 import tp1.view.Messages;
@@ -13,7 +14,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	public static final int DIM_X = 9;
 	public static final int DIM_Y = 8;
-	
+
 	private GameObjectContainer container;
 	private UCMShip player;
 	private final AlienManager alienManager;
@@ -49,13 +50,13 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	private void initGame () {
-		this.container = alienManager.initialize();
+		this.container = alienManager.initialize(null);
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		addObject(player);
 	}
 
 	//CONTROL METHODS
-	
+
 	public boolean isFinished() {
 		// TODO fill with your code
 		return (playerWin() || aliensWin());
@@ -69,30 +70,30 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public void update() {
 		//check priorities of actions
 		setCurrentCycle(getCycle() + 1);
-	    this.container.computerActions();
+		this.container.computerActions();
 		alienManager.moveAlienList();
 		alienManager.CheckHostileShot(player);
 		alienManager.explosiveAlienExplodes();
 		container.givePoints(player);
 		getRemainingAliens();
-	    /*this.container.automaticMoves();*/
+		/*this.container.automaticMoves();*/
 	}
 
 	// TODO fill with your code
 
 	//CALLBACK METHODS
-	
+
 	public void addObject(GameObject object) {
-	   	 this.container.add(object);
+		this.container.add(object);
 	}
 
 	public GameObjectContainer getContainer() {
 		return container;
 	}
 	// TODO fill with your code
-	
+
 	//VIEW METHODS
-	
+
 	public String positionToString(int col, int row) {
 		Position position = new Position(col, row);
 		for (GameObject objects: this.container.getObjects()) {
@@ -120,8 +121,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public boolean playerWin() {
-        return getRemainingAliens() == 0;
-    }
+		return getRemainingAliens() == 0;
+	}
 
 	@Override
 	public boolean aliensWin() {
@@ -156,7 +157,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public boolean shootLaser() {
-        return this.player.shootLaser();
+		return this.player.shootLaser();
 	}
 
 	@Override
@@ -179,7 +180,17 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	@Override
 	public void reset() {
 		emptyContainer();
-		this.container = alienManager.initialize();
+		this.container = alienManager.initialize(null);
+		this.random = new Random(this.seed);
+		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
+		this.container.add(player);
+		this.currentCycle = 0;
+	}
+
+	@Override
+	public void reset(InitialConfiguration initialConfiguration) {
+		emptyContainer();
+		this.container = alienManager.initialize(initialConfiguration);
 		this.random = new Random(this.seed);
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		this.container.add(player);

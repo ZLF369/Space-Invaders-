@@ -1,8 +1,10 @@
 package tp1.logic;
 
+import tp1.control.InitialConfiguration;
 import tp1.logic.gameobjects.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AlienManager {
@@ -21,13 +23,15 @@ public class AlienManager {
         ufoOnScreen = false;
     }
 
-    public GameObjectContainer initialize() {
+    public GameObjectContainer initialize(InitialConfiguration initialConfiguration) {
         this.remainingAliens = 0;
         GameObjectContainer container = new GameObjectContainer();
 
         initializeUFO(container);
-        initializeRegularAliens(container);
-        initializeDestroyerAliens(container);
+//        initializeRegularAliens(container);
+//        initializeDestroyerAliens(container);
+        initializeRegularAliens(container, initialConfiguration);
+        initializeDestroyerAliens(container, initialConfiguration);
 
         //testing lines
         /*ExplosiveAlien e = new ExplosiveAlien(game, new Position(3, 3), 2);
@@ -42,36 +46,51 @@ public class AlienManager {
         // container.add(new Ufo(game));
     }
 
-    private void initializeRegularAliens(GameObjectContainer container) {
+    private void initializeRegularAliens(GameObjectContainer container, InitialConfiguration initialConfiguration) {
 
         Level level = this.game.getLevel();
+        if (initialConfiguration == null || initialConfiguration == InitialConfiguration.NONE) {
+            for (int row = 0, index = 0; row < level.numRowsRegularAliens; row++) {
+                for (int col = 0; col < level.getNumAliensPerRow(); col++, index++) {
+                    int reqCenter = (Game.DIM_X / 2) - (level.getNumAliensPerRow() / 2);
 
-        for (int row = 0, index = 0; row < level.numRowsRegularAliens; row++) {
-            for (int col = 0; col < level.getNumAliensPerRow(); col++, index++) {
+                    container.add(new RegularAlien(
+                            this.game,
+                            new Position(col + reqCenter, row + 1),
+                            this
+                    ));
+                }
+            }
+        } else {
+        initializeFromConfiguration(container, initialConfiguration);
+    }
+    }
+
+    private void initializeDestroyerAliens(GameObjectContainer container, InitialConfiguration initialConfiguration) {
+        Level level = this.game.getLevel();
+
+        if (initialConfiguration == null || initialConfiguration == InitialConfiguration.NONE) {
+            for (int i = 0; i < level.numDestroyerAliens; i++) {
                 int reqCenter = (Game.DIM_X / 2) - (level.getNumAliensPerRow() / 2);
+                int offset = reqCenter + (level.getNumAliensPerRow() / level.numDestroyerAliens) - 1;
 
-                container.add(new RegularAlien(
+                container.add(new DestroyerAlien(
                         this.game,
-                        new Position(col + reqCenter, row + 1),
-                        2
+                        new Position(i + offset, level.numRowsRegularAliens + 1),
+                        this
                 ));
             }
+        } else {
+            initializeFromConfiguration(container, initialConfiguration);
         }
     }
 
-    private void initializeDestroyerAliens(GameObjectContainer container) {
-        Level level = this.game.getLevel();
-
-        for (int i = 0; i < level.numDestroyerAliens; i++) {
-
-            int reqCenter = (Game.DIM_X / 2) - (level.getNumAliensPerRow() / 2);
-            int offset = reqCenter + (level.getNumAliensPerRow() / level.numDestroyerAliens) - 1;
-
-            container.add(new DestroyerAlien(
-                    this.game,
-                    new Position(i + offset, level.numRowsRegularAliens + 1),
-                    1
-            ));
+    private void initializeFromConfiguration(GameObjectContainer container, InitialConfiguration initialConfiguration) {
+        for (String description : initialConfiguration.getShipDescription()) {
+            String[] words = description.split(" ");
+            System.out.println(Arrays.toString(words));
+            container.add(ShipFactory.spawnAlienShip(words[0], game,
+                    new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
         }
     }
 
@@ -87,6 +106,7 @@ public class AlienManager {
             }
         }
     }
+
 
     public boolean onBorder() { //check if any alien is on the border
         boolean onBorder = false;
@@ -110,7 +130,7 @@ public class AlienManager {
 
         if (cycle % numCyclesToMoveOneCell == 0) {
 
-        checkOnBorder(); //checkeverythign is inside the border
+            checkOnBorder(); //checkeverythign is inside the border
 
             if (shouldDescend) {
                 moveAllDown();
@@ -256,34 +276,5 @@ public class AlienManager {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

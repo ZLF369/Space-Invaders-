@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import tp1.control.Controller;
+import tp1.control.InitialConfiguration;
 import tp1.logic.Game;
 import tp1.logic.Level;
 import tp1.view.Messages;
