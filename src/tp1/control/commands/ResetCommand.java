@@ -4,53 +4,25 @@ import tp1.control.ExecutionResult;
 import tp1.control.InitialConfiguration;
 import tp1.logic.Game;
 import tp1.logic.GameModel;
+import tp1.logic.Move;
 import tp1.view.Messages;
 
-public class ResetCommand extends NoParamsCommand{
+public class ResetCommand extends Command{
     private InitialConfiguration initialConfiguration;
+
+    private Game game;
 
     public ResetCommand(InitialConfiguration initialConfiguration) {
         this.initialConfiguration = initialConfiguration;
     }
 
     public ResetCommand() {
+
     }
 
-    @Override
-    public ExecutionResult execute(GameModel game) {
-        if (initialConfiguration != null) {
-            game.reset(initialConfiguration);
-        } else {
-            game.reset();
-        }
-        return new ExecutionResult(true);
-    }
     @Override
     protected String getName() {
         return Messages.COMMAND_RESET_NAME;
-    }
-
-    @Override
-    protected boolean matchCommandName(String name) {
-        return super.matchCommandName(name);
-    }
-
-    @Override
-    public String helpText() {
-        return super.helpText();
-    }
-
-    @Override
-    public Command parse(String[] commandWords) {
-        if (commandWords.length == 2){
-            return switch(commandWords[0] + " " + commandWords[1]) {
-                case "reset conf_1", "r conf_1" -> new ResetCommand(InitialConfiguration.CONF_1);
-                case "reset conf_2", "r conf_2" -> new ResetCommand(InitialConfiguration.CONF_2);
-                case "reset conf_3", "r conf_3" -> new ResetCommand(InitialConfiguration.CONF_3);
-                default -> null;
-            };
-        }
-        return super.parse(commandWords);
     }
 
     @Override
@@ -66,6 +38,31 @@ public class ResetCommand extends NoParamsCommand{
     @Override
     protected String getHelp() {
         return Messages.COMMAND_RESET_HELP;
+    }
+
+    @Override
+    public ExecutionResult execute(GameModel game) {
+        game.reset(initialConfiguration);
+        return new ExecutionResult(true, true, Messages.MOVEMENT_ERROR);
+    }
+
+    @Override
+    public Command parse(String[] commandWords) {
+        if (commandWords.length != 2) return null;
+        if (!matchCommandName(commandWords[0])) return null;
+
+        InitialConfiguration iC;
+
+        switch (commandWords[1].toUpperCase()) {
+            case "NONE"-> iC = InitialConfiguration.NONE;
+            case "CONF_1" -> iC = InitialConfiguration.CONF_1;
+            case "CONF_2" -> iC = InitialConfiguration.CONF_2;
+            case "CONF_3" -> iC = InitialConfiguration.CONF_3;
+            default -> {
+                return null;
+            }
+        }
+        return new ResetCommand(iC);
     }
 
 }
