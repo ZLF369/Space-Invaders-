@@ -12,7 +12,8 @@ public class ShipFactory {
 
     private static final List<AlienShip> AVAILABLE_ALIEN_SHIPS = Arrays.asList(
             new RegularAlien(),
-            new DestroyerAlien()
+            new DestroyerAlien(),
+            new ExplosiveAlien()
     );
 
     public static AlienShip spawnAlienShip(String input, Game game, Position pos, AlienManager am) {

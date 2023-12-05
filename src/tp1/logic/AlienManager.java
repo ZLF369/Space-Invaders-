@@ -34,8 +34,8 @@ public class AlienManager {
         initializeDestroyerAliens(container, initialConfiguration);
 
         //testing lines
-        /*ExplosiveAlien e = new ExplosiveAlien(game, new Position(3, 3), 2);
-        container.add(e);*/
+//        ExplosiveAlien e = new ExplosiveAlien(game, new Position(3, 3),this);
+//        container.add(e);
         //TODO fill with your code
 
 
@@ -88,7 +88,6 @@ public class AlienManager {
     private void initializeFromConfiguration(GameObjectContainer container, InitialConfiguration initialConfiguration) {
         for (String description : initialConfiguration.getShipDescription()) {
             String[] words = description.split(" ");
-            System.out.println(Arrays.toString(words));
             container.add(ShipFactory.spawnAlienShip(words[0], game,
                     new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
         }
