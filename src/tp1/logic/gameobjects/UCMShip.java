@@ -15,6 +15,7 @@ public class UCMShip extends Ship{
      */
     private UCMLaser laser;
 
+    private SuperLaser superLaser;
     private Shockwave shockwave;
 
     private boolean hasShockWave;
@@ -28,7 +29,7 @@ public class UCMShip extends Ship{
         this.laser = laser;
         this.laserEnabled = false;
         hasShockWave = true; //false in real case
-        this.points = 0;
+        this.points = 20;
     }
 
     @Override
@@ -90,6 +91,22 @@ public class UCMShip extends Ship{
         return false;
     }
 
+    public boolean shootSuperLaser() {
+        if (this.getPoints() < 5){
+            return false;
+        }
+        else if(superLaser == null || superLaser.getLife() == 0) {
+            if(superLaser != null && superLaser.getLife() == 0) {
+                game.getContainer().remove(superLaser);
+            }
+            superLaser = new SuperLaser(game, pos, 1);
+            game.getContainer().add(superLaser);
+            this.setPoints(this.getPoints() - 5);
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     public boolean receiveAttack(EnemyWeapon weapon) {
@@ -109,6 +126,7 @@ public class UCMShip extends Ship{
     public void setShockWave(boolean hasShockWave){ this.hasShockWave = hasShockWave; }
 
     public int getPoints() {
+        //return points;
         return points;
     }
 
@@ -122,5 +140,9 @@ public class UCMShip extends Ship{
 
     public void setLaserEnabled(boolean laserEnabled) {
         this.laserEnabled = laserEnabled;
+    }
+
+    public GameObject getSuperLaser() {
+        return superLaser;
     }
 }

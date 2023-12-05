@@ -200,6 +200,13 @@ public class AlienManager {
                     //need logic to enable shockwave to true after killing ufo and getting points
                     player.getLaser().setLife(0);
                 }
+
+            } else if ((gameObject instanceof EnemyShip || gameObject instanceof EnemyWeapon) && player.getSuperLaser() != null) {
+                if (gameObject.isAlive() && player.getSuperLaser().getPos().equals(gameObject.getPos())) {
+                    gameObject.setLife(gameObject.getLife() - 2); //equivalent of receiving damage i guess?
+                    //need logic to enable shockwave to true after killing ufo and getting points
+                    player.getSuperLaser().setLife(player.getSuperLaser().getLife() - 1);
+                }
             }
         }
     }

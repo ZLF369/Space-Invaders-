@@ -1,9 +1,10 @@
 package tp1.logic.gameobjects;
 
 import tp1.logic.Game;
+import tp1.logic.Move;
 import tp1.logic.Position;
 
-public class SuperLaser extends UCMWeapon {
+public class SuperLaser extends UCMLaser {
     public SuperLaser(Game game, Position pos, int life) {
         super(game, pos, life);
     }
@@ -15,13 +16,7 @@ public class SuperLaser extends UCMWeapon {
 
     @Override
     protected int getDamage() {
-        return 1;
+        return 2;
     }
-
-    @Override
-    protected int getArmour() {
-        return 0;
-    }
-
 
 }

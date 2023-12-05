@@ -161,6 +161,9 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
+	public boolean shootSuperLaser(){return this.player.shootSuperLaser();}
+
+	@Override
 	public boolean shockWave() {
 		if(player.hasShockWave()) {
 			for (GameObject objects: this.container.getObjects()) {
@@ -176,11 +179,16 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public void reset() {
+		emptyContainer();
 		this.container = alienManager.initialize();
 		this.random = new Random(this.seed);
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		this.container.add(player);
 		this.currentCycle = 0;
+	}
+
+	public void emptyContainer(){
+		this.container = new GameObjectContainer();
 	}
 
 	public Random getRandom() {
