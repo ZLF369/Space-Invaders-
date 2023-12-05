@@ -71,12 +71,12 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		//check priorities of actions
 		setCurrentCycle(getCycle() + 1);
 		this.container.computerActions();
-		alienManager.moveAlienList();
+//		alienManager.moveAlienList();
 		alienManager.CheckHostileShot(player);
 		alienManager.explosiveAlienExplodes();
 		container.givePoints(player);
 		getRemainingAliens();
-		/*this.container.automaticMoves();*/
+		this.container.automaticMoves();
 	}
 
 	// TODO fill with your code

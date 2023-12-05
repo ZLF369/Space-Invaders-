@@ -133,4 +133,7 @@ public abstract class GameObject implements GameItem {
 	public void setHasGivenPoints(boolean b) {
 		this.hasGivenPoints = b;
 	}
+
+	public void automaticMove() {
+	}
 }

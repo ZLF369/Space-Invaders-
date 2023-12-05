@@ -6,6 +6,9 @@ import tp1.logic.Move;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class containing all the attributes and methods of the destroyer aliens. <br>
  * Also, this class extends the abstract class of Alien.
@@ -20,6 +23,12 @@ public class DestroyerAlien extends AlienShip
         this.bomb = null;
         cantShootBomb = false;
         this.points = 10;
+    }
+
+    @Override
+    public void computerAction() {
+        super.computerAction();
+        tryShooting();
     }
 
     public DestroyerAlien() {
@@ -44,23 +53,56 @@ public class DestroyerAlien extends AlienShip
         return 0;
     }
 
-    public void shootBomb(){
-        if (bomb != null) {
-            return;
+//    public void shootBomb(){
+//        if (bomb != null) {
+//            return;
+//        }
+//        setCantShootBomb(true);
+//        Position position = new Position(this.pos.col, this.pos.row + 1);
+//        bomb = new Bomb(this.game, position, 1);
+//        game.getContainer().add(bomb);
+//    }
+//
+//    public void moveBomb(){
+//        if (bomb != null && (!bomb.isAlive() || !bomb.isValidPosition(bomb.getPos()))){
+//            setCantShootBomb(false);
+//        }
+//    }
+
+//    public void tryShooting() {
+//        this.moveBomb();
+//        if (shootChance())
+//            this.shootBomb();
+//    }
+public synchronized void tryShooting() {
+    synchronized(this) {
+        this.moveBomb();
+        if (shootChance()) {
+            this.shootBomb();
         }
-        setCantShootBomb(true);
-        Position position = new Position(this.pos.col, this.pos.row + 1);
-        bomb = new Bomb(this.game, position, 1);
-        game.getContainer().add(bomb);
+    }
+}
+    public synchronized void shootBomb() {
+        synchronized(this) {
+            if (bomb != null) {
+                return;
+            }
+            setCantShootBomb(true);
+            // create and add bomb
+        }
     }
 
-    public void moveBomb(){
-        if (bomb != null && bomb.isAlive()){
-            bomb.computerAction();
+
+    public synchronized void moveBomb() {
+        synchronized(this) {
+            if (bomb != null && (!bomb.isAlive() || !bomb.isValidPosition(bomb.getPos()))) {
+                setCantShootBomb(false);
+            }
         }
-        else if (bomb != null && (!bomb.isAlive() || !bomb.isValidPosition(bomb.getPos()))){
-            setCantShootBomb(false);
-        }
+    }
+
+    public boolean shootChance() {
+        return game.getRandom().nextDouble() < game.getLevel().getShootFrequency();
     }
 
     public Bomb getBomb() {

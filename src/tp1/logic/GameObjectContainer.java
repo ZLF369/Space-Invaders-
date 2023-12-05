@@ -21,11 +21,11 @@ public class GameObjectContainer {
 		objects.remove(object);
 	}
 
-	/*public void automaticMoves() {
+	public void automaticMoves() {
 		for (GameObject o: objects) {
 			o.automaticMove();
 		}
-	}*/
+	}
 
 	public void computerActions() {
 		for (GameObject objects: objects) {
