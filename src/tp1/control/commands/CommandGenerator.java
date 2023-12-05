@@ -13,10 +13,10 @@ public class CommandGenerator {
 		new ResetCommand(),
 		new ShootCommand(),
 		new ShockwaveCommand(),
-		new ListCommand()
+		new ListCommand(),
+		new SuperlaserCommand()
 		//TODO fill with your code
 	);
-
 
 	public static Command parse(String[] commandWords) {
 		Command command = null;

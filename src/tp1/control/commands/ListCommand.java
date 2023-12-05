@@ -33,6 +33,7 @@ public class ListCommand extends NoParamsCommand {
         System.out.println(String.format(Messages.ALIEN_DESCRIPTION,Messages.REGULAR_ALIEN_DESCRIPTION,5,0,2));
         System.out.println(String.format(Messages.ALIEN_DESCRIPTION,Messages.DESTROYER_ALIEN_DESCRIPTION,10,1,1));
         System.out.println(String.format(Messages.ALIEN_DESCRIPTION,Messages.UFO_DESCRIPTION,25,0,1));
+        System.out.println(String.format(Messages.ALIEN_DESCRIPTION,Messages.EXPLOSIVE_ALIEN_DESCRIPTION,12,0,2));
         System.out.println("\n");
         return new ExecutionResult(false);
     }

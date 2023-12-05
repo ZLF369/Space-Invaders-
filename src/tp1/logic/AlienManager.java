@@ -29,6 +29,9 @@ public class AlienManager {
         initializeRegularAliens(container);
         initializeDestroyerAliens(container);
 
+        //testing lines
+        /*ExplosiveAlien e = new ExplosiveAlien(game, new Position(3, 3), 2);
+        container.add(e);*/
         //TODO fill with your code
 
 
@@ -200,6 +203,13 @@ public class AlienManager {
                     //need logic to enable shockwave to true after killing ufo and getting points
                     player.getLaser().setLife(0);
                 }
+
+            } else if ((gameObject instanceof EnemyShip || gameObject instanceof EnemyWeapon) && player.getSuperLaser() != null) {
+                if (gameObject.isAlive() && player.getSuperLaser().getPos().equals(gameObject.getPos())) {
+                    gameObject.setLife(gameObject.getLife() - 2); //equivalent of receiving damage i guess?
+                    //need logic to enable shockwave to true after killing ufo and getting points
+                    player.getSuperLaser().setLife(player.getSuperLaser().getLife() - 1);
+                }
             }
         }
     }
@@ -216,14 +226,36 @@ public class AlienManager {
         return false;
     }
 
+    public void explosiveAlienExplodes() {
 
 
+        int range = 1; // Adjust the range as needed
+        for (GameObject gameObject : game.getContainer().getObjects()) {
+            if (gameObject instanceof ExplosiveAlien) {
+                int centerX = gameObject.getPos().col;
+                int centerY = gameObject.getPos().row;
+                if (((ExplosiveAlien) gameObject).isDead()){
+                    for (int x = centerX - range; x <= centerX + range; x++) {
+                        for (int y = centerY - range; y <= centerY + range; y++) {
+                            // Skip the explosive alien itself
+                            if (x == centerX && y == centerY) {
+                                continue;
+                            }
+
+                            Position currentPos = new Position(x, y);
+                            for (GameObject go : game.getContainer().getObjects()) {
+                                if (go.getPos().equals(currentPos)) {
+                                    go.setLife(go.getLife() - 1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
 
-
-
-
-
+    }
 
 
 

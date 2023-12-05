@@ -13,6 +13,7 @@ public abstract class NoParamsCommand extends Command {
 			case "shoot", "s" -> new ShootCommand();
 			case "shockwave", "w" -> new ShockwaveCommand();
 			case "list", "l" -> new ListCommand();
+			case "superlaser", "sl" -> new SuperlaserCommand();
 			default -> null;
 		};
 	}

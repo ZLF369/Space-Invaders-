@@ -1,9 +1,6 @@
 package tp1.logic;
 
-import tp1.logic.gameobjects.DestroyerAlien;
-import tp1.logic.gameobjects.EnemyShip;
-import tp1.logic.gameobjects.GameObject;
-import tp1.logic.gameobjects.UCMShip;
+import tp1.logic.gameobjects.*;
 import tp1.util.MyStringUtils;
 import tp1.view.Messages;
 
@@ -75,6 +72,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	    this.container.computerActions();
 		alienManager.moveAlienList();
 		alienManager.CheckHostileShot(player);
+		alienManager.explosiveAlienExplodes();
 		getRemainingAliens();
 	    /*this.container.automaticMoves();*/
 	}
@@ -161,6 +159,9 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
+	public boolean shootSuperLaser(){return this.player.shootSuperLaser();}
+
+	@Override
 	public boolean shockWave() {
 		if(player.hasShockWave()) {
 			for (GameObject objects: this.container.getObjects()) {
@@ -176,14 +177,22 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public void reset() {
+		emptyContainer();
 		this.container = alienManager.initialize();
+		this.random = new Random(this.seed);
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		this.container.add(player);
 		this.currentCycle = 0;
 	}
 
+	public void emptyContainer(){
+		this.container = new GameObjectContainer();
+	}
+
 	public Random getRandom() {
 		return random;
 	}
+
+
 
 }
