@@ -28,7 +28,7 @@ public class UCMShip extends Ship{
         this.dir = Move.NONE;
         this.laser = laser;
         this.laserEnabled = false;
-        hasShockWave = true; //false in real case
+        hasShockWave = false; //false in real case
         this.points = 0;
     }
 

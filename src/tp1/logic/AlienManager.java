@@ -106,6 +106,8 @@ public class AlienManager {
         boolean alreadyMoved =false;
 
         tryShooting();
+        playerGotHit(game.getPlayer());
+        ufoShotLogic();
         checkUfo();
 
         if (cycle % numCyclesToMoveOneCell == 0) {
@@ -214,6 +216,15 @@ public class AlienManager {
         }
     }
 
+    public void ufoShotLogic(){
+        for (GameObject gameObject : game.getContainer().getObjects()) {
+            if (gameObject instanceof Ufo) {
+                if (!gameObject.isAlive()){
+                    game.getPlayer().setShockWave(true);
+                }
+            }
+        }
+    }
 
     public boolean landed() {
         for (GameObject gameObject : game.getContainer().getObjects()){
@@ -227,14 +238,12 @@ public class AlienManager {
     }
 
     public void explosiveAlienExplodes() {
-
-
-        int range = 1; // Adjust the range as needed
+        int range = 1; //RADIUS OF THE EXPLOSION
         for (GameObject gameObject : game.getContainer().getObjects()) {
             if (gameObject instanceof ExplosiveAlien) {
-                int centerX = gameObject.getPos().col;
+                int centerX = gameObject.getPos().col; //LOGIC SO THAT IT HITS EVERYTHING
                 int centerY = gameObject.getPos().row;
-                if (((ExplosiveAlien) gameObject).isDead()){
+                if (((ExplosiveAlien) gameObject).isDead()) {
                     for (int x = centerX - range; x <= centerX + range; x++) {
                         for (int y = centerY - range; y <= centerY + range; y++) {
                             // Skip the explosive alien itself
@@ -254,36 +263,18 @@ public class AlienManager {
             }
         }
 
+    }
+        public void playerGotHit(UCMShip player){
+            for (GameObject gameObject : game.getContainer().getObjects()){
+                if (gameObject instanceof EnemyWeapon){
+                    if (gameObject.getPos().equals(player.getPos())){
+                        player.setLife(player.getLife() - 1);
+                    }
+                }
+            }
+        }
+
 
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
