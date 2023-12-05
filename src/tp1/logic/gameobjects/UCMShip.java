@@ -29,7 +29,7 @@ public class UCMShip extends Ship{
         this.laser = laser;
         this.laserEnabled = false;
         hasShockWave = true; //false in real case
-        this.points = 20;
+        this.points = 0;
     }
 
     @Override
