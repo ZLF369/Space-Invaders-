@@ -18,7 +18,6 @@ public class CommandGenerator {
 		//TODO fill with your code
 	);
 
-
 	public static Command parse(String[] commandWords) {
 		Command command = null;
 		for (Command c: availableCommands) {
