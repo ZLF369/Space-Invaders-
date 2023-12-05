@@ -1,5 +1,6 @@
 package tp1.logic.gameobjects;
 
+import tp1.logic.AlienManager;
 import tp1.logic.Game;
 import tp1.logic.Move;
 import tp1.logic.Position;
@@ -9,6 +10,11 @@ public abstract class AlienShip extends EnemyShip {
         super(game, pos, life);
     }
 
+    public AlienShip() {
+        super();
+    }
+
+    protected abstract AlienShip copy(Game game, Position pos, AlienManager am);
 
     @Override
     public String toString() {

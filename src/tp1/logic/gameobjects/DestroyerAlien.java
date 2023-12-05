@@ -20,6 +20,16 @@ public class DestroyerAlien extends AlienShip
         this.bomb = null;
         cantShootBomb = false;
     }
+
+    public DestroyerAlien() {
+        super();
+    }
+
+    @Override
+    protected AlienShip copy(Game game, Position pos, AlienManager am) {
+        return new DestroyerAlien(game, pos, life);
+    }
+
     @Override
     protected String getSymbol() {
         return Messages.DESTROYER_ALIEN_SYMBOL;

@@ -15,7 +15,11 @@ public abstract class GameObject implements GameItem {
 		this.game = game;
 		this.life = life;
 	}
-	public Position getPos() {
+
+    public GameObject() {
+    }
+
+    public Position getPos() {
 		return pos;
 	}
 

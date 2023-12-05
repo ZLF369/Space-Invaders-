@@ -18,6 +18,15 @@ public class RegularAlien extends AlienShip {
 		super(game, pos, life);
 	}
 
+	public RegularAlien() {
+		super();
+	}
+
+	@Override
+	protected AlienShip copy(Game game, Position pos, AlienManager am) {
+		return new RegularAlien(game, pos, life);
+	}
+
 	@Override
 	protected String getSymbol() {
 		return Messages.REGULAR_ALIEN_SYMBOL;

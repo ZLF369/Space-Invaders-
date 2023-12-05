@@ -8,6 +8,10 @@ public abstract class EnemyShip extends Ship{
         super(game, pos, life);
     }
 
+    public EnemyShip() {
+        super();
+    }
+
     @Override
     public boolean receiveAttack(UCMWeapon weapon) {
         if(!this.pos.equals(weapon.pos)) return false;
