@@ -1,9 +1,6 @@
 package tp1.logic;
 
-import tp1.logic.gameobjects.DestroyerAlien;
-import tp1.logic.gameobjects.EnemyShip;
-import tp1.logic.gameobjects.GameObject;
-import tp1.logic.gameobjects.UCMShip;
+import tp1.logic.gameobjects.*;
 import tp1.util.MyStringUtils;
 import tp1.view.Messages;
 
@@ -75,6 +72,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	    this.container.computerActions();
 		alienManager.moveAlienList();
 		alienManager.CheckHostileShot(player);
+		alienManager.explosiveAlienExplodes();
 		getRemainingAliens();
 	    /*this.container.automaticMoves();*/
 	}
@@ -194,5 +192,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public Random getRandom() {
 		return random;
 	}
+
+
 
 }
