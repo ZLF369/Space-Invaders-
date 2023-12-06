@@ -206,5 +206,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 
-
+	public void deleteObject(GameObject object) {
+		this.container.remove(object);
+	}
 }

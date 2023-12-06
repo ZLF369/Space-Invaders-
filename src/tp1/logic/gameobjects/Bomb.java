@@ -37,5 +37,19 @@ public class Bomb extends EnemyWeapon {
     public boolean isValidPosition(Position position) {
         return position.row >= 0 && position.row < Game.DIM_Y;
     }
+@Override
+    public void automaticMove(){
+        pos = pos.move(Move.DOWN);
+    }
+
+    @Override
+    public void computerAction(){
+        if (!isValidPosition(getPos())){
+            game.deleteObject(this);
+        }
+        else
+            automaticMove();
+    }
+
 
 }

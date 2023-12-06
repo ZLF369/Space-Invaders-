@@ -10,11 +10,20 @@ public abstract class EnemyWeapon extends Weapon{
     }
 
     @Override
-    public boolean performAttack(GameItem other) {
-        //Todo: implement attack
+    public boolean performAttack(GameItem other){
+        if (other.isOnPosition(this.pos)){
+            other.receiveAttack(this);
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public boolean receiveAttack(UCMWeapon weapon) {return false;}
+    @Override //do similar logic to ucmlaser and superlaser
+    public boolean receiveAttack(UCMWeapon weapon) {
+        if (this.pos.equals(weapon.pos)) {
+            game.deleteObject(this);
+            return true;
+        }
+        return false;
+    }
 }

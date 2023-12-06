@@ -28,15 +28,11 @@ public abstract class AlienShip extends EnemyShip {
             onBorder = true;
         }
 
-    }
+    } //maybe change onBorder or boolean variables so that it has access to game or alienmanager.
 
 
     public boolean onBorder() { //check if any alien is on the border
-        boolean onBorder = false;
-        if (this.getPos().col == 0 || this.getPos().col == 8 || this.getPos().row == 8) {
-            onBorder = true;
-        }
-        return onBorder;
+        return this.getPos().col == 0 || this.getPos().col == 8 || this.getPos().row == 8;
     }
 @Override
     public void automaticMove() {
@@ -77,4 +73,6 @@ public abstract class AlienShip extends EnemyShip {
     public String toString() {
         return " " + this.getSymbol() + "[" + "0" + this.getLife() + "]";
     }
+
+
 }

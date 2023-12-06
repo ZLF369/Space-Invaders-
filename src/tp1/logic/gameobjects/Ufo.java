@@ -23,31 +23,34 @@ public class Ufo extends EnemyShip {
 
 	@Override
 	protected int getDamage() {
-		return 1;
+		return 0;
 	}
 
 	@Override
 	protected int getArmour() {
-		return this.life;
+		return 0;
 	}
 
-/*	@Override
 	public void onDelete() {
 
-	}*/
+	}
+
+	//unfinished
 
 	@Override
 	public void computerAction() {
-		if (this != null && isValidPosition(getPos())){
-			pos = pos.move(Move.LEFT);
-		}
-		else {
-			life = 0;
+		if (!isValidPosition(getPos())){
+			game.deleteObject(this);
 		}
 	}
 
+	@Override
+	public void automaticMove(){
+		pos = pos.move(Move.LEFT);
+	}
+
 	private boolean isValidPosition(Position pos) {
-		return pos.col >= 0 && pos.col < game.DIM_X;
+		return pos.col >= 0 && pos.col < Game.DIM_X;
 	}
 
 }
