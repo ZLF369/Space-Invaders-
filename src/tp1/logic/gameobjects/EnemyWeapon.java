@@ -27,10 +27,4 @@ public abstract class EnemyWeapon extends Weapon{
         return false;
     }
 
-
-
-
-
-
-
 }

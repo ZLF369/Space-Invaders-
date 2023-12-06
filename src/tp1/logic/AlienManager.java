@@ -34,6 +34,8 @@ public class AlienManager {
         initializeRegularAliens(container, initialConfiguration);
         initializeDestroyerAliens(container, initialConfiguration);
 
+        /*ExplosiveAlien test = new ExplosiveAlien(game, new Position(6, 5), this);
+        container.add(test);*/
         return container;
     }
 
@@ -87,109 +89,109 @@ public class AlienManager {
                     new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
         }
     }
-
-//    public void checkOnBorder() { //check if any alien is on the border
-//        for (GameObject gameObject : game.getContainer().getObjects()) {
-//            if (gameObject instanceof AlienShip) {
-//                if (gameObject.isAlive()
-//                        && (gameObject.getPos().row + 1 == Game.DIM_Y || gameObject.getPos().row == 0
-//                        || gameObject.getPos().col + 1 == Game.DIM_X || gameObject.getPos().col == 0)) {
-//                    onBorder = true;
-//                    break; // No need to check once one alien reaches the border
-//                }
-//            }
-//        }
-//    }
-//
-//
-//    public boolean onBorder() { //check if any alien is on the border
-//        boolean onBorder = false;
-//        for (GameObject gameObject : game.getContainer().getObjects()) {
-//            if (gameObject instanceof AlienShip) {
-//                if (gameObject.getPos().col == 0 || gameObject.getPos().col == 8 || gameObject.getPos().row == 8) {
-//                    onBorder = true;
-//                }
-//            }
-//        }
-//        return onBorder;
-//    }
-
-//    public void moveAlienList() {
-//        int cycle = game.getCycle();
-//        int numCyclesToMoveOneCell = game.getLevel().getNumCyclesToMoveOneCell();
-//        boolean alreadyMoved =false;
-//
-//        tryShooting();
-//        checkUfo();
-//
-//        if (cycle % numCyclesToMoveOneCell == 0) {
-//
-//            checkOnBorder(); //checkeverythign is inside the border
-//
-//            if (shouldDescend) {
-//                moveAllDown();
-//                shouldDescend = false; // flag it so that it doesnt keep moving down
-//            } else {
-//                for (GameObject gameObject : game.getContainer().getObjects()) {
-//                    if (gameObject instanceof AlienShip && gameObject.isAlive()) {
-//                        // Move in the current direction
-//                        gameObject.setPos(gameObject.getPos().move(dir));
-//                    }
-//                }
-//
-//                // switch dir
-//                if (onBorder()) {
-//                    shouldDescend = true;
-//                    if (dir == Move.LEFT) {
-//                        dir = Move.RIGHT; // Move to the right after descending
-//                    } else {
-//                        dir = Move.LEFT;
-//                    }
-//
-//                }
-//                onBorder = false;
-//            }
-//
-//            alreadyMoved = true;
-//
-//        }
-//    }
+/*
+    public void checkOnBorder() { //check if any alien is on the border
+        for (GameObject gameObject : game.getContainer().getObjects()) {
+            if (gameObject instanceof AlienShip) {
+                if (gameObject.isAlive()
+                        && (gameObject.getPos().row + 1 == Game.DIM_Y || gameObject.getPos().row == 0
+                        || gameObject.getPos().col + 1 == Game.DIM_X || gameObject.getPos().col == 0)) {
+                    onBorder = true;
+                    break; // No need to check once one alien reaches the border
+                }
+            }
+        }
+    }
 
 
-//    }
-//
-//    public void moveAllDown() {
-//        for (GameObject gameObject : game.getContainer().getObjects()) {
-//            if (gameObject instanceof AlienShip) {
-//                if (gameObject.isAlive()) {
-//                    gameObject.setPos(gameObject.getPos().move(Move.DOWN));
-//                }
-//            }
-//        }
-//    }
+    public boolean onBorder() { //check if any alien is on the border
+        boolean onBorder = false;
+        for (GameObject gameObject : game.getContainer().getObjects()) {
+            if (gameObject instanceof AlienShip) {
+                if (gameObject.getPos().col == 0 || gameObject.getPos().col == 8 || gameObject.getPos().row == 8) {
+                    onBorder = true;
+                }
+            }
+        }
+        return onBorder;
+    }
 
-    //ALIEN BOMB GO BOOM LOGIC
+    public void moveAlienList() {
+        int cycle = game.getCycle();
+        int numCyclesToMoveOneCell = game.getLevel().getNumCyclesToMoveOneCell();
+        boolean alreadyMoved =false;
 
-//    public boolean shootChance() {
-//        return game.getRandom().nextDouble() < game.getLevel().getShootFrequency();
-//    }
+        tryShooting();
+        checkUfo();
 
-//    public void tryShooting() {
-//        List<DestroyerAlien> aliensToShoot = new ArrayList<>();
-//        for (GameObject gameObject : game.getContainer().getObjects()) {
-//            if (gameObject instanceof DestroyerAlien) {
-//                DestroyerAlien alien = (DestroyerAlien) gameObject;
-//                if (shootChance()) {
-//                    aliensToShoot.add(alien);
-//                }
-//            }
-//        }
-//        for (DestroyerAlien alien : aliensToShoot) {
-//            alien.shootBomb();
-//            alien.setBomb(null);
-//        }
-//        aliensToShoot.clear();
-//    }
+        if (cycle % numCyclesToMoveOneCell == 0) {
+
+            checkOnBorder(); //checkeverythign is inside the border
+
+            if (shouldDescend) {
+                moveAllDown();
+                shouldDescend = false; // flag it so that it doesnt keep moving down
+            } else {
+                for (GameObject gameObject : game.getContainer().getObjects()) {
+                    if (gameObject instanceof AlienShip && gameObject.isAlive()) {
+                        // Move in the current direction
+                        gameObject.setPos(gameObject.getPos().move(dir));
+                    }
+                }
+
+                // switch dir
+                if (onBorder()) {
+                    shouldDescend = true;
+                    if (dir == Move.LEFT) {
+                        dir = Move.RIGHT; // Move to the right after descending
+                    } else {
+                        dir = Move.LEFT;
+                    }
+
+                }
+                onBorder = false;
+            }
+
+            alreadyMoved = true;
+
+        }
+    }
+
+
+    }
+
+    public void moveAllDown() {
+        for (GameObject gameObject : game.getContainer().getObjects()) {
+            if (gameObject instanceof AlienShip) {
+                if (gameObject.isAlive()) {
+                    gameObject.setPos(gameObject.getPos().move(Move.DOWN));
+                }
+            }
+        }
+    }
+
+    ALIEN BOMB GO BOOM LOGIC
+
+    public boolean shootChance() {
+        return game.getRandom().nextDouble() < game.getLevel().getShootFrequency();
+    }
+
+    public void tryShooting() {
+        List<DestroyerAlien> aliensToShoot = new ArrayList<>();
+        for (GameObject gameObject : game.getContainer().getObjects()) {
+            if (gameObject instanceof DestroyerAlien) {
+                DestroyerAlien alien = (DestroyerAlien) gameObject;
+                if (shootChance()) {
+                    aliensToShoot.add(alien);
+                }
+            }
+        }
+        for (DestroyerAlien alien : aliensToShoot) {
+            alien.shootBomb();
+            alien.setBomb(null);
+        }
+        aliensToShoot.clear();
+    }*/
 
 
     public void checkUfo() {
@@ -235,35 +237,6 @@ public class AlienManager {
         return false;
     }
 
-    public void explosiveAlienExplodes() {
 
-
-        int range = 1; // Adjust the range as needed
-        for (GameObject gameObject : game.getContainer().getObjects()) {
-            if (gameObject instanceof ExplosiveAlien) {
-                int centerX = gameObject.getPos().col;
-                int centerY = gameObject.getPos().row;
-                if (((ExplosiveAlien) gameObject).isDead()) {
-                    for (int x = centerX - range; x <= centerX + range; x++) {
-                        for (int y = centerY - range; y <= centerY + range; y++) {
-                            // Skip the explosive alien itself
-                            if (x == centerX && y == centerY) {
-                                continue;
-                            }
-
-                            Position currentPos = new Position(x, y);
-                            for (GameObject go : game.getContainer().getObjects()) {
-                                if (go.getPos().equals(currentPos)) {
-                                    go.setLife(go.getLife() - 1);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
-    }
 
 }

@@ -6,8 +6,10 @@ import tp1.logic.Position;
 import tp1.view.Messages;
 
 public class Bomb extends EnemyWeapon {
-    public Bomb(Game game, Position pos, int life) {
+    DestroyerAlien destroyerAlien;
+    public Bomb(Game game, Position pos, int life, DestroyerAlien destroyerAlien) {
         super(game, pos, life);
+        this.destroyerAlien = destroyerAlien;
     }
     @Override
     protected String getSymbol() {
@@ -34,7 +36,7 @@ public class Bomb extends EnemyWeapon {
 //        }
 //    }
 
-    public boolean isValidPosition(Position position) {
+    /*public boolean isValidPosition(Position position) {
         return position.row >= 0 && position.row < Game.DIM_Y;
     }
 @Override
@@ -45,9 +47,16 @@ public class Bomb extends EnemyWeapon {
     @Override
     public void computerAction(){
         if (!isValidPosition(getPos())){
-            game.deleteObject(this);
+            this.onDelete();
         }
     }
+
+    public void onDelete(){
+        game.deleteObject(this);
+        *//*if (destroyerAlien.getBomb() != null) {
+            this.destroyerAlien.deleteBomb();
+        }*//*
+    }*/
 
 
 }

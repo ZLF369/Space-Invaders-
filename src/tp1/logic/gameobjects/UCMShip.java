@@ -145,4 +145,15 @@ public class UCMShip extends Ship{
     public GameObject getLaser() {
         return laser;
     }
+
+    public void useShockwave() {
+        for (GameObject object : game.getContainer().getObjects()) {
+            if (object.isAlive()) {
+                // Assuming that the shockwave affects all active objects, call performAttack on each one
+                object.receiveShockwaveDamage(); // You may need to define shockwaveDamage
+            }
+            this.hasShockWave = false;
+        }
+    }
+
 }

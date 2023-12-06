@@ -75,5 +75,10 @@ public abstract class AlienShip extends EnemyShip {
     public boolean hasLanded() {
         return this.getPos().row == 8;
     }
+
+    @Override
+    public String getMessage() {
+        return getSymbol();
+    }
 }
 

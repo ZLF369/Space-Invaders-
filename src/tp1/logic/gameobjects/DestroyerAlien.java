@@ -16,19 +16,23 @@ import java.util.List;
 public class DestroyerAlien extends AlienShip
 {
     private Bomb bomb;
-    private boolean cantShootBomb;
+    private boolean hasBomb;
     public DestroyerAlien(Game game, Position pos, AlienManager alienManager) {
         super(game, pos, 1);
         this.bomb = null;
-        cantShootBomb = false;
         this.points = 10;
     }
 
     @Override
     public void computerAction() {
         super.computerAction();
-        tryShooting();
+        /*if (this.bomb == null && game.shootChance()) {
+            Position bombPosition = new Position(this.pos.col, this.pos.row + 1);
+                this.bomb = new Bomb(this.game, bombPosition, 1, this);
+                this.game.addObject(bomb);
+        }*/
     }
+
 
     public DestroyerAlien() {
         super();
@@ -52,30 +56,8 @@ public class DestroyerAlien extends AlienShip
         return 0;
     }
 
-//    public void shootBomb(){
-//        if (bomb != null) {
-//            return;
-//        }
-//        setCantShootBomb(true);
-//        Position position = new Position(this.pos.col, this.pos.row + 1);
-//        bomb = new Bomb(this.game, position, 1);
-//        game.getContainer().add(bomb);
-//    }
-//
-//    public void moveBomb(){
-//        if (bomb != null && (!bomb.isAlive() || !bomb.isValidPosition(bomb.getPos()))){
-//            setCantShootBomb(false);
-//        }
-//    }
 
-//    public void tryShooting() {
-//        this.moveBomb();
-//        if (shootChance())
-//            this.shootBomb();
-//    }
-
-
-    public void tryShooting() {
+    /*public void tryShooting() {
         if (bomb == null && shootChance()) {
                 this.shootBomb();
         }
@@ -84,14 +66,10 @@ public class DestroyerAlien extends AlienShip
         if (bomb != null) {
             return;
         }
-        setCantShootBomb(true);
+        setHasBomb(true);
         new Bomb(this.game, new Position(this.pos.col, this.pos.row + 1), 1);
     }
-
-
-    public boolean shootChance() {
-        return game.getRandom().nextDouble() < game.getLevel().getShootFrequency();
-    }
+*/
 
     public Bomb getBomb() {
         return bomb;
@@ -101,11 +79,15 @@ public class DestroyerAlien extends AlienShip
         this.bomb = bomb;
     }
 
-    public boolean isCantShootBomb() {
-        return cantShootBomb;
+    public boolean isHasBomb() {
+        return hasBomb;
     }
 
-    public void setCantShootBomb(boolean cantShootBomb) {
-        this.cantShootBomb = cantShootBomb;
+    public void setHasBomb(boolean cantShootBomb) {
+        this.hasBomb = cantShootBomb;
     }
+
+    /*public void deleteBomb() {
+        setBomb(null);
+    }*/
 }

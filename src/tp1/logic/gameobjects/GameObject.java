@@ -12,6 +12,8 @@ public abstract class GameObject implements GameItem {
 
 	public int points;
 
+	public String Message;
+
 	private boolean hasGivenPoints;
 	public GameObject(Game game, Position pos, int life) {
 		this.pos = pos;
@@ -125,7 +127,6 @@ public abstract class GameObject implements GameItem {
 		return this.pos.equals(pos);
 	}
 
-
 	public boolean hasGivenPoints() {
 		return hasGivenPoints;
 	}
@@ -140,4 +141,13 @@ public abstract class GameObject implements GameItem {
 	public boolean hasLanded(){
 		return false;
 	}
+
+	public String getMessage(){
+		return Message;
+	}
+
+	public void receiveShockwaveDamage(){
+	}
+
+	public void kamikaze(){}
 }

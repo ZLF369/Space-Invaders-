@@ -66,6 +66,12 @@ public class GameObjectContainer {
 		}
 	}
 
+	public void checkExplosion(){
+		for (GameObject objects: objects) {
+			objects.kamikaze();
+		}
+	}
+
 	public List<GameObject> getObjects() {
 		return objects;
 	}

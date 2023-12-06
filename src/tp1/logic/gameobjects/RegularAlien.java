@@ -2,7 +2,6 @@ package tp1.logic.gameobjects;
 
 import tp1.logic.AlienManager;
 import tp1.logic.Game;
-import tp1.logic.Move;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
@@ -31,6 +30,7 @@ public class RegularAlien extends AlienShip {
 	protected String getSymbol() {
 		return Messages.REGULAR_ALIEN_SYMBOL;
 	}
+
 
 	@Override
 	protected int getDamage() {

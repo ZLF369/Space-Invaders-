@@ -36,4 +36,9 @@ public abstract class EnemyShip extends Ship{
             this.game.getContainer().remove(this);
     }
 
+    @Override
+    public void receiveShockwaveDamage(){
+        this.life -= 1;
+    }
+
 }

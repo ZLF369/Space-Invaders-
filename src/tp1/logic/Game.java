@@ -2,7 +2,9 @@ package tp1.logic;
 
 import tp1.control.InitialConfiguration;
 import tp1.logic.gameobjects.*;
+import tp1.view.Messages;
 
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -92,11 +94,10 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		//check priorities of actions
 		setCurrentCycle(getCycle() + 1);
 		alienManager.checkUfo();
-		container.checkCollision();
 		this.container.computerActions();
 //		alienManager.moveAlienList();
-
-		alienManager.explosiveAlienExplodes();
+		container.checkCollision();
+		container.checkExplosion();
 		container.givePoints(player);
 		getRemainingAliens();
 		this.container.automaticMoves();
@@ -189,16 +190,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public boolean shockWave() {
-		if(player.hasShockWave()) {
-			for (GameObject objects: this.container.getObjects()) {
-				if(objects instanceof EnemyShip) {
-					objects.setLife(objects.getLife() - 1);
-				}
-			}
-			player.setShockWave(false);
-			return true;
-		}
-		return false;
+		player.useShockwave();
+		return true;
 	}
 
 	@Override
@@ -227,6 +220,10 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	public Random getRandom() {
 		return random;
+	}
+
+	public boolean shootChance() {
+		return this.getRandom().nextDouble() < this.getLevel().getShootFrequency();
 	}
 
 

@@ -28,4 +28,31 @@ public class ExplosiveAlien extends RegularAlien {
         return this.getLife() == 0;
     }
 
+    @Override
+    public void kamikaze() {
+        if (this.isDead()) {
+            int range = 7; // Adjust the range as needed
+            int centerX = this.getPos().col;
+            int centerY = this.getPos().row;
+                for (int x = centerX - range; x <= centerX + range; x++) {
+                    for (int y = centerY - range; y <= centerY + range; y++) {
+                        // Skip the explosive alien itself
+                        if (x == centerX && y == centerY) {
+                            continue;
+                        }
+
+                        Position currentPos = new Position(x, y);
+                        for (GameObject go : game.getContainer().getObjects()) {
+                            if (go.getPos().equals(currentPos)) {
+                                go.setLife(go.getLife() - 1);
+                            }
+                        }
+                    }
+                }
+
+
+
+        }
+
+    }
 }
