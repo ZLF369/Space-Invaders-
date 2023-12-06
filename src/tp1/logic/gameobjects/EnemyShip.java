@@ -28,6 +28,7 @@ public abstract class EnemyShip extends Ship{
         if(!this.pos.equals(weapon.pos)) return false;
 
         this.dealDamage(weapon);
+        weapon.setLife(0);
         return true;
     }
 

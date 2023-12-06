@@ -235,7 +235,7 @@ public class AlienManager {
     public boolean landed() {
         for (GameObject gameObject : game.getContainer().getObjects()) {
             if (gameObject instanceof AlienShip) {
-                if (gameObject.getPos().row == Game.DIM_Y) {
+                if (gameObject.getPos().row == Game.DIM_Y && gameObject.isAlive()) {
                     return true;
                 }
             }

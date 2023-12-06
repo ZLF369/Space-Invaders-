@@ -29,11 +29,6 @@ public class UCMLaser extends UCMWeapon {
 		return 0;
 	}
 
-	@Override
-	public void receiveAttack() {
-		this.setLife(0);
-	}
-
 	public boolean isValidPosition(Position position) {
 		return position.row >= 0 && position.row < Game.DIM_Y;
 	}
@@ -49,5 +44,8 @@ public class UCMLaser extends UCMWeapon {
 			game.deleteObject(this);
 		}
 	}
+
+
+
 
 }

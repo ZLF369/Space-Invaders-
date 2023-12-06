@@ -7,16 +7,16 @@ public abstract class UCMWeapon extends Weapon{
     public UCMWeapon(Game game, Position pos, int life) {
         super(game, pos, life);
     }
-
     @Override
     public boolean performAttack(GameItem other) {
-        if (other.isOnPosition(this.pos)) {
-            other.receiveAttack(this);
-            return true;
-        }
-        return false;
+        other.receiveAttack(this);
+        return true;
     }
 
-    public void receiveAttack() {
+    @Override
+    public boolean receiveAttack(EnemyWeapon weapon) {
+        this.life -= weapon.getDamage();
+        return true;
     }
+
 }
