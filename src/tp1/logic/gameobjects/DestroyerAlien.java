@@ -73,32 +73,21 @@ public class DestroyerAlien extends AlienShip
 //        if (shootChance())
 //            this.shootBomb();
 //    }
-public synchronized void tryShooting() {
-    synchronized(this) {
-        this.moveBomb();
-        if (shootChance()) {
-            this.shootBomb();
-        }
-    }
-}
-    public synchronized void shootBomb() {
-        synchronized(this) {
-            if (bomb != null) {
-                return;
-            }
-            setCantShootBomb(true);
-            // create and add bomb
-        }
-    }
 
 
-    public synchronized void moveBomb() {
-        synchronized(this) {
-            if (bomb != null && (!bomb.isAlive() || !bomb.isValidPosition(bomb.getPos()))) {
-                setCantShootBomb(false);
-            }
+    public void tryShooting() {
+        if (bomb == null && shootChance()) {
+                this.shootBomb();
         }
     }
+    public void shootBomb() {
+        if (bomb != null) {
+            return;
+        }
+        setCantShootBomb(true);
+        new Bomb(this.game, new Position(this.pos.col, this.pos.row + 1), 1);
+    }
+
 
     public boolean shootChance() {
         return game.getRandom().nextDouble() < game.getLevel().getShootFrequency();

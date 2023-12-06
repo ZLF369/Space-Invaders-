@@ -19,58 +19,61 @@ public abstract class AlienShip extends EnemyShip {
 
     protected abstract AlienShip copy(Game game, Position pos, AlienManager am);
 
-    public void checkOnBorder() { //check if any alien is on the border
-        if (this.isAlive()
-                && (this.getPos().row + 1 == Game.DIM_Y || this.getPos().row == 0
-                || this.getPos().col + 1 == Game.DIM_X || this.getPos().col == 0)) {
-            game.onBorder = true;
-        }
-
-    } //maybe change onBorder or boolean variables so that it has access to game or alienmanager.
-
-
-    public boolean onBorder() { //check if any alien is on the border
-        return this.getPos().col == 0 || this.getPos().col == 8 || this.getPos().row == 8;
+    public boolean onBorder() {
+        return this.getPos().col == 0 || this.getPos().col == Game.DIM_X - 1;
     }
-@Override
+    @Override
     public void automaticMove() {
         int cycle = game.getCycle();
         int numCyclesToMoveOneCell = game.getLevel().getNumCyclesToMoveOneCell();
 
         if (cycle % numCyclesToMoveOneCell == 0) {
-
-            checkOnBorder(); //checkeverythign is inside the border
-
-            if (game.shouldDescend) {
-                this.setPos(this.getPos().move(Move.DOWN));
-                game.shouldDescend = false; // flag it so that it doesnt keep moving down
-            } else {
-                if (this.isAlive()) {
-                    // Move in the current direction
-                    this.setPos(this.getPos().move(dir));
-                }
-            }
-
-            // switch dir
-            if (onBorder()) {
-                game.shouldDescend = true;
-                if (dir == Move.LEFT) {
-                    dir = Move.RIGHT; // Move to the right after descending
-                } else {
-                    dir = Move.LEFT;
-                }
-
-            }
-            game.onBorder = false;
+            performMovement();
         }
 
     }
 
+    public void descend(){
+        this.pos = this.pos.move(Move.DOWN);
+        game.setShouldDescend(false);
+    }
+
+    public void performMovement(){
+        if (onBorder()){
+            game.setOnBorder(true);
+            game.setShouldDescend(true);
+        }
+        if (game.isOnBorder()){
+            descend();
+            switchDirection();
+            move();
+        }
+        else {
+            move();
+        }
+    }
+
+    public void move() {
+        if (dir == Move.LEFT) {
+            pos = pos.move(Move.LEFT);
+        } else if (dir == Move.RIGHT) {
+            pos = pos.move(Move.RIGHT);
+        }
+    }
+
+    private void switchDirection() {
+        dir = (dir == Move.LEFT) ? Move.RIGHT : Move.LEFT;
+        game.setOnBorder(false);
+    }
 
     @Override
     public String toString() {
         return " " + this.getSymbol() + "[" + "0" + this.getLife() + "]";
     }
 
-
+    @Override
+    public boolean hasLanded() {
+        return this.getPos().row == 8;
+    }
 }
+

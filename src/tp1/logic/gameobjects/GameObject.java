@@ -136,4 +136,8 @@ public abstract class GameObject implements GameItem {
 
 	public void automaticMove() {
 	}
+
+	public boolean hasLanded(){
+		return false;
+	}
 }

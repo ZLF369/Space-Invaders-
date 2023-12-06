@@ -20,9 +20,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private long seed;
 	private Random random;
 
-	public boolean onBorder;
-	public boolean shouldDescend;
-	private Move move;
+	private boolean onBorder, shouldDescend;
+	private Move dir;
 
 	//TODO fill with your code
 
@@ -39,6 +38,28 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.alienManager = new AlienManager(this);
 		initGame();
 		this.currentCycle = 0;
+		this.onBorder = false;
+		this.shouldDescend = false;
+	}
+
+	public AlienManager getAlienManager() {
+		return alienManager;
+	}
+
+	public boolean isOnBorder() {
+		return onBorder;
+	}
+
+	public void setOnBorder(boolean onBorder) {
+		this.onBorder = onBorder;
+	}
+
+	public boolean isShouldDescend() {
+		return shouldDescend;
+	}
+
+	public void setShouldDescend(boolean shouldDescend) {
+		this.shouldDescend = shouldDescend;
 	}
 
 	public int getCurrentCycle() {
@@ -71,9 +92,10 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		//check priorities of actions
 		setCurrentCycle(getCycle() + 1);
 		alienManager.checkUfo();
+		container.checkCollision();
 		this.container.computerActions();
 //		alienManager.moveAlienList();
-		container.checkCollision();
+
 		alienManager.explosiveAlienExplodes();
 		container.givePoints(player);
 		getRemainingAliens();
@@ -206,7 +228,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public Random getRandom() {
 		return random;
 	}
-
 
 
 	public void deleteObject(GameObject object) {

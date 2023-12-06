@@ -17,6 +17,7 @@ public class AlienManager {
     private Ufo activeUfo;
     private boolean ufoOnScreen;
 
+
     public AlienManager(Game game) {
         this.game = game;
 //        dir = Move.LEFT;
@@ -32,12 +33,6 @@ public class AlienManager {
 //        initializeDestroyerAliens(container);
         initializeRegularAliens(container, initialConfiguration);
         initializeDestroyerAliens(container, initialConfiguration);
-
-        //testing lines
-//        ExplosiveAlien e = new ExplosiveAlien(game, new Position(3, 3),this);
-//        container.add(e);
-        //TODO fill with your code
-
 
         return container;
     }
@@ -232,13 +227,10 @@ public class AlienManager {
         }
     }*/
 
-    public boolean landed() {
-        for (GameObject gameObject : game.getContainer().getObjects()) {
-            if (gameObject instanceof AlienShip) {
-                if (gameObject.getPos().row == Game.DIM_Y && gameObject.isAlive()) {
-                    return true;
-                }
-            }
+    public boolean landed(){
+        for (GameObject objects: this.game.getContainer().getObjects()) {
+            if (objects.hasLanded())
+                return true;
         }
         return false;
     }

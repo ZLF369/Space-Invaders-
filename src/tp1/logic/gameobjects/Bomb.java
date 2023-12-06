@@ -21,7 +21,7 @@ public class Bomb extends EnemyWeapon {
 
     @Override
     protected int getArmour() {
-        return life;
+        return 0;
     }
 
 //    @Override
@@ -47,8 +47,6 @@ public class Bomb extends EnemyWeapon {
         if (!isValidPosition(getPos())){
             game.deleteObject(this);
         }
-        else
-            automaticMove();
     }
 
 
