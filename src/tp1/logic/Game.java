@@ -22,6 +22,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private long seed;
 	private Random random;
 
+	public boolean onBorder;
+	public boolean shouldDescend;
 	private Move move;
 
 	//TODO fill with your code

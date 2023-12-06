@@ -6,8 +6,6 @@ import tp1.logic.Move;
 import tp1.logic.Position;
 
 public abstract class AlienShip extends EnemyShip {
-    public boolean onBorder;
-    private boolean shouldDescend;
     private Move dir;
 
     public AlienShip(Game game, Position pos, int life) {
@@ -25,7 +23,7 @@ public abstract class AlienShip extends EnemyShip {
         if (this.isAlive()
                 && (this.getPos().row + 1 == Game.DIM_Y || this.getPos().row == 0
                 || this.getPos().col + 1 == Game.DIM_X || this.getPos().col == 0)) {
-            onBorder = true;
+            game.onBorder = true;
         }
 
     } //maybe change onBorder or boolean variables so that it has access to game or alienmanager.
@@ -43,9 +41,9 @@ public abstract class AlienShip extends EnemyShip {
 
             checkOnBorder(); //checkeverythign is inside the border
 
-            if (shouldDescend) {
+            if (game.shouldDescend) {
                 this.setPos(this.getPos().move(Move.DOWN));
-                shouldDescend = false; // flag it so that it doesnt keep moving down
+                game.shouldDescend = false; // flag it so that it doesnt keep moving down
             } else {
                 if (this.isAlive()) {
                     // Move in the current direction
@@ -55,7 +53,7 @@ public abstract class AlienShip extends EnemyShip {
 
             // switch dir
             if (onBorder()) {
-                shouldDescend = true;
+                game.shouldDescend = true;
                 if (dir == Move.LEFT) {
                     dir = Move.RIGHT; // Move to the right after descending
                 } else {
@@ -63,7 +61,7 @@ public abstract class AlienShip extends EnemyShip {
                 }
 
             }
-            onBorder = false;
+            game.onBorder = false;
         }
 
     }
