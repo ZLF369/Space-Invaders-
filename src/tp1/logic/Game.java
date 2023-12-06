@@ -79,6 +79,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		container.givePoints(player);
 		getRemainingAliens();
 		this.container.automaticMoves();
+		this.container.deleteDeadObjects();
 	}
 
 	// TODO fill with your code
@@ -99,7 +100,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public String positionToString(int col, int row) {
 		Position position = new Position(col, row);
 		for (GameObject objects: this.container.getObjects()) {
-			if(objects.isOnPosition(position) && objects.getLife() > 0) {
+			if(objects.isOnPosition(position) && objects.isAlive()) {
 				return objects.toString();
 			}
 		}

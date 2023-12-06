@@ -10,8 +10,11 @@ public abstract class UCMWeapon extends Weapon{
 
     @Override
     public boolean performAttack(GameItem other) {
-        //Todo: implement attack
-       return false;
+        if (other.isOnPosition(this.pos)) {
+            other.receiveAttack(this);
+            return true;
+        }
+        return false;
     }
 
     public void receiveAttack() {

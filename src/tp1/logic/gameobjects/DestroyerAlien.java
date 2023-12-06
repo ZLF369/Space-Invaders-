@@ -17,7 +17,6 @@ public class DestroyerAlien extends AlienShip
 {
     private Bomb bomb;
     private boolean cantShootBomb;
-
     public DestroyerAlien(Game game, Position pos, AlienManager alienManager) {
         super(game, pos, 1);
         this.bomb = null;

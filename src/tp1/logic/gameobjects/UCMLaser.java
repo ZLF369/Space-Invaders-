@@ -28,26 +28,21 @@ public class UCMLaser extends UCMWeapon {
 	protected int getArmour() {
 		return 0;
 	}
-	/*@Override
-	public void onDelete() {
 
-	}
 
-	@Override
-	public void automaticMove() {
-
-	}*/
 	public boolean isValidPosition(Position position) {
 		return position.row >= 0 && position.row < Game.DIM_Y;
 	}
 
 	@Override
+	public void automaticMove(){
+		pos = pos.move(Move.UP);
+	}
+
+	@Override
 	public void computerAction(){
-		if (isValidPosition(getPos())){
-			pos = pos.move(Move.UP);
-		}
-		else {
-			life = 0;
+		if (!isValidPosition(getPos()) || !isAlive()){
+			game.deleteObject(this);
 		}
 	}
 

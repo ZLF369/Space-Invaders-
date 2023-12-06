@@ -80,7 +80,7 @@ public class UCMShip extends Ship{
 
     public boolean shootLaser() {
         // Check if the ship can shoot a new laser
-        if (laser == null || laser.getLife() == 0) {
+        if (laser == null || laser.getLife() == 0 || !laser.isValidPosition(laser.getPos())) {
             if (laser != null && laser.getLife() == 0) {
                 game.getContainer().remove(laser); // Remove the existing laser with life == 0
             }

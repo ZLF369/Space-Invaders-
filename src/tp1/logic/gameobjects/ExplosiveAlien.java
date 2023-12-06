@@ -28,12 +28,4 @@ public class ExplosiveAlien extends RegularAlien {
         return this.getLife() == 0;
     }
 
-    @Override
-    public int getPoints() {
-        return this.points;
-    }
-    @Override
-    public void setPoints(int points) {
-        this.points = points;
-    }
 }

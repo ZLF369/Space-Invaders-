@@ -8,9 +8,11 @@ import tp1.logic.gameobjects.UCMShip;
 
 public class GameObjectContainer {
 	private List<GameObject> objects;
+	private List<GameObject> deadObjects;
 
 	public GameObjectContainer() {
 		objects = new ArrayList<>();
+		deadObjects = new ArrayList<>();
 	}
 
 	public void add(GameObject object) {
@@ -18,7 +20,7 @@ public class GameObjectContainer {
 	}
 
 	public void remove(GameObject object) {
-		objects.remove(object);
+		deadObjects.add(object);
 	}
 
 	public void automaticMoves() {
@@ -40,6 +42,13 @@ public class GameObjectContainer {
 				objects.setHasGivenPoints(true);
 			}
 		}
+	}
+
+	public void deleteDeadObjects() {
+		for (GameObject d: deadObjects) {
+			this.objects.remove(d);
+		}
+		this.deadObjects.clear();
 	}
 
 	public List<GameObject> getObjects() {
