@@ -3,7 +3,6 @@ package tp1.logic.gameobjects;
 import tp1.logic.Game;
 import tp1.logic.Move;
 import tp1.logic.Position;
-import tp1.util.MyStringUtils;
 import tp1.view.Messages;
 
 /**
@@ -115,9 +114,6 @@ public class UCMShip extends Ship{
         return true;
     }
 
-    public GameObject getLaser() {
-        return laser;
-    }
 
     public boolean hasShockWave() {
     	return hasShockWave;
@@ -144,5 +140,9 @@ public class UCMShip extends Ship{
 
     public GameObject getSuperLaser() {
         return superLaser;
+    }
+
+    public GameObject getLaser() {
+        return laser;
     }
 }

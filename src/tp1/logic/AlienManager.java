@@ -213,7 +213,7 @@ public class AlienManager {
 
     //COLLISSION LOGIC
 
-    public void CheckHostileShot(UCMShip player) {
+   /*public void CheckCollissions(UCMShip player) {
         for (GameObject gameObject : game.getContainer().getObjects()) {
             if ((gameObject instanceof EnemyShip || gameObject instanceof EnemyWeapon) && player.getLaser() != null) {
                 if (gameObject.isAlive() && player.getLaser().getPos().equals(gameObject.getPos())) {
@@ -230,8 +230,7 @@ public class AlienManager {
                 }
             }
         }
-    }
-
+    }*/
 
     public boolean landed() {
         for (GameObject gameObject : game.getContainer().getObjects()) {

@@ -51,6 +51,21 @@ public class GameObjectContainer {
 		this.deadObjects.clear();
 	}
 
+	public void checkCollision(){ //checks all the collissions between objects (laser needs to be removeed still)
+		for (int i=0; i< objects.size(); i++) {
+			for (int j=0; j< objects.size(); j++) {
+				if (i == j) continue;
+				GameObject object1, object2;
+				object1 = objects.get(i);
+				object2 = objects.get(j);
+				if (object1 == object2) continue;
+				if (object1.isOnPosition(object2.getPos())) {
+					object1.performAttack(object2);
+				}
+			}
+		}
+	}
+
 	public List<GameObject> getObjects() {
 		return objects;
 	}

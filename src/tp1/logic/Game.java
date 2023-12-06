@@ -2,8 +2,6 @@ package tp1.logic;
 
 import tp1.control.InitialConfiguration;
 import tp1.logic.gameobjects.*;
-import tp1.util.MyStringUtils;
-import tp1.view.Messages;
 
 import java.util.Random;
 
@@ -72,9 +70,10 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public void update() {
 		//check priorities of actions
 		setCurrentCycle(getCycle() + 1);
+		alienManager.checkUfo();
 		this.container.computerActions();
 //		alienManager.moveAlienList();
-		alienManager.CheckHostileShot(player);
+		container.checkCollision();
 		alienManager.explosiveAlienExplodes();
 		container.givePoints(player);
 		getRemainingAliens();
@@ -207,6 +206,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public Random getRandom() {
 		return random;
 	}
+
 
 
 	public void deleteObject(GameObject object) {
