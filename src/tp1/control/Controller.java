@@ -53,10 +53,11 @@ public class Controller {
 
 			if (command != null) {
 				ExecutionResult result = command.execute(game);
-				game.update();
 				if (result.success()) {
-					if (result.draw())
+					if (result.draw()) {
+						game.update();
 						printGame();
+					}
 				} 
 				else
 					System.out.println(result.errorMessage());

@@ -215,7 +215,7 @@ Command >
 [DEBUG] Executing: move left
 
 Number of cycles: 9
-Life: 1
+Life: 2
 Points: 0
 shockWave: OFF
 Remaining aliens: 12
@@ -241,7 +241,7 @@ Command >
 [DEBUG] Executing: move lleft
 
 Number of cycles: 10
-Life: 1
+Life: 2
 Points: 0
 shockWave: OFF
 Remaining aliens: 12

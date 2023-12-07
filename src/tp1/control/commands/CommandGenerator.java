@@ -13,9 +13,9 @@ public class CommandGenerator {
 		new ExitCommand(),
 		new NoneCommand(),
 		new ResetCommand(InitialConfiguration.NONE),
-		new ResetCommand(InitialConfiguration.CONF_1),
-		new ResetCommand(InitialConfiguration.CONF_2),
-		new ResetCommand(InitialConfiguration.CONF_3),
+//		new ResetCommand(InitialConfiguration.CONF_1),
+//		new ResetCommand(InitialConfiguration.CONF_2),
+//		new ResetCommand(InitialConfiguration.CONF_3),
 		new ShootCommand(),
 		new ShockwaveCommand(),
 		new ListCommand(),
@@ -27,6 +27,9 @@ public class CommandGenerator {
 		for (Command c: availableCommands) {
 			if(c.matchCommandName(commandWords[0])) {
 				command = c.parse(commandWords);
+				break;
+			} else if (commandWords[0].equals("")){
+				command = new NoneCommand();
 				break;
 			}
 		}

@@ -51,7 +51,7 @@ public class ResetCommand extends Command{
         InitialConfiguration iC;
 
         switch (commandWords[1].toUpperCase()) {
-            case "NONE"-> iC = InitialConfiguration.NONE;
+            case "NONE" -> iC = InitialConfiguration.NONE;
             case "CONF_1" -> iC = InitialConfiguration.CONF_1;
             case "CONF_2" -> iC = InitialConfiguration.CONF_2;
             case "CONF_3" -> iC = InitialConfiguration.CONF_3;

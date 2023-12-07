@@ -14,10 +14,13 @@ public abstract class EnemyWeapon extends Weapon{
         //attack, and then returns true otherwise its false.
         if (other.isOnPosition(this.pos)){
             other.receiveAttack(this);
+            game.deleteObject(this);
             return true;
         }
         return false;
     }
+
+
 
     @Override // similar logic to ucmlaser and superlaser
     public boolean receiveAttack(UCMWeapon weapon) {
