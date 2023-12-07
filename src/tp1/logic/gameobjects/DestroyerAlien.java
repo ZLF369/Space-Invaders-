@@ -27,13 +27,6 @@ public class DestroyerAlien extends AlienShip
         this.alienManager = alienManager;
     }
 
-    @Override
-    public void computerAction() {
-        super.computerAction();
-       /* alienManager.tryShooting();*/
-    }
-
-
     public DestroyerAlien() {
         super();
     }
@@ -66,15 +59,6 @@ public class DestroyerAlien extends AlienShip
         game.getContainer().add(bomb);
     }
 
-    public void moveBomb(){
-        if (bomb != null && bomb.isAlive()){
-            bomb.computerAction();
-        }
-        else if (bomb != null && (!bomb.isAlive() || !bomb.isValidPosition(bomb.getPos()))){
-            setCantShootBomb(false);
-        }
-    }
-
     public Bomb getBomb() {
         return bomb;
     }
@@ -83,15 +67,8 @@ public class DestroyerAlien extends AlienShip
         this.bomb = bomb;
     }
 
-    public boolean isCantShootBomb() {
-        return cantShootBomb;
-    }
-
     public void setCantShootBomb(boolean cantShootBomb) {
         this.cantShootBomb = cantShootBomb;
     }
 
-    /*public void deleteBomb() {
-        setBomb(null);
-    }*/
 }

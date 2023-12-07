@@ -26,7 +26,7 @@ public abstract class EnemyShip extends Ship{
     @Override
     public boolean receiveAttack(UCMWeapon weapon) {
         if(!this.pos.equals(weapon.pos)) return false;
-
+        //deals the weapon damage, and then sets the weapon life to 0, since its 1 always
         this.dealDamage(weapon);
         weapon.setLife(0);
         return true;

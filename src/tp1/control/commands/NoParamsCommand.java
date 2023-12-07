@@ -5,7 +5,7 @@ import tp1.view.Messages;
 public abstract class NoParamsCommand extends Command {
 
 	@Override
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) { //cases for the possible no-param inputs
 		return switch(commandWords[0]) {
 			case "help", "h" -> new HelpCommand();
 			case "exit", "e" -> new ExitCommand();

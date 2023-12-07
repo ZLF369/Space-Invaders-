@@ -13,18 +13,15 @@ public class AlienManager {
 
     private Game game;
     private Move dir;
-    private boolean onBorder;
     private boolean shouldDescend;
     private Ufo activeUfo;
-    private boolean ufoOnScreen;
-
 
     public AlienManager(Game game) {
         this.game = game;
-        dir = Move.LEFT;
-        ufoOnScreen = false;
+        dir = Move.LEFT; //direction of the list goes to left by default
     }
 
+    //Initialize all the regularAliens, all the destroyerAliens into a subContainer
     public GameObjectContainer initialize(InitialConfiguration initialConfiguration) {
         GameObjectContainer container = new GameObjectContainer();
         initializeRegularAliens(container, initialConfiguration);
@@ -33,16 +30,14 @@ public class AlienManager {
     }
 
     private void initializeRegularAliens(GameObjectContainer container, InitialConfiguration initialConfiguration) {
-
         Level level = this.game.getLevel();
         if (initialConfiguration == null || initialConfiguration == InitialConfiguration.NONE) {
-            for (int row = 0, index = 0; row < level.numRowsRegularAliens; row++) {
-                for (int col = 0; col < level.getNumAliensPerRow(); col++, index++) {
-                    int reqCenter = (Game.DIM_X / 2) - (level.getNumAliensPerRow() / 2);
-
+            for (int row = 0, i = 0; row < level.numRowsRegularAliens; row++) { //logic for creating the dAliens
+                for (int col = 0; col < level.getNumAliensPerRow(); col++, i++) { //position them so they are centered,
+                    int centering = (Game.DIM_X / 2) - (level.getNumAliensPerRow() / 2);
                     container.add(new RegularAlien(
                             this.game,
-                            new Position(col + reqCenter, row + 1),
+                            new Position(col + centering, row + 1),
                             this
                     ));
                 }
@@ -55,18 +50,18 @@ public class AlienManager {
     private void initializeDestroyerAliens(GameObjectContainer container, InitialConfiguration initialConfiguration) {
         Level level = this.game.getLevel();
 
-        if (initialConfiguration == null || initialConfiguration == InitialConfiguration.NONE) {
+        if (initialConfiguration == null || initialConfiguration == InitialConfiguration.NONE) { //if none initialconf
             for (int i = 0; i < level.numDestroyerAliens; i++) {
-                int reqCenter = (Game.DIM_X / 2) - (level.getNumAliensPerRow() / 2);
-                int offset = reqCenter + (level.getNumAliensPerRow() / level.numDestroyerAliens) - 1;
+                int centering = (Game.DIM_X / 2) - (level.getNumAliensPerRow() / 2);
+                int differential = centering + (level.getNumAliensPerRow() / level.numDestroyerAliens) - 1;
 
                 container.add(new DestroyerAlien(
                         this.game,
-                        new Position(i + offset, level.numRowsRegularAliens + 1),
+                        new Position(i + differential, level.numRowsRegularAliens + 1),
                         this
                 ));
             }
-        } else { // Case for initialconfigurations
+        } else { // Case for initialconfigurations not null or none
             initializeFromConfiguration(container, initialConfiguration);
         }
     }
@@ -88,7 +83,7 @@ public class AlienManager {
                 if (gameObject.isAlive()
                         && (gameObject.getPos().row + 1 == Game.DIM_Y || gameObject.getPos().row == 0
                         || gameObject.getPos().col + 1 == Game.DIM_X || gameObject.getPos().col == 0)) {
-                    onBorder = true;
+
                     break; // No need to check once one alien reaches the border
                 }
             }
@@ -114,8 +109,8 @@ public class AlienManager {
         int cycle = game.getCycle();
         int numCyclesToMoveOneCell = game.getLevel().getNumCyclesToMoveOneCell();
 
-        tryShooting();
-        checkUfo();
+        tryShooting(); //try to shoot the bomb
+        checkUfo(); //check if ufo should be created
 
         if (cycle % numCyclesToMoveOneCell == 0) {
             checkOnBorder(); //checkeverything is inside the border
@@ -144,12 +139,11 @@ public class AlienManager {
                     }
 
                 }
-                onBorder = false;
             }
         }
     }
 
-    public void moveAllDown() {
+    public void moveAllDown() { //Logic so that all aliens move down
         for (GameObject gameObject : game.getContainer().getObjects()) {
             if ((Objects.equals(gameObject.getMessage(), Messages.REGULAR_ALIEN_SYMBOL)
                     || Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) ||
@@ -162,7 +156,7 @@ public class AlienManager {
     }
    // ALIEN BOMB GO BOOM LOGIC
 
-    public void tryShooting() {
+    public void tryShooting() { //Logic so that the aliens can shoot, for each destroyerAlien
         List<DestroyerAlien> aliensToShoot = new ArrayList<>();
         for (GameObject gameObject : game.getContainer().getObjects()) {
             if ((Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL))) {
@@ -172,10 +166,10 @@ public class AlienManager {
                 }
             }
         }
-        for (DestroyerAlien alien : aliensToShoot) {
+        for (DestroyerAlien alien : aliensToShoot) { //use some auxiliar aliens to shoot the bomb
                 alien.shootBomb();
-                // alien.setBomb(null);
-            if (!alien.getBomb().isValidPosition(alien.getBomb().getPos()) && !alien.getBomb().isAlive()){
+                //if the bomb is not in a valid position, it should be deleted, or if its dead.
+                if (!alien.getBomb().isValidPosition(alien.getBomb().getPos()) && !alien.getBomb().isAlive()){
                 alien.setBomb(null);
             }
         }

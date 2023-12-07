@@ -10,7 +10,7 @@ public class GameObjectContainer {
 	private List<GameObject> objects;
 	private List<GameObject> deadObjects;
 
-	public GameObjectContainer() {
+	public GameObjectContainer() { //initialize both list of alive objects and dead objects to avoid nullerrors
 		objects = new ArrayList<>();
 		deadObjects = new ArrayList<>();
 	}
@@ -23,19 +23,20 @@ public class GameObjectContainer {
 		deadObjects.add(object);
 	}
 
-	public void automaticMoves() {
+	public void automaticMoves() { //automatic moves for all the objects
 		for (GameObject o: objects) {
 			o.automaticMove();
 		}
 	}
 
-	public void computerActions() {
+	public void computerActions() { //computer actions for all the objects
 		for (GameObject objects: objects) {
 			if (objects != null)
 				objects.computerAction();
 		}
 	}
 
+	//gives points for the aliens that are killed/dead
 	public void givePoints(UCMShip player) {
 		for (GameObject objects: objects) {
 			if (objects != null){
@@ -48,12 +49,13 @@ public class GameObjectContainer {
 		}
 	}
 
+	//logic of the 2nd list of deadobjects, put the objects from the 1st into the deadobjects list
 	public void deleteDeadObjects() {
 		for (GameObject d: deadObjects) {
 			if (d != null)
 				this.objects.remove(d);
 		}
-		this.deadObjects.clear();
+		this.deadObjects.clear(); //clears the list every cycle
 	}
 
 	public void checkCollision(){ //checks all the collissions between objects (laser needs to be removeed still)
@@ -76,6 +78,7 @@ public class GameObjectContainer {
 		}
 	}
 
+	//check for kamikaze explosion and deal dmg
 	public void checkExplosion(){
 		for (GameObject objects: objects) {
 			objects.kamikaze();

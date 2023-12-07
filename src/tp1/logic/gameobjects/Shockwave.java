@@ -24,13 +24,4 @@ public class Shockwave extends UCMWeapon {
         return 0;
     }
 
-/*    @Override
-    public void onDelete() {
-
-    }
-
-    @Override
-    public void automaticMove() {
-
-    }*/
 }

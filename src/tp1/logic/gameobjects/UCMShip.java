@@ -9,12 +9,8 @@ import tp1.view.Messages;
  * Class of the UCMShip that contains all the attributes and methods.
  */
 public class UCMShip extends Ship{
-    /**
-     * Constructor for the UCMShip.
-     */
     private UCMLaser laser;
     private SuperLaser superLaser;
-    private Shockwave shockwave;
 
     private boolean hasShockWave;
 
@@ -67,7 +63,6 @@ public class UCMShip extends Ship{
             return true;
         }
     }
-
 
     public boolean onBorderLeft(){
         return super.pos.col == 0;
@@ -127,18 +122,6 @@ public class UCMShip extends Ship{
 
     public void setPoints(int points) {
         this.points = points;
-    }
-
-    public boolean isLaserEnabled() {
-        return laserEnabled;
-    }
-
-    public void setLaserEnabled(boolean laserEnabled) {
-        this.laserEnabled = laserEnabled;
-    }
-
-    public GameObject getSuperLaser() {
-        return superLaser;
     }
 
     public GameObject getLaser() {

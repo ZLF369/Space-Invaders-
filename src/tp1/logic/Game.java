@@ -19,8 +19,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private int currentCycle;
 	private long seed;
 	private Random random;
-	private boolean onBorder, shouldDescend;
-	private Move dir;
 
 	//TODO fill with your code
 
@@ -37,32 +35,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.alienManager = new AlienManager(this);
 		initGame();
 		this.currentCycle = 0;
-		this.onBorder = false;
-		this.shouldDescend = false;
-	}
-
-	public AlienManager getAlienManager() {
-		return alienManager;
-	}
-
-	public boolean isOnBorder() {
-		return onBorder;
-	}
-
-	public void setOnBorder(boolean onBorder) {
-		this.onBorder = onBorder;
-	}
-
-	public boolean isShouldDescend() {
-		return shouldDescend;
-	}
-
-	public void setShouldDescend(boolean shouldDescend) {
-		this.shouldDescend = shouldDescend;
-	}
-
-	public int getCurrentCycle() {
-		return currentCycle;
 	}
 
 	public void setCurrentCycle(int currentCycle) {
@@ -111,7 +83,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	//VIEW METHODS
 
-	public String positionToString(int col, int row) {
+	public String positionToString(int col, int row) { //if there is an alive object on the position, return the object
 		Position position = new Position(col, row);
 
 		for (GameObject objects: this.container.getObjects()) {
@@ -153,7 +125,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
-	public int getRemainingAliens() {
+	public int getRemainingAliens() { //count the remaining aliens
 		int i=0;
 		for (GameObject objects: this.container.getObjects()) {
 			if (objects.addCounter() && objects.isAlive()) {
@@ -171,7 +143,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		return player;
 	}
 
-
+	//methods involving using player shooting actions
 	@Override
 	public boolean shootLaser() {
 		return this.player.shootLaser();
@@ -181,13 +153,13 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public boolean shootSuperLaser(){return this.player.shootSuperLaser();}
 
 	@Override
-	public boolean shockWave() {
+	public boolean shockWave() { //apply the shockwave damage
 		player.useShockwave();
 		return true;
 	}
 
 	@Override
-	public void reset() {
+	public void reset() { //normal resets
 		emptyContainer();
 		this.container = alienManager.initialize(null);
 		this.random = new Random(this.seed);
@@ -197,7 +169,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
-	public void reset(InitialConfiguration initialConfiguration) {
+	public void reset(InitialConfiguration initialConfiguration) { //the special reset that takes initialConfigurations
 		emptyContainer();
 		this.container = alienManager.initialize(initialConfiguration);
 		this.random = new Random(this.seed);
@@ -206,6 +178,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.currentCycle = 0;
 	}
 
+	//create a new container, used in resets
 	public void emptyContainer(){
 		this.container = new GameObjectContainer();
 	}
@@ -214,6 +187,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		return random;
 	}
 
+
+	//methods to involve the rng (randomness)
 	public boolean shootChance() {
 		return this.getRandom().nextDouble() < this.getLevel().getShootFrequency();
 	}

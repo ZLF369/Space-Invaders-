@@ -10,7 +10,8 @@ public abstract class EnemyWeapon extends Weapon{
     }
 
     @Override
-    public boolean performAttack(GameItem other){
+    public boolean performAttack(GameItem other){ //if the other thingy is on position, the other object receives the
+        //attack, and then returns true otherwise its false.
         if (other.isOnPosition(this.pos)){
             other.receiveAttack(this);
             return true;
@@ -18,7 +19,7 @@ public abstract class EnemyWeapon extends Weapon{
         return false;
     }
 
-    @Override //do similar logic to ucmlaser and superlaser
+    @Override // similar logic to ucmlaser and superlaser
     public boolean receiveAttack(UCMWeapon weapon) {
         if (this.pos.equals(weapon.pos)) {
             game.deleteObject(this);
