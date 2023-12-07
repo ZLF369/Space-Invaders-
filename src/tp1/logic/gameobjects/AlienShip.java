@@ -80,5 +80,10 @@ public abstract class AlienShip extends EnemyShip {
     public String getMessage() {
         return getSymbol();
     }
+
+    @Override
+    public boolean addCounter(){
+        return true;
+    }
 }
 

@@ -21,7 +21,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private int currentCycle;
 	private long seed;
 	private Random random;
-
 	private boolean onBorder, shouldDescend;
 	private Move dir;
 
@@ -163,7 +162,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public int getRemainingAliens() {
 		int i=0;
 		for (GameObject objects: this.container.getObjects()) {
-			if (objects instanceof EnemyShip && objects.getLife() > 0) {
+			if (objects.addCounter() && objects.isAlive()) {
 				i++;
 			}
 		}

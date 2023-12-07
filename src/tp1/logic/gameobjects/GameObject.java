@@ -152,4 +152,8 @@ public abstract class GameObject implements GameItem {
 	public void kamikaze(){}
 
 	public void giveShockwave(){}
+
+	public boolean addCounter(){
+		return false;
+	}
 }
