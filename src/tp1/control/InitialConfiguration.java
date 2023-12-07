@@ -24,9 +24,9 @@ public enum InitialConfiguration {
 
     private List<String> descriptions;
 
-    private InitialConfiguration() {}
+    InitialConfiguration() {}
 
-    private InitialConfiguration(List<String> descriptions) {
+    InitialConfiguration(List<String> descriptions) {
         this.descriptions = descriptions;
     }
 

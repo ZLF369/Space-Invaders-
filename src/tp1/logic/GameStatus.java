@@ -2,14 +2,14 @@ package tp1.logic;
 
 public interface GameStatus {
 
-	public String positionToString(int x, int y);
-	public String infoToString();
-	public String stateToString();
+	String positionToString(int x, int y);
+	String infoToString();
+	String stateToString();
 	
-	public boolean playerWin();
-	public boolean aliensWin();
+	boolean playerWin();
+	boolean aliensWin();
 
-	public int getCycle();
-	public int getRemainingAliens();
+	int getCycle();
+	int getRemainingAliens();
 
 }

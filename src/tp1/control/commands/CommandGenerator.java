@@ -20,7 +20,6 @@ public class CommandGenerator {
 		new ShockwaveCommand(),
 		new ListCommand(),
 		new SuperlaserCommand()
-		//TODO fill with your code
 	);
 
 	public static Command parse(String[] commandWords) {

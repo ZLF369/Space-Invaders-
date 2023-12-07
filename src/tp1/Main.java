@@ -49,8 +49,8 @@ public class Main {
         
                     System.out.println(Messages.WELCOME);
         
-                    System.out.println(String.format(Messages.CONFIGURED_LEVEL, level.name()));
-                    System.out.println(String.format(Messages.CONFIGURED_SEED, seed));
+                    System.out.printf((Messages.CONFIGURED_LEVEL) + "%n", level.name());
+                    System.out.printf((Messages.CONFIGURED_SEED) + "%n", seed);
         
                     Game game = new Game(level, seed);
                     Scanner scanner = new Scanner(System.in);
@@ -58,7 +58,7 @@ public class Main {
                     controller.run();
         
                 } catch (NumberFormatException nfe) {
-                    System.out.println(String.format(Messages.SEED_NOT_A_NUMBER_ERROR, seedParam));
+                    System.out.printf((Messages.SEED_NOT_A_NUMBER_ERROR) + "%n", seedParam);
                     usage();
                 } catch (Exception e) {
                     System.out.println(error(e.getMessage()));

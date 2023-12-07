@@ -3,14 +3,14 @@ package tp1.logic;
 import tp1.control.InitialConfiguration;
 
 public interface GameModel {
-    public boolean move(Move move);
-    public boolean shootLaser();
-    public boolean shootSuperLaser();
-    public boolean shockWave();
-    public void reset();
-    public void reset(InitialConfiguration initialConfiguration);
-    public boolean isFinished();
-    public void exit();
+    boolean move(Move move);
+    boolean shootLaser();
+    boolean shootSuperLaser();
+    boolean shockWave();
+    void reset();
+    void reset(InitialConfiguration initialConfiguration);
+    boolean isFinished();
+    void exit();
 
     void update();
 }

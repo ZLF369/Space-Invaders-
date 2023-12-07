@@ -5,12 +5,12 @@ import tp1.logic.Position;
 public interface GameItem {
 	
 	
-	public boolean performAttack(GameItem other);
+	boolean performAttack(GameItem other);
 	
-	public boolean receiveAttack(EnemyWeapon weapon);
-	public boolean receiveAttack(UCMWeapon weapon);
+	boolean receiveAttack(EnemyWeapon weapon);
+	boolean receiveAttack(UCMWeapon weapon);
 
-	public boolean isAlive();
-	public boolean isOnPosition(Position pos);
+	boolean isAlive();
+	boolean isOnPosition(Position pos);
 
 }

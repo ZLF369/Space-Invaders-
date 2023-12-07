@@ -9,9 +9,7 @@ public abstract class GameObject implements GameItem {
 	protected int life;
 	protected Game game;
 	protected Move dir;
-
 	public int points;
-
 	public String Message;
 
 	private boolean hasGivenPoints;
@@ -50,59 +48,10 @@ public abstract class GameObject implements GameItem {
 		return this.life;
 	}
 
-	//TODO fill with your code
 	protected abstract String getSymbol();
 	protected abstract int getDamage();
 	protected abstract int getArmour();
-
-
-	/*public abstract void onDelete();
-	 *//*public abstract void automaticMove(){
-		boolean nowOnBorder = false;
-		GameObject[] AlienShip = get;
-		for (GameObject o: AlienShip) {
-			if(Game.isOnBorderX(a.getPosition())) {
-				nowOnBorder = true;
-				break;
-			}
-		}
-		for (Alien a: aliens) {
-			if(a instanceof DestroyerAlien da) {
-				da.moveBomb();
-				if(game.tryFiringChance()) da.enableBomb();
-			}
-		}
-
-		if(nowOnBorder) {
-			if(onBorder) {
-				// already was on border -> wait for move then reset onBorder
-				if(cyclesToMove == 0) onBorder = false;
-
-			} else {
-				// newly on border -> descend now
-				for (Alien a: aliens) {
-					a.changeDirection();
-					if(Game.isInFinalRow(a.getPosition()))
-						this.squadInFinalRow = true;
-				}
-				if(cyclesToMove == 0) cyclesToMove++;
-				onBorder = true;
-			}
-		}
-
-		if(cyclesToMove-- == 0) {
-			for (Alien a: aliens) a.automaticMove();
-			// reset cycle counter back to default
-			cyclesToMove = (level.numCyclesToMoveOneCell-1);
-		}
-*//*
-
-
-
-	}*/
-	public void computerAction() {};
-
-	//TODO fill with your code
+	public void computerAction() {}
 
 	@Override
 	public boolean performAttack(GameItem other) {return false;}

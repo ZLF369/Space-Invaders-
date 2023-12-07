@@ -9,7 +9,6 @@ import tp1.view.Messages;
 
 public class ResetCommand extends Command{
     private InitialConfiguration initialConfiguration;
-    private Game game;
 
     public ResetCommand(InitialConfiguration initialConfiguration) {
         this.initialConfiguration = initialConfiguration;

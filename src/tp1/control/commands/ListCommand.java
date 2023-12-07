@@ -29,11 +29,11 @@ public class ListCommand extends NoParamsCommand {
 
     @Override
     public ExecutionResult execute(GameModel game) {
-        System.out.println(String.format(Messages.UCM_DESCRIPTION,Messages.UCMSHIP_DESCRIPTION,1,3));
-        System.out.println(String.format(Messages.ALIEN_DESCRIPTION,Messages.REGULAR_ALIEN_DESCRIPTION,5,0,2));
-        System.out.println(String.format(Messages.ALIEN_DESCRIPTION,Messages.DESTROYER_ALIEN_DESCRIPTION,10,1,1));
-        System.out.println(String.format(Messages.ALIEN_DESCRIPTION,Messages.UFO_DESCRIPTION,25,0,1));
-        System.out.println(String.format(Messages.ALIEN_DESCRIPTION,Messages.EXPLOSIVE_ALIEN_DESCRIPTION,12,0,2));
+        System.out.printf((Messages.UCM_DESCRIPTION) + "%n",Messages.UCMSHIP_DESCRIPTION,1,3);
+        System.out.printf((Messages.ALIEN_DESCRIPTION) + "%n",Messages.REGULAR_ALIEN_DESCRIPTION,5,0,2);
+        System.out.printf((Messages.ALIEN_DESCRIPTION) + "%n",Messages.DESTROYER_ALIEN_DESCRIPTION,10,1,1);
+        System.out.printf((Messages.ALIEN_DESCRIPTION) + "%n",Messages.UFO_DESCRIPTION,25,0,1);
+        System.out.printf((Messages.ALIEN_DESCRIPTION) + "%n",Messages.EXPLOSIVE_ALIEN_DESCRIPTION,12,0,2);
         System.out.println("\n");
         return new ExecutionResult(false);
     }

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 public class Tests {
 
-	private static boolean compareOutput(Path expectedPath, Path actualPath) throws FileNotFoundException, IOException {
+	private static boolean compareOutput(Path expectedPath, Path actualPath) throws IOException {
 		boolean same = true;
 		try (BufferedReader expected = new BufferedReader(new FileReader(expectedPath.toFile()));
 				BufferedReader actual = new BufferedReader(new FileReader(actualPath.toFile()))) {
@@ -27,8 +27,8 @@ public class Tests {
 				same = expectedLine.equals(actualLine);
 				if (!same) {
 					//*System.out.println("Line: %d".formatted(lineNumber));
-					System.out.println("Expected: %s".formatted(expectedLine));
-					System.out.println("Actual: %s".formatted(actualLine));//*
+					System.out.printf("Expected: %s%n", expectedLine);
+					System.out.printf("Actual: %s%n", actualLine);//*
 				}
 				expectedLine = expected.readLine();
 				actualLine = actual.readLine();

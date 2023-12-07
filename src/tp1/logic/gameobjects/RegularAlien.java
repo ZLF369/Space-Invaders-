@@ -42,13 +42,4 @@ public class RegularAlien extends AlienShip {
 		return 0;
 	}
 
-/*	@Override
-	public void onDelete() {
-
-	}
-
-	@Override
-	public void automaticMove() {
-
-	}*/
 }

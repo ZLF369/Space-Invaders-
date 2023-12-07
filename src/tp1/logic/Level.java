@@ -15,7 +15,7 @@ public enum Level {
 	public final double ufoFrequency;
 	public final double shootFrequency;
 
-	private Level(int numRegularAliens, int numRowsRegularAliens, 
+	Level(int numRegularAliens, int numRowsRegularAliens,
 			      int numDestroyerAliens, 
 			      double shootFrequency, int numCyclesToMoveOneCell,
 			      double ufoFrequency) {
@@ -26,9 +26,6 @@ public enum Level {
 		this.numCyclesToMoveOneCell = numCyclesToMoveOneCell;
 		this.ufoFrequency = ufoFrequency;
 	}
-
-	
-	//TODO fill your code
 
 	/**
 	 * Returns UFO frequency corresponding the Level

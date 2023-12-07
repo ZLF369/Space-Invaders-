@@ -12,15 +12,12 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	public static final int DIM_X = 9;
 	public static final int DIM_Y = 8;
-
 	private GameObjectContainer container;
 	private UCMShip player;
 	private final AlienManager alienManager;
 	private int currentCycle;
-	private long seed;
+	private final long seed;
 	private Random random;
-
-	//TODO fill with your code
 
 	public Level getLevel() {
 		return level;
@@ -102,7 +99,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public String infoToString() {
-		// TODO fill with your code
 		return null;
 	}
 

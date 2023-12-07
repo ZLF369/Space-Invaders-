@@ -17,9 +17,9 @@ import tp1.view.Messages;
  */
 public class Controller {
 
-	private GameModel game;
-	private Scanner scanner;
-	private GamePrinter printer;
+	private final GameModel game;
+	private final Scanner scanner;
+	private final GamePrinter printer;
 
 	public Controller(Game game, Scanner scanner) {
 		this.game = game;

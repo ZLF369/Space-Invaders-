@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class AlienManager {
 
-    private Game game;
+    private final Game game;
     private Move dir;
     private boolean shouldDescend;
     private Ufo activeUfo;

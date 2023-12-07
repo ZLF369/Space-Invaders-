@@ -197,7 +197,7 @@ El `GameObjectContainer` es el almacén de objetos del juego, que llamaremos **c
 ```java
 public class GameObjectContainer {
 
-	private List<GameObject> gameObjects;
+	private final List<GameObject> gameObjects;
 
 	public GameObjectContainer() {
 		gameObjects = new ArrayList<>();
@@ -233,9 +233,9 @@ Por ejemplo:
 ```java
 public interface GameModel {
 
-	public boolean move(Move move);
-	public boolean shootLaser();
-	public void reset();
+	boolean move(Move move);
+	boolean shootLaser();
+	void reset();
 	// ...
 }
 ```
@@ -288,13 +288,15 @@ public abstract ExecutionResult execute(GameModel game);
 <!-- TOC --><a name="interfaces-de-gameobject"></a>
 ### Interfaces de `GameObject`
 
-Vamos a usar otra interfaz para encapsular los métodos relacionados con los *ataques*. La clase `GameObject` implementa el interfaz `GameItem`. La idea es que todos los objetos del juego deben tener la posibilidad de atacar o ser atacados. Por ello, tenemos que implementar la posibilidad de recibir un ataque por parte de cada uno de los proyectiles. 
+Vamos a usar otra interfaz para encapsular los métodos relacionados con los *ataques*. La clase `GameObject` implementa el interfaz `GameItem`. La idea es que todos los objetos del juego deben tener la posibilidad de atacar o ser atacados. Por ello, tenemos que implementar la posibilidad de recibir un ataque por parte de cada uno de los proyectiles.
 
 ```java
 public interface GameItem {
-    public boolean performAttack(GameItem other);
-    public boolean receiveAttack(EnemyWeapon weapon);
-    public boolean receiveAttack(UCMWeapon weapon);
+    boolean performAttack(GameItem other);
+
+    boolean receiveAttack(EnemyWeapon weapon);
+
+    boolean receiveAttack(UCMWeapon weapon);
 	....
 }
 ```

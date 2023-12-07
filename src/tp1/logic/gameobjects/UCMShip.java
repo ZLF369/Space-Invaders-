@@ -11,10 +11,8 @@ import tp1.view.Messages;
 public class UCMShip extends Ship{
     private UCMLaser laser;
     private SuperLaser superLaser;
-
     private boolean hasShockWave;
-
-    private boolean laserEnabled;
+    private final boolean laserEnabled;
     private int points;
 
     public UCMShip(Game game, Position position, UCMLaser laser) {
@@ -43,15 +41,6 @@ public class UCMShip extends Ship{
     protected int getArmour() {
         return 0;
     }
-
-/*    @Override
-    public void onDelete() {
-
-    }
-
-    @Override
-    public void automaticMove() {
-    }*/
 
     public boolean move(Move move) {
         if (onBorderLeft() && (move.equals(Move.LEFT) || move.equals(Move.LLEFT))) {

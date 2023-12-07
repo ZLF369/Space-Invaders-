@@ -7,8 +7,8 @@ import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.UCMShip;
 
 public class GameObjectContainer {
-	private List<GameObject> objects;
-	private List<GameObject> deadObjects;
+	private final List<GameObject> objects;
+	private final List<GameObject> deadObjects;
 
 	public GameObjectContainer() { //initialize both list of alive objects and dead objects to avoid nullerrors
 		objects = new ArrayList<>();

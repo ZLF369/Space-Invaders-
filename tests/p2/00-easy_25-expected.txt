@@ -473,7 +473,7 @@ Remaining aliens:  6
 Command > 
 [DEBUG] Executing: l
 
-TODO list of game objects
+
 Command > 
 [DEBUG] Executing: 
 

@@ -201,7 +201,7 @@ The `GameObjectContainer` encapsulates the data structure used to store the obje
 ```java
 public class GameObjectContainer {
 
-	private List<GameObject> gameObjects;
+	private final List<GameObject> gameObjects;
 
 	public GameObjectContainer() {
 		gameObjects = new ArrayList<>();
@@ -236,9 +236,9 @@ For example:
 ```java
 public interface GameModel {
 
-	public boolean move(Move move);
-	public boolean shootLaser();
-	public void reset();
+	boolean move(Move move);
+	boolean shootLaser();
+	void reset();
 	// ...
 }
 ```
@@ -295,9 +295,11 @@ We are going to use another interface to encapsulate the methods related to the 
 
 ```java
 public interface GameItem {
-	public boolean performAttack(GameItem other);
-	public boolean receiveAttack(EnemyWeapon weapon);
-	public boolean receiveAttack(UCMWeapon weapon);
+    boolean performAttack(GameItem other);
+
+    boolean receiveAttack(EnemyWeapon weapon);
+
+    boolean receiveAttack(UCMWeapon weapon);
 	....
 }
 ```

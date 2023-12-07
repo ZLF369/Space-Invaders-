@@ -32,14 +32,12 @@ public class BoardPrinter extends GamePrinter {
 	 * @return the string that represents the game status.
 	 */
 	protected String getInfo() {
-		StringBuilder buffer = new StringBuilder();
 		/* @formatter:off */
-		buffer
-				.append(Messages.NUMBER_OF_CYCLES).append(SPACE).append(game.getCycle()).append(NEW_LINE)
-				.append(game.stateToString())
-				.append(Messages.REMAINING_ALIENS).append(SPACE).append(game.getRemainingAliens()).append(NEW_LINE);
+		String buffer = Messages.NUMBER_OF_CYCLES + SPACE + game.getCycle() + NEW_LINE +
+				game.stateToString() +
+				Messages.REMAINING_ALIENS + SPACE + game.getRemainingAliens() + NEW_LINE;
 		/* @formatter:on */
-		return buffer.toString();
+		return buffer;
 	}
 
 	@Override

@@ -41,4 +41,5 @@ public abstract class EnemyShip extends Ship{
         this.life -= 1;
     }
 
+
 }
