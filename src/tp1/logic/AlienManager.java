@@ -91,7 +91,10 @@ public class AlienManager {
 
     /*public void checkOnBorder() { //check if any alien is on the border
         for (GameObject gameObject : game.getContainer().getObjects()) {
-            if (gameObject instanceof AlienShip) {
+            if ((Objects.equals(gameObject.getMessage(), Messages.REGULAR_ALIEN_SYMBOL)
+                            || Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) ||
+                            Objects.equals(gameObject.getMessage(), Messages.EXPLOSIVE_ALIEN_SYMBOL)
+                                    && gameObject.isAlive()) {
                 if (gameObject.isAlive()
                         && (gameObject.getPos().row + 1 == Game.DIM_Y || gameObject.getPos().row == 0
                         || gameObject.getPos().col + 1 == Game.DIM_X || gameObject.getPos().col == 0)) {
