@@ -49,8 +49,12 @@ public class Ufo extends EnemyShip {
 		pos = pos.move(Move.LEFT);
 	}
 
-	private boolean isValidPosition(Position pos) {
+	public boolean isValidPosition(Position pos) {
 		return pos.col >= 0 && pos.col < Game.DIM_X;
+	}
+	@Override
+	public void giveShockwave(){
+		game.getPlayer().setShockWave(true);
 	}
 
 }

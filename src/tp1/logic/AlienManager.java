@@ -195,18 +195,23 @@ public class AlienManager {
 
 
     public void checkUfo() {
-        if (activeUfo == null && getUfoFrequency()) {
-            Ufo ufo = new Ufo(game, new Position(8, 0), 1);
-            game.getContainer().add(ufo);
-            activeUfo = ufo;
-        } else if (activeUfo != null && !activeUfo.isAlive()) {
-            activeUfo = null;
+        if ((activeUfo == null || !activeUfo.isAlive())) {
+            createUfo();
+        } else if (!activeUfo.isValidPosition(activeUfo.getPos()) && game.getUfoFrequency()) {
+            game.deleteObject(activeUfo);
+            createUfo();
         }
     }
 
-    public boolean getUfoFrequency() {
-        return game.getRandom().nextDouble() < game.getLevel().getUfoFrequency();
+    private void createUfo() {
+        if (game.getUfoFrequency()){
+        Ufo ufo = new Ufo(game, new Position(8, 0), 1);
+        game.getContainer().add(ufo);
+        activeUfo = ufo;
+        }
     }
+
+
 
     //COLLISSION LOGIC
 

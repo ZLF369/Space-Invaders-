@@ -61,6 +61,7 @@ public class GameObjectContainer {
 				if (object1 == object2) continue;
 				if (object1.isOnPosition(object2.getPos())) {
 					object1.performAttack(object2);
+					object1.giveShockwave();
 				}
 			}
 		}

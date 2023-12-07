@@ -226,6 +226,10 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		return this.getRandom().nextDouble() < this.getLevel().getShootFrequency();
 	}
 
+	public boolean getUfoFrequency() {
+		return this.getRandom().nextDouble() < this.getLevel().getUfoFrequency();
+	}
+
 
 	public void deleteObject(GameObject object) {
 		this.container.remove(object);

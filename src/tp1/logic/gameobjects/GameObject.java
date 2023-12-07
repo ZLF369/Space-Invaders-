@@ -150,4 +150,6 @@ public abstract class GameObject implements GameItem {
 	}
 
 	public void kamikaze(){}
+
+	public void giveShockwave(){}
 }
