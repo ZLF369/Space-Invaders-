@@ -29,13 +29,6 @@ public class AlienManager {
         GameObjectContainer container = new GameObjectContainer();
         initializeRegularAliens(container, initialConfiguration);
         initializeDestroyerAliens(container, initialConfiguration);
-
-        /*ExplosiveAlien test = new ExplosiveAlien(game, new Position(6, 5), this);
-        container.add(test);*/
-
-        /*bomb = new Bomb(game, new Position(6, 5), 1);
-        container.add(bomb);*/
-
         return container;
     }
 
@@ -86,10 +79,7 @@ public class AlienManager {
         }
     } //Add the ships from the configuration file, in their format (type, row, col)
 
-    //UNCOMMENT THIS AS LAST RESORT IF NOTHING WORKS
-
-
-    /*public void checkOnBorder() { //check if any alien is on the border
+    public void checkOnBorder() { //check if any alien is on the border
         for (GameObject gameObject : game.getContainer().getObjects()) {
             if ((Objects.equals(gameObject.getMessage(), Messages.REGULAR_ALIEN_SYMBOL)
                             || Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) ||
@@ -104,7 +94,6 @@ public class AlienManager {
             }
         }
     }
-
 
     public boolean onBorder() { //check if any alien is on the border
         boolean onBorder = false;
@@ -124,14 +113,12 @@ public class AlienManager {
     public void moveAlienList() {
         int cycle = game.getCycle();
         int numCyclesToMoveOneCell = game.getLevel().getNumCyclesToMoveOneCell();
-        boolean alreadyMoved =false;
 
-        //tryShooting();
+        tryShooting();
         checkUfo();
 
         if (cycle % numCyclesToMoveOneCell == 0) {
-
-            checkOnBorder(); //checkeverythign is inside the border
+            checkOnBorder(); //checkeverything is inside the border
 
             if (shouldDescend) {
                 moveAllDown();
@@ -151,7 +138,7 @@ public class AlienManager {
                 if (onBorder()) {
                     shouldDescend = true;
                     if (dir == Move.LEFT) {
-                        dir = Move.RIGHT; // Move to the right after descending
+                        dir = Move.RIGHT; // move to right after descending
                     } else {
                         dir = Move.LEFT;
                     }
@@ -159,9 +146,6 @@ public class AlienManager {
                 }
                 onBorder = false;
             }
-
-            alreadyMoved = true;
-
         }
     }
 
@@ -175,34 +159,28 @@ public class AlienManager {
                 }
             }
         }
-    }*/
-
-/*
-    ALIEN BOMB GO BOOM LOGIC
-
-    public boolean shootChance() {
-        return game.getRandom().nextDouble() < game.getLevel().getShootFrequency();
     }
+   // ALIEN BOMB GO BOOM LOGIC
 
     public void tryShooting() {
         List<DestroyerAlien> aliensToShoot = new ArrayList<>();
         for (GameObject gameObject : game.getContainer().getObjects()) {
-            if ((Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) {
+            if ((Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL))) {
                 DestroyerAlien alien = (DestroyerAlien) gameObject;
-                if (shootChance()) {
+                if (game.shootChance()) {
                     aliensToShoot.add(alien);
                 }
             }
         }
-        for (GameObject gameObject : game.getContainer().getObjects()) {
-            if ((Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL){
+        for (DestroyerAlien alien : aliensToShoot) {
                 alien.shootBomb();
+                // alien.setBomb(null);
+            if (!alien.getBomb().isValidPosition(alien.getBomb().getPos()) && !alien.getBomb().isAlive()){
                 alien.setBomb(null);
             }
         }
         aliensToShoot.clear();
-    }*/
-
+    }
 
     public void checkUfo() { //method to check if ufo should be created or not.
         //if it exits the bounds, it should be deleted and a will be tried to be created.

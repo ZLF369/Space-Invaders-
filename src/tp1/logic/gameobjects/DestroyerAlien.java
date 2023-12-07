@@ -16,18 +16,21 @@ import java.util.List;
 public class DestroyerAlien extends AlienShip
 {
     private Bomb bomb;
-    private boolean hasBomb;
+    private boolean cantShootBomb;
+
+    AlienManager alienManager;
     public DestroyerAlien(Game game, Position pos, AlienManager alienManager) {
         super(game, pos, 1);
         this.bomb = null;
-        this.hasBomb = false;
+        this.cantShootBomb = false;
         this.points = 10;
+        this.alienManager = alienManager;
     }
 
     @Override
     public void computerAction() {
         super.computerAction();
-        tryShooting();
+       /* alienManager.tryShooting();*/
     }
 
 
@@ -53,20 +56,24 @@ public class DestroyerAlien extends AlienShip
         return 0;
     }
 
-    public void tryShooting() {
-        if (bomb == null && game.shootChance()) {
-                this.shootBomb();
-        }
-    }
-    public void shootBomb() {
+    public void shootBomb(){
         if (bomb != null) {
             return;
         }
-        setHasBomb(true);
-        bomb = new Bomb(game, new Position(this.pos.col, this.pos.row + 1), 1);
+        setCantShootBomb(true);
+        Position position = new Position(this.pos.col, this.pos.row + 1);
+        bomb = new Bomb(this.game, position, 1);
         game.getContainer().add(bomb);
     }
 
+    public void moveBomb(){
+        if (bomb != null && bomb.isAlive()){
+            bomb.computerAction();
+        }
+        else if (bomb != null && (!bomb.isAlive() || !bomb.isValidPosition(bomb.getPos()))){
+            setCantShootBomb(false);
+        }
+    }
 
     public Bomb getBomb() {
         return bomb;
@@ -76,12 +83,12 @@ public class DestroyerAlien extends AlienShip
         this.bomb = bomb;
     }
 
-    public boolean isHasBomb() {
-        return hasBomb;
+    public boolean isCantShootBomb() {
+        return cantShootBomb;
     }
 
-    public void setHasBomb(boolean cantShootBomb) {
-        this.hasBomb = cantShootBomb;
+    public void setCantShootBomb(boolean cantShootBomb) {
+        this.cantShootBomb = cantShootBomb;
     }
 
     /*public void deleteBomb() {

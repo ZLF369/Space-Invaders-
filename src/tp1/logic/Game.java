@@ -90,7 +90,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		setCurrentCycle(getCycle() + 1);
 		alienManager.checkUfo();
 		this.container.computerActions();
-		//alienManager.moveAlienList(); UNCOMMENT AS LAST RESORT
+		alienManager.moveAlienList();
 		container.checkCollision();
 		container.checkExplosion();
 		container.givePoints(player);
@@ -108,7 +108,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public GameObjectContainer getContainer() {
 		return container;
 	}
-
 
 	//VIEW METHODS
 
@@ -163,7 +162,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		}
 		return i;
 	}
-
 	@Override
 	public boolean move(Move move) {
 		return this.player.move(move);

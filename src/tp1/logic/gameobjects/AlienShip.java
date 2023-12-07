@@ -24,12 +24,12 @@ public abstract class AlienShip extends EnemyShip {
     }
     @Override
     public void automaticMove() {
-        int cycle = game.getCycle();
+        /*int cycle = game.getCycle();
         int numCyclesToMoveOneCell = game.getLevel().getNumCyclesToMoveOneCell();
 
         if (cycle % numCyclesToMoveOneCell == 0) {
-            performMovement();
-        }
+            alienManager.moveAlienList();
+        }*/
 
     }
 
