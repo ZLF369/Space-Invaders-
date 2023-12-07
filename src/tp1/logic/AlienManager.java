@@ -2,30 +2,30 @@ package tp1.logic;
 
 import tp1.control.InitialConfiguration;
 import tp1.logic.gameobjects.*;
+import tp1.view.Messages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class AlienManager {
 
     private Game game;
-    private int remainingAliens;
-    //    private Move dir;
-//    private boolean onBorder;
-//    private boolean shouldDescend;
+       private Move dir;
+   private boolean onBorder;
+    private boolean shouldDescend;
     private Ufo activeUfo;
     private boolean ufoOnScreen;
 
 
     public AlienManager(Game game) {
         this.game = game;
-//        dir = Move.LEFT;
+        dir = Move.LEFT;
         ufoOnScreen = false;
     }
 
     public GameObjectContainer initialize(InitialConfiguration initialConfiguration) {
-        this.remainingAliens = 0;
         GameObjectContainer container = new GameObjectContainer();
 
         initializeUFO(container);
@@ -89,8 +89,11 @@ public class AlienManager {
                     new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
         }
     }
-/*
-    public void checkOnBorder() { //check if any alien is on the border
+
+    //UNCOMMENT THIS AS LAST RESORT IF NOTHING WORKS
+
+
+    /*public void checkOnBorder() { //check if any alien is on the border
         for (GameObject gameObject : game.getContainer().getObjects()) {
             if (gameObject instanceof AlienShip) {
                 if (gameObject.isAlive()
@@ -121,7 +124,7 @@ public class AlienManager {
         int numCyclesToMoveOneCell = game.getLevel().getNumCyclesToMoveOneCell();
         boolean alreadyMoved =false;
 
-        tryShooting();
+        //tryShooting();
         checkUfo();
 
         if (cycle % numCyclesToMoveOneCell == 0) {
@@ -133,7 +136,10 @@ public class AlienManager {
                 shouldDescend = false; // flag it so that it doesnt keep moving down
             } else {
                 for (GameObject gameObject : game.getContainer().getObjects()) {
-                    if (gameObject instanceof AlienShip && gameObject.isAlive()) {
+                    if ((Objects.equals(gameObject.getMessage(), Messages.REGULAR_ALIEN_SYMBOL)
+                            || Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) ||
+                            Objects.equals(gameObject.getMessage(), Messages.EXPLOSIVE_ALIEN_SYMBOL)
+                                    && gameObject.isAlive()) {
                         // Move in the current direction
                         gameObject.setPos(gameObject.getPos().move(dir));
                     }
@@ -157,19 +163,19 @@ public class AlienManager {
         }
     }
 
-
-    }
-
     public void moveAllDown() {
         for (GameObject gameObject : game.getContainer().getObjects()) {
-            if (gameObject instanceof AlienShip) {
+            if ((Objects.equals(gameObject.getMessage(), Messages.REGULAR_ALIEN_SYMBOL)
+                    || Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) ||
+                    Objects.equals(gameObject.getMessage(), Messages.EXPLOSIVE_ALIEN_SYMBOL)) {
                 if (gameObject.isAlive()) {
                     gameObject.setPos(gameObject.getPos().move(Move.DOWN));
                 }
             }
         }
-    }
+    }*/
 
+/*
     ALIEN BOMB GO BOOM LOGIC
 
     public boolean shootChance() {

@@ -73,7 +73,7 @@ public abstract class AlienShip extends EnemyShip {
 
     @Override
     public boolean hasLanded() {
-        return this.getPos().row == 8;
+        return this.getPos().row == Game.DIM_Y - 1;
     }
 
     @Override

@@ -94,7 +94,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		setCurrentCycle(getCycle() + 1);
 		alienManager.checkUfo();
 		this.container.computerActions();
-//		alienManager.moveAlienList();
+		//alienManager.moveAlienList(); UNCOMMENT AS LAST RESORT
 		container.checkCollision();
 		container.checkExplosion();
 		container.givePoints(player);
