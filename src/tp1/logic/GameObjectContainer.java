@@ -31,22 +31,27 @@ public class GameObjectContainer {
 
 	public void computerActions() {
 		for (GameObject objects: objects) {
-			objects.computerAction();
+			if (objects != null)
+				objects.computerAction();
 		}
 	}
 
 	public void givePoints(UCMShip player) {
 		for (GameObject objects: objects) {
-			if (!objects.isAlive() && !objects.hasGivenPoints()) {
-				player.setPoints(player.getPoints() + objects.getPoints());
-				objects.setHasGivenPoints(true);
+			if (objects != null){
+				if (!objects.isAlive() && !objects.hasGivenPoints()) {
+					player.setPoints(player.getPoints() + objects.getPoints());
+					objects.setHasGivenPoints(true);
+				}
 			}
+
 		}
 	}
 
 	public void deleteDeadObjects() {
 		for (GameObject d: deadObjects) {
-			this.objects.remove(d);
+			if (d != null)
+				this.objects.remove(d);
 		}
 		this.deadObjects.clear();
 	}
@@ -58,11 +63,15 @@ public class GameObjectContainer {
 				GameObject object1, object2;
 				object1 = objects.get(i);
 				object2 = objects.get(j);
-				if (object1 == object2) continue;
-				if (object1.isOnPosition(object2.getPos())) {
-					object1.performAttack(object2);
-					object1.giveShockwave();
+
+				if (object1 != null && object2 != null){
+					if (object1 == object2) continue;
+					if (object1.isOnPosition(object2.getPos())) {
+						object1.performAttack(object2);
+						object1.giveShockwave();
+					}
 				}
+
 			}
 		}
 	}

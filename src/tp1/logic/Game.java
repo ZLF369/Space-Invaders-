@@ -10,8 +10,6 @@ import java.util.Random;
 
 public class Game implements GameStatus, GameModel, GameWorld {
 
-	//TODO fill with your code
-
 	public static final int DIM_X = 9;
 	public static final int DIM_Y = 8;
 
@@ -80,13 +78,11 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	//CONTROL METHODS
 
 	public boolean isFinished() {
-		// TODO fill with your code
 		return (playerWin() || aliensWin());
 	}
 
 	public void exit() {
 		System.exit(0);
-		// TODO fill with your code
 	}
 
 	public void update() {
@@ -103,8 +99,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.container.deleteDeadObjects();
 	}
 
-	// TODO fill with your code
-
 	//CALLBACK METHODS
 
 	public void addObject(GameObject object) {
@@ -114,12 +108,13 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public GameObjectContainer getContainer() {
 		return container;
 	}
-	// TODO fill with your code
+
 
 	//VIEW METHODS
 
 	public String positionToString(int col, int row) {
 		Position position = new Position(col, row);
+
 		for (GameObject objects: this.container.getObjects()) {
 			if(objects.isOnPosition(position) && objects.isAlive()) {
 				return objects.toString();

@@ -13,7 +13,6 @@ public class UCMShip extends Ship{
      * Constructor for the UCMShip.
      */
     private UCMLaser laser;
-
     private SuperLaser superLaser;
     private Shockwave shockwave;
 

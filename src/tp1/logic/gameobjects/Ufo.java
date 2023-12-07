@@ -35,8 +35,6 @@ public class Ufo extends EnemyShip {
 
 	}
 
-	//unfinished
-
 	@Override
 	public void computerAction() {
 		if (!isValidPosition(getPos())){

@@ -20,17 +20,14 @@ public class DestroyerAlien extends AlienShip
     public DestroyerAlien(Game game, Position pos, AlienManager alienManager) {
         super(game, pos, 1);
         this.bomb = null;
+        this.hasBomb = false;
         this.points = 10;
     }
 
     @Override
     public void computerAction() {
         super.computerAction();
-        /*if (this.bomb == null && game.shootChance()) {
-            Position bombPosition = new Position(this.pos.col, this.pos.row + 1);
-                this.bomb = new Bomb(this.game, bombPosition, 1, this);
-                this.game.addObject(bomb);
-        }*/
+        tryShooting();
     }
 
 
@@ -56,9 +53,8 @@ public class DestroyerAlien extends AlienShip
         return 0;
     }
 
-
-    /*public void tryShooting() {
-        if (bomb == null && shootChance()) {
+    public void tryShooting() {
+        if (bomb == null && game.shootChance()) {
                 this.shootBomb();
         }
     }
@@ -67,9 +63,10 @@ public class DestroyerAlien extends AlienShip
             return;
         }
         setHasBomb(true);
-        new Bomb(this.game, new Position(this.pos.col, this.pos.row + 1), 1);
+        bomb = new Bomb(game, new Position(this.pos.col, this.pos.row + 1), 1);
+        game.getContainer().add(bomb);
     }
-*/
+
 
     public Bomb getBomb() {
         return bomb;

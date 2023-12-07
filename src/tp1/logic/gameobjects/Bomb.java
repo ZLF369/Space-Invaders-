@@ -1,15 +1,13 @@
 package tp1.logic.gameobjects;
 
 import tp1.logic.Game;
-import tp1.logic.Move;
 import tp1.logic.Position;
 import tp1.view.Messages;
+import tp1.logic.Move;
 
 public class Bomb extends EnemyWeapon {
-    DestroyerAlien destroyerAlien;
-    public Bomb(Game game, Position pos, int life, DestroyerAlien destroyerAlien) {
+    public Bomb(Game game, Position pos, int life) {
         super(game, pos, life);
-        this.destroyerAlien = destroyerAlien;
     }
     @Override
     protected String getSymbol() {
@@ -36,10 +34,10 @@ public class Bomb extends EnemyWeapon {
 //        }
 //    }
 
-    /*public boolean isValidPosition(Position position) {
+    public boolean isValidPosition(Position position) {
         return position.row >= 0 && position.row < Game.DIM_Y;
     }
-@Override
+    @Override
     public void automaticMove(){
         pos = pos.move(Move.DOWN);
     }
@@ -47,15 +45,15 @@ public class Bomb extends EnemyWeapon {
     @Override
     public void computerAction(){
         if (!isValidPosition(getPos())){
-            this.onDelete();
+            life = 0;
         }
     }
 
-    public void onDelete(){
+    /*public void onDelete(){
         game.deleteObject(this);
-        *//*if (destroyerAlien.getBomb() != null) {
+        if (destroyerAlien.getBomb() != null) {
             this.destroyerAlien.deleteBomb();
-        }*//*
+        }
     }*/
 
 

@@ -12,8 +12,8 @@ import java.util.Objects;
 public class AlienManager {
 
     private Game game;
-       private Move dir;
-   private boolean onBorder;
+    private Move dir;
+    private boolean onBorder;
     private boolean shouldDescend;
     private Ufo activeUfo;
     private boolean ufoOnScreen;
@@ -27,20 +27,16 @@ public class AlienManager {
 
     public GameObjectContainer initialize(InitialConfiguration initialConfiguration) {
         GameObjectContainer container = new GameObjectContainer();
-
-        initializeUFO(container);
-//        initializeRegularAliens(container);
-//        initializeDestroyerAliens(container);
         initializeRegularAliens(container, initialConfiguration);
         initializeDestroyerAliens(container, initialConfiguration);
 
         /*ExplosiveAlien test = new ExplosiveAlien(game, new Position(6, 5), this);
         container.add(test);*/
-        return container;
-    }
 
-    private void initializeUFO(GameObjectContainer container) {
-        // container.add(new Ufo(game));
+        /*bomb = new Bomb(game, new Position(6, 5), 1);
+        container.add(bomb);*/
+
+        return container;
     }
 
     private void initializeRegularAliens(GameObjectContainer container, InitialConfiguration initialConfiguration) {
@@ -58,7 +54,7 @@ public class AlienManager {
                     ));
                 }
             }
-        } else {
+        } else { // Case for initialconfigurations
             initializeFromConfiguration(container, initialConfiguration);
         }
     }
@@ -77,7 +73,7 @@ public class AlienManager {
                         this
                 ));
             }
-        } else {
+        } else { // Case for initialconfigurations
             initializeFromConfiguration(container, initialConfiguration);
         }
     }
@@ -88,7 +84,7 @@ public class AlienManager {
             container.add(ShipFactory.spawnAlienShip(words[0], game,
                     new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
         }
-    }
+    } //Add the ships from the configuration file, in their format (type, row, col)
 
     //UNCOMMENT THIS AS LAST RESORT IF NOTHING WORKS
 
@@ -110,7 +106,10 @@ public class AlienManager {
     public boolean onBorder() { //check if any alien is on the border
         boolean onBorder = false;
         for (GameObject gameObject : game.getContainer().getObjects()) {
-            if (gameObject instanceof AlienShip) {
+            if ((Objects.equals(gameObject.getMessage(), Messages.REGULAR_ALIEN_SYMBOL)
+                            || Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) ||
+                            Objects.equals(gameObject.getMessage(), Messages.EXPLOSIVE_ALIEN_SYMBOL)
+                                    && gameObject.isAlive()) {
                 if (gameObject.getPos().col == 0 || gameObject.getPos().col == 8 || gameObject.getPos().row == 8) {
                     onBorder = true;
                 }
@@ -185,22 +184,25 @@ public class AlienManager {
     public void tryShooting() {
         List<DestroyerAlien> aliensToShoot = new ArrayList<>();
         for (GameObject gameObject : game.getContainer().getObjects()) {
-            if (gameObject instanceof DestroyerAlien) {
+            if ((Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) {
                 DestroyerAlien alien = (DestroyerAlien) gameObject;
                 if (shootChance()) {
                     aliensToShoot.add(alien);
                 }
             }
         }
-        for (DestroyerAlien alien : aliensToShoot) {
-            alien.shootBomb();
-            alien.setBomb(null);
+        for (GameObject gameObject : game.getContainer().getObjects()) {
+            if ((Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL){
+                alien.shootBomb();
+                alien.setBomb(null);
+            }
         }
         aliensToShoot.clear();
     }*/
 
 
-    public void checkUfo() {
+    public void checkUfo() { //method to check if ufo should be created or not.
+        //if it exits the bounds, it should be deleted and a will be tried to be created.
         if ((activeUfo == null || !activeUfo.isAlive())) {
             createUfo();
         } else if (!activeUfo.isValidPosition(activeUfo.getPos()) && game.getUfoFrequency()) {
@@ -209,7 +211,7 @@ public class AlienManager {
         }
     }
 
-    private void createUfo() {
+    private void createUfo() { //if the probability allows it, create a new ufo.
         if (game.getUfoFrequency()){
         Ufo ufo = new Ufo(game, new Position(8, 0), 1);
         game.getContainer().add(ufo);
@@ -217,30 +219,7 @@ public class AlienManager {
         }
     }
 
-
-
-    //COLLISSION LOGIC
-
-   /*public void CheckCollissions(UCMShip player) {
-        for (GameObject gameObject : game.getContainer().getObjects()) {
-            if ((gameObject instanceof EnemyShip || gameObject instanceof EnemyWeapon) && player.getLaser() != null) {
-                if (gameObject.isAlive() && player.getLaser().getPos().equals(gameObject.getPos())) {
-                    gameObject.setLife(gameObject.getLife() - 1); //equivalent of receiving damage i guess?
-                    //need logic to enable shockwave to true after killing ufo and getting points
-                    player.getLaser().setLife(0);
-                }
-
-            } else if ((gameObject instanceof EnemyShip || gameObject instanceof EnemyWeapon) && player.getSuperLaser() != null) {
-                if (gameObject.isAlive() && player.getSuperLaser().getPos().equals(gameObject.getPos())) {
-                    gameObject.setLife(gameObject.getLife() - 2); //equivalent of receiving damage i guess?
-                    //need logic to enable shockwave to true after killing ufo and getting points
-                    player.getSuperLaser().setLife(player.getSuperLaser().getLife() - 1);
-                }
-            }
-        }
-    }*/
-
-    public boolean landed(){
+    public boolean landed(){ //if any alien has landed, true is returned.
         for (GameObject objects: this.game.getContainer().getObjects()) {
             if (objects.hasLanded())
                 return true;
