@@ -72,11 +72,17 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	//CALLBACK METHODS
-
+	@Override
 	public void addObject(GameObject object) {
 		this.container.add(object);
 	}
 
+	@Override
+	public void removeObject(GameObject object) {
+		this.container.remove(object);
+	}
+
+	@Override
 	public GameObjectContainer getContainer() {
 		return container;
 	}
