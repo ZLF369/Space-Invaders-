@@ -119,7 +119,7 @@ public class UCMShip extends Ship{
 
     public void useShockwave() {
         for (GameObject object : game.getContainer().getObjects()) {
-            if (object.isAlive()) {
+            if (object.isAlive() && this.hasShockWave) {
                 // Assuming that the shockwave affects all active objects, call performAttack on each one
                 object.receiveShockwaveDamage(); // You may need to define shockwaveDamage
             }
