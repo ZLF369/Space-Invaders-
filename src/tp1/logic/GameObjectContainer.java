@@ -73,7 +73,6 @@ public class GameObjectContainer {
 						object1.giveShockwave();
 					}
 				}
-
 			}
 		}
 	}

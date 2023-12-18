@@ -16,7 +16,6 @@ public class ResetCommand extends Command{
 
     public ResetCommand() {
     }
-
     @Override
     protected String getName() {
         return Messages.COMMAND_RESET_NAME;

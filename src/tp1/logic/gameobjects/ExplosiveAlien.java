@@ -31,7 +31,7 @@ public class ExplosiveAlien extends RegularAlien {
     @Override
     public void kamikaze() {
         if (this.isDead()) {
-            int range = 7; // Adjust the range as needed
+            int range = 1; // Adjust the range as needed
             int centerX = this.getPos().col;
             int centerY = this.getPos().row;
                 for (int x = centerX - range; x <= centerX + range; x++) {
