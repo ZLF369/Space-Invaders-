@@ -24,7 +24,7 @@ public abstract class Command {
 		 */
 	  public abstract ExecutionResult execute(GameModel game);
 	  
-	  public abstract Command parse(String[] commandWords);
+	  public abstract Command parse(String[] commandWords) throws CommandParseException;
 	  
 	  protected boolean matchCommandName(String name) {
 		    return getShortcut().equalsIgnoreCase(name) || 

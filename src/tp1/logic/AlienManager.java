@@ -26,6 +26,10 @@ public class AlienManager {
         GameObjectContainer container = new GameObjectContainer();
         initializeRegularAliens(container, initialConfiguration);
         initializeDestroyerAliens(container, initialConfiguration);
+
+//        ExplosiveAlien explosiveAlien = new ExplosiveAlien(this.game, new Position(Game.DIM_X / 2, 6), this);
+//        container.add(explosiveAlien);
+
         return container;
     }
 

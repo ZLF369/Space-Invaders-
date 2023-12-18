@@ -49,9 +49,6 @@ public class ExplosiveAlien extends RegularAlien {
                         }
                     }
                 }
-
-
-
         }
 
     }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import tp1.control.commands.Command;
 import tp1.control.commands.CommandGenerator;
+import tp1.control.commands.CommandParseException;
 import tp1.logic.Game;
 import tp1.logic.GameModel;
 import tp1.view.BoardPrinter;
@@ -42,7 +43,7 @@ public class Controller {
 		return words;
 	}
 
-	public void run() {
+	public void run() throws CommandParseException {
 
 		printGame();
 

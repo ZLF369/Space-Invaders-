@@ -30,7 +30,7 @@ public class ShootCommand extends NoParamsCommand{
     }
 
     @Override
-    public Command parse(String[] commandWords) {
+    public Command parse(String[] commandWords) throws CommandParseException {
         return super.parse(commandWords);
     }
 

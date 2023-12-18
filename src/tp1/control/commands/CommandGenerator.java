@@ -22,7 +22,7 @@ public class CommandGenerator {
 		new SuperlaserCommand()
 	);
 
-	public static Command parse(String[] commandWords) {
+	public static Command parse(String[] commandWords) throws CommandParseException {
 		Command command = null;
 		for (Command c: availableCommands) {
 			if(c.matchCommandName(commandWords[0])) {
@@ -34,6 +34,7 @@ public class CommandGenerator {
 			}
 		}
 		return command;
+		// throw new CommandParseException(Messages.UNKNOWN_COMMAND);
 	}
 		
 	public static String commandHelp() {
