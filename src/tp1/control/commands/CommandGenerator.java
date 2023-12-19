@@ -1,9 +1,12 @@
 package tp1.control.commands;
 
 import tp1.control.InitialConfiguration;
+import tp1.view.Messages;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 public class CommandGenerator {
 
@@ -23,17 +26,16 @@ public class CommandGenerator {
 	);
 
 	public static Command parse(String[] commandWords) throws CommandParseException {
-		Command command = null;
-		for (Command c: availableCommands) {
-			if(c.matchCommandName(commandWords[0])) {
-				command = c.parse(commandWords);
-				break;
-			} else if (commandWords[0].equals("")){
-				command = new NoneCommand();
-				break;
-			}
+		Optional match = availableCommands
+				.stream().filter(c -> c.matchCommandName(commandWords[0])).
+				findFirst();
+		if (Objects.equals(commandWords[0], "")) {
+			return new NoneCommand();
+		} else if (match.isPresent()) {
+			return ((Command) match.get()).parse(commandWords);
+		} else {
+			throw new CommandParseException(Messages.UNKNOWN_COMMAND);
 		}
-		return command;
 		// throw new CommandParseException(Messages.UNKNOWN_COMMAND);
 	}
 		

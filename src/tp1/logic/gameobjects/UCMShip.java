@@ -24,6 +24,21 @@ public class UCMShip extends Ship{
         this.points = 0;
     }
 
+    public static String allowedMoves(String s) {
+        String[] moves = {"left", "right", "lleft", "rright"};
+        StringBuilder result = new StringBuilder("Allowed UCMShip moves: <");
+
+        for (int i = 0; i < moves.length; i++) {
+            result.append(moves[i]);
+            if (i < moves.length - 1) {
+                result.append("|");
+            }
+        }
+
+        result.append(">");
+        return result.toString();
+    }
+
     @Override
     protected String getSymbol() {
         if (!game.aliensWin())
