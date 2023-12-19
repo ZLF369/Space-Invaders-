@@ -1,7 +1,6 @@
 package tp1.control.commands;
 
-import tp1.control.ExecutionResult;
-import tp1.logic.Game;
+import tp1.exceptions.CommandExecuteException;
 import tp1.logic.GameModel;
 import tp1.view.Messages;
 
@@ -39,7 +38,7 @@ public class ListCommand extends NoParamsCommand {
 //    }
 
     @Override
-    public boolean execute(GameModel game) throws CommandExecuteException{
+    public boolean execute(GameModel game) throws CommandExecuteException {
         System.out.printf((Messages.UCM_DESCRIPTION) + "%n",Messages.UCMSHIP_DESCRIPTION,1,3);
         System.out.printf((Messages.ALIEN_DESCRIPTION) + "%n",Messages.REGULAR_ALIEN_DESCRIPTION,5,0,2);
         System.out.printf((Messages.ALIEN_DESCRIPTION) + "%n",Messages.DESTROYER_ALIEN_DESCRIPTION,10,1,1);

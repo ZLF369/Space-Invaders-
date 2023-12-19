@@ -1,7 +1,7 @@
 package tp1.control.commands;
 
-import tp1.control.ExecutionResult;
-import tp1.logic.Game;
+import tp1.exceptions.CommandExecuteException;
+import tp1.exceptions.CommandParseException;
 import tp1.logic.GameModel;
 import tp1.logic.Move;
 import tp1.view.Messages;
@@ -46,7 +46,7 @@ public class MoveCommand extends Command {
 //		return new ExecutionResult(siu, true, Messages.MOVEMENT_ERROR);
 //	}
 	@Override
-	public boolean execute(GameModel game) throws CommandExecuteException{
+	public boolean execute(GameModel game) throws CommandExecuteException {
 		if (move == Move.UP || move == Move.DOWN)
 			return true;
 
@@ -58,7 +58,7 @@ public class MoveCommand extends Command {
 	}
 
 	@Override
-	public Command parse(String[] commandWords) throws CommandParseException{
+	public Command parse(String[] commandWords) throws CommandParseException {
 		if (commandWords.length != 2) throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
 		if (!matchCommandName(commandWords[0])) throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
 
@@ -74,7 +74,7 @@ public class MoveCommand extends Command {
 				}
 			}
 		} catch (IllegalArgumentException e) {
-			throw new CommandParseException(Messages.COMMAND_PARAMETERS_MISSING);
+			throw new CommandParseException(Messages.DIRECTION_ERROR + commandWords[1]);
 		}
 		return new MoveCommand(move);
 	}

@@ -1,11 +1,13 @@
 package tp1.logic;
 
+import tp1.exceptions.LaserInFlightException;
+import tp1.exceptions.NotEnoughtPointsException;
 import tp1.control.InitialConfiguration;
 
 public interface GameModel {
     boolean move(Move move);
     boolean shootLaser();
-    boolean shootSuperLaser();
+    public void shootSuperLaser() throws LaserInFlightException, NotEnoughtPointsException;
     boolean shockWave();
     void reset();
     void reset(InitialConfiguration initialConfiguration);

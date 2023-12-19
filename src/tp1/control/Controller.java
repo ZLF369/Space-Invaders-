@@ -5,9 +5,9 @@ import static tp1.view.Messages.debug;
 import java.util.Scanner;
 
 import tp1.control.commands.Command;
-import tp1.control.commands.CommandExecuteException;
+import tp1.exceptions.CommandExecuteException;
 import tp1.control.commands.CommandGenerator;
-import tp1.control.commands.CommandParseException;
+import tp1.exceptions.CommandParseException;
 import tp1.logic.Game;
 import tp1.logic.GameModel;
 import tp1.view.BoardPrinter;

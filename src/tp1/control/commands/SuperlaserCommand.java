@@ -1,6 +1,7 @@
 package tp1.control.commands;
 
-import tp1.control.ExecutionResult;
+import tp1.exceptions.CommandExecuteException;
+import tp1.exceptions.CommandParseException;
 import tp1.logic.GameModel;
 import tp1.view.Messages;
 
@@ -14,7 +15,7 @@ public class SuperlaserCommand extends NoParamsCommand{
 //    }
 
     @Override
-    public boolean execute(GameModel game) throws CommandExecuteException{
+    public boolean execute(GameModel game) throws CommandExecuteException {
         return game.shootSuperLaser();
     }
     @Override

@@ -1,10 +1,8 @@
 package tp1.control.commands;
 
-import tp1.control.ExecutionResult;
-import tp1.logic.Game;
+import tp1.exceptions.CommandExecuteException;
+import tp1.exceptions.CommandParseException;
 import tp1.logic.GameModel;
-import tp1.logic.Move;
-import tp1.logic.gameobjects.UCMLaser;
 import tp1.view.Messages;
 
 public class ShootCommand extends NoParamsCommand{
@@ -15,7 +13,7 @@ public class ShootCommand extends NoParamsCommand{
 //        return new ExecutionResult(shoot,true, Messages.LASER_ERROR);
 //    }
 @Override
-public boolean execute(GameModel game) throws CommandExecuteException{
+public boolean execute(GameModel game) throws CommandExecuteException {
     return game.shootLaser();
 }
     @Override
