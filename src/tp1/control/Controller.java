@@ -8,6 +8,8 @@ import tp1.control.commands.Command;
 import tp1.exceptions.CommandExecuteException;
 import tp1.control.commands.CommandGenerator;
 import tp1.exceptions.CommandParseException;
+import tp1.exceptions.LaserInFlightException;
+import tp1.exceptions.NotEnoughtPointsException;
 import tp1.logic.Game;
 import tp1.logic.GameModel;
 import tp1.view.BoardPrinter;
@@ -66,8 +68,10 @@ public class Controller {
 					Throwable cause = e.getCause();
 					if (cause != null)
 						System.out.println(cause.getMessage());
-				}
-			}
+				} catch (NotEnoughtPointsException | LaserInFlightException e) {
+                    throw new RuntimeException(e);
+                }
+        }
 		}
 	
 	/**

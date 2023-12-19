@@ -7,7 +7,7 @@ import tp1.control.InitialConfiguration;
 public interface GameModel {
     boolean move(Move move);
     boolean shootLaser();
-    public void shootSuperLaser() throws LaserInFlightException, NotEnoughtPointsException;
+    public boolean shootSuperLaser() throws LaserInFlightException, NotEnoughtPointsException;
     boolean shockWave();
     void reset();
     void reset(InitialConfiguration initialConfiguration);

@@ -2,6 +2,8 @@ package tp1.control.commands;
 
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.CommandParseException;
+import tp1.exceptions.LaserInFlightException;
+import tp1.exceptions.NotEnoughtPointsException;
 import tp1.logic.GameModel;
 
 /**
@@ -22,7 +24,7 @@ public abstract class Command {
 		 * 
 		 * @return {@code ExecutionResult} representing if command was successful and if board must be printed
 		 */
-	  public abstract boolean execute(GameModel game) throws CommandExecuteException;
+	  public abstract boolean execute(GameModel game) throws CommandExecuteException, NotEnoughtPointsException, LaserInFlightException;
 	  
 	  public abstract Command parse(String[] commandWords) throws CommandParseException;
 	  
