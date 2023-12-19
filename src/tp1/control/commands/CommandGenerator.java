@@ -1,7 +1,7 @@
 package tp1.control.commands;
 
-import tp1.exceptions.CommandParseException;
 import tp1.control.InitialConfiguration;
+import tp1.exceptions.CommandParseException;
 import tp1.view.Messages;
 
 import java.util.Arrays;

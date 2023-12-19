@@ -1,6 +1,5 @@
 package tp1.view;
 
-import tp1.control.InitialConfiguration;
 import tp1.logic.Level;
 import tp1.logic.gameobjects.UCMShip;
 

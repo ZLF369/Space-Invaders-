@@ -1,10 +1,13 @@
 package tp1.control.commands;
 
+import tp1.control.InitialConfiguration;
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.CommandParseException;
-import tp1.control.InitialConfiguration;
 import tp1.logic.GameModel;
 import tp1.view.Messages;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class ResetCommand extends Command{
     private InitialConfiguration initialConfiguration;
@@ -48,22 +51,25 @@ public class ResetCommand extends Command{
     }
 
     @Override
-    public Command parse(String[] commandWords) throws CommandParseException {
-        if (commandWords.length != 2) throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
-        if (!matchCommandName(commandWords[0])) throw new CommandParseException(Messages.UNKNOWN_COMMAND);
+    public Command parse(String[] commandWords) {
+        if (commandWords.length != 2) return null;
+        if (!matchCommandName(commandWords[0])) return null;
 
-        InitialConfiguration iC;
-
-        switch (commandWords[1].toUpperCase()) {
-            case "NONE" -> iC = InitialConfiguration.NONE;
-            case "CONF_1" -> iC = InitialConfiguration.CONF_1;
-            case "CONF_2" -> iC = InitialConfiguration.CONF_2;
-            case "CONF_3" -> iC = InitialConfiguration.CONF_3;
-            default -> {
-                return null;
+        try {
+            if ("NONE".equalsIgnoreCase(commandWords[1])) {
+                return new ResetCommand(null);
+            } else {
+                InitialConfiguration iC = InitialConfiguration.readFromFile(commandWords[1]);
+                return new ResetCommand(iC);
             }
+        } catch (FileNotFoundException e) {
+            // Handle file not found exception
+            System.err.println("File not found: " + e.getMessage());
+            return null; // Or throw a custom exception or take appropriate action
+        } catch (IOException e) {
+            // Handle file reading exception
+            return null;
         }
-        return new ResetCommand(iC);
     }
 
 }
