@@ -34,33 +34,47 @@ public class MoveCommand extends Command {
 		return Messages.COMMAND_MOVE_HELP;
 	}
 
+//	@Override
+//	public ExecutionResult execute(GameModel game) {
+//		if (move == Move.UP || move == Move.DOWN)
+//			return new ExecutionResult(true);
+//
+//		boolean siu = game.move(move);
+//		if (!siu)
+//			return new ExecutionResult(true);
+//
+//		return new ExecutionResult(siu, true, Messages.MOVEMENT_ERROR);
+//	}
 	@Override
-	public ExecutionResult execute(GameModel game) {
+	public boolean execute(GameModel game) throws CommandExecuteException{
 		if (move == Move.UP || move == Move.DOWN)
-			return new ExecutionResult(true);
+			return true;
 
 		boolean siu = game.move(move);
 		if (!siu)
-			return new ExecutionResult(true);
+			return true;
 
-		return new ExecutionResult(siu, true, Messages.MOVEMENT_ERROR);
+		return siu;
 	}
 
 	@Override
-	public Command parse(String[] commandWords) {
-		if (commandWords.length != 2) return null;
-		if (!matchCommandName(commandWords[0])) return null;
+	public Command parse(String[] commandWords) throws CommandParseException{
+		if (commandWords.length != 2) throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
+		if (!matchCommandName(commandWords[0])) throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
 
 		Move move;
-
-		switch (Move.valueOf(commandWords[1].toUpperCase())) {
-			case LEFT -> move = Move.LEFT;
-			case RIGHT -> move = Move.RIGHT;
-			case RRIGHT -> move = Move.RRIGHT;
-			case LLEFT -> move = Move.LLEFT;
-			default -> {
-				return null;
+		try {
+			switch (Move.valueOf(commandWords[1].toUpperCase())) {
+				case LEFT -> move = Move.LEFT;
+				case RIGHT -> move = Move.RIGHT;
+				case RRIGHT -> move = Move.RRIGHT;
+				case LLEFT -> move = Move.LLEFT;
+				default -> {
+					return null;
+				}
 			}
+		} catch (IllegalArgumentException e) {
+			throw new CommandParseException(Messages.COMMAND_PARAMETERS_MISSING);
 		}
 		return new MoveCommand(move);
 	}

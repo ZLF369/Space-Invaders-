@@ -6,11 +6,16 @@ import tp1.view.Messages;
 
 public class SuperlaserCommand extends NoParamsCommand{
 
+//    @Override
+//    public ExecutionResult execute(GameModel game) {
+//        boolean shot;
+//        shot = game.shootSuperLaser();
+//        return new ExecutionResult(shot, true, Messages.SUPERLASER_ERROR);
+//    }
+
     @Override
-    public ExecutionResult execute(GameModel game) {
-        boolean shot;
-        shot = game.shootSuperLaser();
-        return new ExecutionResult(shot, true, Messages.SUPERLASER_ERROR);
+    public boolean execute(GameModel game) throws CommandExecuteException{
+        return game.shootSuperLaser();
     }
     @Override
     protected String getName() {

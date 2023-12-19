@@ -22,7 +22,7 @@ public abstract class Command {
 		 * 
 		 * @return {@code ExecutionResult} representing if command was successful and if board must be printed
 		 */
-	  public abstract ExecutionResult execute(GameModel game);
+	  public abstract boolean execute(GameModel game) throws CommandExecuteException;
 	  
 	  public abstract Command parse(String[] commandWords) throws CommandParseException;
 	  

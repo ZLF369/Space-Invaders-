@@ -8,12 +8,16 @@ import tp1.logic.gameobjects.UCMLaser;
 import tp1.view.Messages;
 
 public class ShootCommand extends NoParamsCommand{
-    @Override
-    public ExecutionResult execute(GameModel game) {
-        boolean shoot;
-        shoot = game.shootLaser();
-        return new ExecutionResult(shoot,true, Messages.LASER_ERROR);
-    }
+//    @Override
+//    public ExecutionResult execute(GameModel game) {
+//        boolean shoot;
+//        shoot = game.shootLaser();
+//        return new ExecutionResult(shoot,true, Messages.LASER_ERROR);
+//    }
+@Override
+public boolean execute(GameModel game) throws CommandExecuteException{
+    return game.shootLaser();
+}
     @Override
     protected String getName() {
         return Messages.COMMAND_SHOOT_NAME;

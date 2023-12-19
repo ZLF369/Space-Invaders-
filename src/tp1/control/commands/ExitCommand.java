@@ -5,46 +5,52 @@ import tp1.logic.Game;
 import tp1.logic.GameModel;
 import tp1.view.Messages;
 
-public class ExitCommand extends NoParamsCommand{
-		  		
-		@Override
-		public ExecutionResult execute(GameModel game) {
-			game.exit();
-			return new ExecutionResult(false);
-		}
-		@Override
-		protected String getName() {
-			return Messages.COMMAND_EXIT_NAME;
-		}
+public class ExitCommand extends NoParamsCommand {
 
-	@Override
-	protected boolean matchCommandName(String name) {
-		return super.matchCommandName(name);
-	}
+    //    @Override
+//    public ExecutionResult execute(GameModel game) {
+//        game.exit();
+//        return new ExecutionResult(false);
+//    }
+    @Override
+    public boolean execute(GameModel game) {
+        game.exit();
+        return false;
+    }
 
-	@Override
-	public String helpText() {
-		return super.helpText();
-	}
+    @Override
+    protected String getName() {
+        return Messages.COMMAND_EXIT_NAME;
+    }
 
-	@Override
-	public Command parse(String[] commandWords) throws CommandParseException {
-		return super.parse(commandWords);
-	}
+    @Override
+    protected boolean matchCommandName(String name) {
+        return super.matchCommandName(name);
+    }
 
-	@Override
-		protected String getShortcut() {
-			return Messages.COMMAND_EXIT_SHORTCUT;
-		}
+    @Override
+    public String helpText() {
+        return super.helpText();
+    }
 
-		@Override
-		protected String getDetails() {
-			return Messages.COMMAND_EXIT_DETAILS;
-		}
+    @Override
+    public Command parse(String[] commandWords) throws CommandParseException {
+        return super.parse(commandWords);
+    }
 
-		@Override
-		protected String getHelp() {
-			return Messages.COMMAND_EXIT_HELP;
-		}
+    @Override
+    protected String getShortcut() {
+        return Messages.COMMAND_EXIT_SHORTCUT;
+    }
 
-	}
+    @Override
+    protected String getDetails() {
+        return Messages.COMMAND_EXIT_DETAILS;
+    }
+
+    @Override
+    protected String getHelp() {
+        return Messages.COMMAND_EXIT_HELP;
+    }
+
+}

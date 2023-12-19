@@ -27,9 +27,14 @@ public class NoneCommand extends NoParamsCommand {
         return Messages.COMMAND_NONE_HELP;
     }
 
+//    @Override
+//    public ExecutionResult execute(GameModel game) {
+//        return new ExecutionResult(true);
+//        //how can print board again
+//    }
+
     @Override
-    public ExecutionResult execute(GameModel game) {
-        return new ExecutionResult(true);
-        //how can print board again
+    public boolean execute(GameModel game) throws CommandExecuteException{
+        return true;
     }
 }
