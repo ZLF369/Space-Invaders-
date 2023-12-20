@@ -1,6 +1,8 @@
 package tp1.logic;
 
 import tp1.control.InitialConfiguration;
+import tp1.exceptions.CommandExecuteException;
+import tp1.exceptions.InitializationException;
 import tp1.logic.gameobjects.*;
 
 import java.util.Random;
@@ -174,7 +176,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
-	public void reset(InitialConfiguration initialConfiguration) { //the special reset that takes initialConfigurations
+	public void reset(InitialConfiguration initialConfiguration) throws InitializationException, CommandExecuteException{ //the special reset that takes initialConfigurations
 		emptyContainer();
 		this.container = alienManager.initialize(initialConfiguration);
 		this.random = new Random(this.seed);

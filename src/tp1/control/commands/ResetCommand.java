@@ -3,6 +3,7 @@ package tp1.control.commands;
 import tp1.control.InitialConfiguration;
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.CommandParseException;
+import tp1.exceptions.InitializationException;
 import tp1.logic.GameModel;
 import tp1.view.Messages;
 
@@ -38,15 +39,15 @@ public class ResetCommand extends Command{
         return Messages.COMMAND_RESET_HELP;
     }
 
-//    @Override
-//    public ExecutionResult execute(GameModel game) {
-//        game.reset(initialConfiguration);
-//        return new ExecutionResult(true, true, Messages.MOVEMENT_ERROR);
-//    }
-
     @Override
     public boolean execute(GameModel game) throws CommandExecuteException {
-        game.reset(initialConfiguration);
+        try {
+            game.reset(initialConfiguration);
+        } catch (InitializationException e) {
+            System.err.println("Initialization error: " + e.getMessage());
+        } catch (CommandExecuteException e) {
+            System.err.println("Command execution error: " + e.getMessage());
+        }
         return true;
     }
 
@@ -63,11 +64,11 @@ public class ResetCommand extends Command{
                 return new ResetCommand(iC);
             }
         } catch (FileNotFoundException e) {
-            // Handle file not found exception
+
             System.err.println("File not found: " + e.getMessage());
-            return null; // Or throw a custom exception or take appropriate action
+            return null;
         } catch (IOException e) {
-            // Handle file reading exception
+            System.err.println("File reading error: " + e.getMessage());
             return null;
         }
     }
