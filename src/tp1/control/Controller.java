@@ -61,7 +61,7 @@ public class Controller {
 							game.update();
 							printGame();
 						}
-						printEndMessage();
+
 					}
 				} catch (CommandParseException | CommandExecuteException e) {
 					System.out.println(e.getMessage());
@@ -72,6 +72,7 @@ public class Controller {
                     throw new RuntimeException(e);
                 }
         }
+		printEndMessage();
 		}
 	
 	/**
