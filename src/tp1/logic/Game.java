@@ -57,7 +57,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public void update() {
 		// update the cycle
 		setCurrentCycle(getCycle() + 1);
-
+		// move all objects ingame
+		this.container.automaticMoves();
 		// check collisions and handle damage done to aliens and player
 		container.checkCollision();
 		container.checkExplosion();
@@ -68,7 +69,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		alienManager.checkUfo();
 		this.container.computerActions();
 		alienManager.moveAlienList();
-		this.container.automaticMoves();
 		this.container.deleteDeadObjects();
 	}
 
