@@ -135,7 +135,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	public int getRemainingAliens() { //count the remaining aliens
 		int i=0;
 		for (GameObject objects: this.container.getObjects()) {
-			if (objects.addCounter() && objects.isAlive()) {
+			if (objects != null && objects.addCounter() && objects.isAlive()) {
 				i++;
 			}
 		}
@@ -157,7 +157,10 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
-	public boolean shootSuperLaser(){return this.player.shootSuperLaser();}
+	public boolean shootSuperLaser(){
+		player.setPoints(player.getPoints() - 5);
+		return this.player.shootSuperLaser();
+	}
 
 	@Override
 	public boolean shockWave() { //apply the shockwave damage
