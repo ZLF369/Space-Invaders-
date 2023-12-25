@@ -6,6 +6,8 @@ import tp1.logic.GameModel;
 import tp1.logic.Move;
 import tp1.view.Messages;
 
+import static tp1.logic.gameobjects.UCMShip.allowedMoves;
+
 public class MoveCommand extends Command {
 	private Move move;
 
@@ -70,13 +72,15 @@ public class MoveCommand extends Command {
 				case RRIGHT -> move = Move.RRIGHT;
 				case LLEFT -> move = Move.LLEFT;
 				default -> {
-					return null;
+					String availableMoves = allowedMoves("|");
+					throw new IllegalArgumentException(Messages.DIRECTION_ERROR + availableMoves);
 				}
 			}
 		} catch (IllegalArgumentException e) {
-			throw new CommandParseException(Messages.DIRECTION_ERROR + commandWords[1]);
+			throw new CommandParseException(Messages.DIRECTION_ERROR + commandWords[1] + "\n" + allowedMoves("|") + "\n");
 		}
 		return new MoveCommand(move);
 	}
+
 
 }

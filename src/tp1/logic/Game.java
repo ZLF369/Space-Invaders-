@@ -160,7 +160,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		}
 	}
 
-
 	public UCMShip getPlayer() {
 		return player;
 	}
