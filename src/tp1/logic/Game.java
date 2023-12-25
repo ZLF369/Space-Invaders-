@@ -4,6 +4,7 @@ import tp1.control.InitialConfiguration;
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.InitializationException;
 import tp1.exceptions.NotEnoughtPointsException;
+import tp1.exceptions.OffWorldException;
 import tp1.logic.gameobjects.*;
 import tp1.view.Messages;
 
@@ -145,8 +146,20 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 	@Override
 	public boolean move(Move move) {
-		return this.player.move(move);
+		try {
+			if (player.move(move)) {
+				return true;
+			} else {
+				String availableMoves = Messages.ALLOWED_MOVES_MESSAGE;
+				String message = String.format(Messages.OFF_WORLD_MESSAGE, move, player.getPos());
+				throw new OffWorldException(message);
+			}
+		} catch (OffWorldException e) {
+			System.err.println(e.getMessage());
+			return false;
+		}
 	}
+
 
 	public UCMShip getPlayer() {
 		return player;

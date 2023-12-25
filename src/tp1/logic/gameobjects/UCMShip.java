@@ -5,6 +5,9 @@ import tp1.logic.Move;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class of the UCMShip that contains all the attributes and methods.
  */
@@ -24,14 +27,14 @@ public class UCMShip extends Ship{
         this.points = 0;
     }
 
-    public static String allowedMoves(String s) {
+    public static String allowedMoves(String separator) {
         String[] moves = {"left", "right", "lleft", "rright"};
         StringBuilder result = new StringBuilder("Allowed UCMShip moves: <");
 
         for (int i = 0; i < moves.length; i++) {
             result.append(moves[i]);
             if (i < moves.length - 1) {
-                result.append("|");
+                result.append(separator);
             }
         }
 
@@ -62,11 +65,24 @@ public class UCMShip extends Ship{
             return false;
         } else if (onBorderRight() && (move.equals(Move.RIGHT) || move.equals(Move.RRIGHT))) {
             return false;
+        } else if (almostOnBorderLeft() && move.equals(Move.LLEFT)) {
+            return false;
+        } else if (almostOnBorderRight() && move.equals(Move.RRIGHT)) {
+                return false;
         } else {
             super.pos = pos.move(move);
             return true;
         }
     }
+
+    public boolean almostOnBorderLeft(){
+        return super.pos.col == 1;
+    }
+
+    public boolean almostOnBorderRight(){
+        return super.pos.col == Game.DIM_X - 2;
+    }
+
 
     public boolean onBorderLeft(){
         return super.pos.col == 0;
