@@ -3,7 +3,9 @@ package tp1.logic;
 import tp1.control.InitialConfiguration;
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.InitializationException;
+import tp1.exceptions.NotEnoughtPointsException;
 import tp1.logic.gameobjects.*;
+import tp1.view.Messages;
 
 import java.util.Random;
 
@@ -157,10 +159,23 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
-	public boolean shootSuperLaser(){
-		player.setPoints(player.getPoints() - 5);
-		return this.player.shootSuperLaser();
+	public boolean shootSuperLaser() {
+		try {
+			if (player.getPoints() >= 5) {
+				player.setPoints(player.getPoints() - 5);
+				return this.player.shootSuperLaser();
+			} else {
+				String message = String.format("Not enough points: only %s points, %s points required", player.getPoints(), 5);
+				throw new NotEnoughtPointsException(message);
+			}
+		} catch (NotEnoughtPointsException e) {
+			System.err.println(e.getMessage());
+			return false;
+		}
 	}
+
+
+
 
 	@Override
 	public boolean shockWave() { //apply the shockwave damage
