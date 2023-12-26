@@ -81,13 +81,22 @@ public class AlienManager {
 
             // Check if there are three words in the description
             if (words.length != 3) {
-                System.err.println("Initialization error: " + Messages.INCORRECT_ENTRY.formatted(description));
-                continue;
+                throw new InitializationException(Messages.INCORRECT_ENTRY.formatted(description));
             }
 
             boolean shipCondition = ShipFactory.isValidShipType(words[0]);
-            boolean positionCondition = isValidPosition(Integer.parseInt(words[1]), Integer.parseInt(words[2]));
-            boolean numberFormat = isInteger(words[1]) && isInteger(words[2]);// Check if the last two words are numbers
+            boolean numberFormat;
+            boolean positionCondition;
+
+            try {
+                int row = Integer.parseInt(words[1]);
+                int col = Integer.parseInt(words[2]);
+                positionCondition = isValidPosition(row, col);
+                numberFormat = true;
+            } catch (NumberFormatException e) {
+                numberFormat = false;
+                positionCondition = false;
+            }
 
             try {
                 if (numberFormat) {
@@ -103,7 +112,7 @@ public class AlienManager {
                         throw new InitializationException(Messages.UNKNOWN_SHIP.formatted(words[0]));
                     }
                 } else {
-                    throw new InitializationException(Messages.INCORRECT_ENTRY.formatted(description));
+                    throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
                 }
             } catch (InitializationException e) {
                 System.err.println("Initialization error: " + e.getMessage());
@@ -112,18 +121,6 @@ public class AlienManager {
             }
         }
     }
-
-
-    public static boolean isInteger(String s) {
-        try {
-            Integer.parseInt(s);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-
 
     private boolean isValidPosition(int row, int col) {
         return row >= 0 && row < Game.DIM_X && col >= 0 && col < Game.DIM_Y;
