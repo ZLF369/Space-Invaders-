@@ -51,16 +51,16 @@ public class ResetCommand extends Command{
                     game.reset(initialConfiguration);
                     return true;
                 } catch (InitializationException e) {
-                    System.out.println("Initialization error: " + e.getMessage());
+                    System.err.println("Initialization error: " + e.getMessage());
                     Throwable cause = e.getCause();
                     if (cause != null) {
-                        System.out.println("Cause: " + cause.getMessage());
+                        System.err.println("Cause: " + cause.getMessage());
                     }
                     return false;
                 }
             }
         } catch (CommandExecuteException e) {
-            System.out.println("Command execution error: " + e.getMessage());
+            System.err.println("Command execution error: " + e.getMessage());
             Throwable cause = e.getCause();
             if (cause != null) {
                 System.err.println("Cause: " + cause.getMessage());
@@ -85,7 +85,6 @@ public class ResetCommand extends Command{
                 return new ResetCommand(iC);
             }
         } catch (FileNotFoundException e) {
-
             System.err.println("File not found: " + e.getMessage());
             return null;
         } catch (IOException e) {

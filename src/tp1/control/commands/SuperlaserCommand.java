@@ -8,14 +8,6 @@ import tp1.logic.GameModel;
 import tp1.view.Messages;
 
 public class SuperlaserCommand extends NoParamsCommand{
-
-//    @Override
-//    public ExecutionResult execute(GameModel game) {
-//        boolean shot;
-//        shot = game.shootSuperLaser();
-//        return new ExecutionResult(shot, true, Messages.SUPERLASER_ERROR);
-//    }
-
     @Override
     public boolean execute(GameModel game) throws CommandExecuteException, NotEnoughPointsException, LaserInFlightException {
         return game.shootSuperLaser();

@@ -17,6 +17,7 @@ public class AlienManager {
     private Move dir;
     private boolean shouldDescend;
     private Ufo activeUfo;
+
     public AlienManager(Game game) {
         this.game = game;
         dir = Move.LEFT; //direction of the list goes to left by default
@@ -80,33 +81,26 @@ public class AlienManager {
             }
 
             boolean shipCondition = ShipFactory.isValidShipType(words[0]);
-            boolean numberFormat;
-            boolean positionCondition;
+            boolean positionCondition = false;
 
             try {
                 int row = Integer.parseInt(words[1]);
                 int col = Integer.parseInt(words[2]);
                 positionCondition = isValidPosition(row, col);
-                numberFormat = true;
             } catch (NumberFormatException e) {
-                numberFormat = false;
-                positionCondition = false;
+                throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
             }
 
-            if (numberFormat) {
-                if (shipCondition) {
-                    if (positionCondition) {
-                        container.add(ShipFactory.spawnAlienShip(words[0], game,
-                                new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
+            if (shipCondition) {
+                if (positionCondition) {
+                    container.add(ShipFactory.spawnAlienShip(words[0], game,
+                            new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
 
-                    } else {
-                        throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
-                    }
                 } else {
-                    throw new InitializationException(Messages.UNKNOWN_SHIP.formatted(words[0]));
+                    throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
                 }
             } else {
-                throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
+                throw new InitializationException(Messages.UNKNOWN_SHIP.formatted(words[0]));
             }
         }
     }
@@ -210,7 +204,7 @@ public class AlienManager {
         for (DestroyerAlien alien : aliensToShoot) { //use some auxiliar aliens to shoot the bomb
             alien.shootBomb();
             //if the bomb is not in a valid position, it should be deleted, or if its dead.
-            if (!alien.getBomb().isValidPosition(alien.getBomb().getPos()) && !alien.getBomb().isAlive()){
+            if (!alien.getBomb().isValidPosition(alien.getBomb().getPos()) && !alien.getBomb().isAlive()) {
                 alien.setBomb(null);
             }
         }
@@ -228,15 +222,15 @@ public class AlienManager {
     }
 
     private void createUfo() { //if the probability allows it, create a new ufo.
-        if (game.getUfoFrequency()){
+        if (game.getUfoFrequency()) {
             Ufo ufo = new Ufo(game, new Position(8, 0), 1);
             game.getContainer().add(ufo);
             activeUfo = ufo;
         }
     }
 
-    public boolean landed(){ //if any alien has landed, true is returned.
-        for (GameObject objects: this.game.getContainer().getObjects()) {
+    public boolean landed() { //if any alien has landed, true is returned.
+        for (GameObject objects : this.game.getContainer().getObjects()) {
             if (objects.hasLanded())
                 return true;
         }

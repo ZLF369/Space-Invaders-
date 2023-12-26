@@ -6,19 +6,12 @@ import tp1.exceptions.LaserInFlightException;
 import tp1.logic.GameModel;
 import tp1.view.Messages;
 
-public class ShootCommand extends NoParamsCommand{
-//    @Override
-//    public ExecutionResult execute(GameModel game) {
-//        boolean shoot;
-//        shoot = game.shootLaser();
-//        return new ExecutionResult(shoot,true, Messages.LASER_ERROR);
-//    }
+public class ShootCommand extends NoParamsCommand {
+    @Override
+    public boolean execute(GameModel game) throws CommandExecuteException, LaserInFlightException {
+        return game.shootLaser();
+    }
 
-    //TODO i dont understand how execute should return boolean if she asks us to change for example shootlaer so it returns void
-@Override
-public boolean execute(GameModel game) throws CommandExecuteException, LaserInFlightException {
-    return game.shootLaser();
-}
     @Override
     protected String getName() {
         return Messages.COMMAND_SHOOT_NAME;

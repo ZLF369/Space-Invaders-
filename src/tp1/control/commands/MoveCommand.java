@@ -36,17 +36,6 @@ public class MoveCommand extends Command {
 		return Messages.COMMAND_MOVE_HELP;
 	}
 
-	//	@Override
-//	public ExecutionResult execute(GameModel game) {
-//		if (move == Move.UP || move == Move.DOWN)
-//			return new ExecutionResult(true);
-//
-//		boolean siu = game.move(move);
-//		if (!siu)
-//			return new ExecutionResult(true);
-//
-//		return new ExecutionResult(siu, true, Messages.MOVEMENT_ERROR);
-//	}
 	@Override
 	public boolean execute(GameModel game) throws CommandExecuteException {
 		if (move == Move.UP || move == Move.DOWN)

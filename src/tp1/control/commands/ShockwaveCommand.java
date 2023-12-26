@@ -6,12 +6,6 @@ import tp1.logic.GameModel;
 import tp1.view.Messages;
 
 public class ShockwaveCommand extends NoParamsCommand{
-//    @Override
-//    public ExecutionResult execute(GameModel game) {
-//        boolean z;
-//        z = game.shockWave();
-//        return new ExecutionResult(z,true, Messages.SHOCKWAVE_ERROR);
-//    }
 
     @Override
     public boolean execute(GameModel game) throws NoShockWaveException {

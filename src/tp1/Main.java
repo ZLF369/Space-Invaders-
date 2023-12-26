@@ -57,11 +57,11 @@ public class Main {
                     controller.run();
         
                 } catch (NumberFormatException nfe) {
-                    System.out.printf((Messages.SEED_NOT_A_NUMBER_ERROR) + "%n", seedParam);
+                    System.err.printf((Messages.SEED_NOT_A_NUMBER_ERROR) + "%n", seedParam);
                     usage();
                 } catch (Exception e) {
-                    System.out.println(error(e.getMessage()));
-                    System.out.println(e.getMessage());
+                    System.err.println(error(e.getMessage()));
+                    System.err.println(e.getMessage());
                 }
             }
         }

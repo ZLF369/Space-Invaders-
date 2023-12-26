@@ -60,15 +60,14 @@ public class Controller {
 
 					}
 				} catch (CommandParseException | CommandExecuteException e) {
-					System.out.println(e.getMessage());
+					System.err.println(e.getMessage());
 					Throwable cause = e.getCause();
 					if (cause != null)
-						System.out.println(cause.getMessage());
-				} catch (NotEnoughPointsException | LaserInFlightException | NoShockWaveException e) {
+						System.err.println(cause.getMessage());
+				} catch (NotEnoughPointsException | LaserInFlightException | NoShockWaveException |
+						 InitializationException e) {
                     throw new RuntimeException(e);
-                } catch (InitializationException e) {
-					throw new RuntimeException(e);
-				}
+                }
 		}
 		printEndMessage();
 		}
