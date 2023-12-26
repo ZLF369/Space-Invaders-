@@ -6,7 +6,7 @@ import tp1.exceptions.*;
 public interface GameModel {
     boolean move(Move move);
     boolean shootLaser();
-    public boolean shootSuperLaser() throws LaserInFlightException, NotEnoughtPointsException;
+    public boolean shootSuperLaser() throws LaserInFlightException, NotEnoughPointsException;
     boolean shockWave() throws NoShockWaveException;
     void reset() throws InitializationException;
     void reset(InitialConfiguration initialConfiguration) throws InitializationException, CommandExecuteException;

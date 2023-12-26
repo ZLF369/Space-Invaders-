@@ -68,7 +68,7 @@ public class UCMShip extends Ship{
         } else if (almostOnBorderLeft() && move.equals(Move.LLEFT)) {
             return false;
         } else if (almostOnBorderRight() && move.equals(Move.RRIGHT)) {
-                return false;
+            return false;
         } else {
             super.pos = pos.move(move);
             return true;
@@ -130,7 +130,7 @@ public class UCMShip extends Ship{
 
 
     public boolean hasShockWave() {
-    	return hasShockWave;
+        return hasShockWave;
     }
 
     public void setShockWave(boolean hasShockWave){ this.hasShockWave = hasShockWave; }

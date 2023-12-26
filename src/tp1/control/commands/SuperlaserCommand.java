@@ -3,7 +3,7 @@ package tp1.control.commands;
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.CommandParseException;
 import tp1.exceptions.LaserInFlightException;
-import tp1.exceptions.NotEnoughtPointsException;
+import tp1.exceptions.NotEnoughPointsException;
 import tp1.logic.GameModel;
 import tp1.view.Messages;
 
@@ -17,7 +17,7 @@ public class SuperlaserCommand extends NoParamsCommand{
 //    }
 
     @Override
-    public boolean execute(GameModel game) throws CommandExecuteException, NotEnoughtPointsException, LaserInFlightException {
+    public boolean execute(GameModel game) throws CommandExecuteException, NotEnoughPointsException, LaserInFlightException {
         return game.shootSuperLaser();
     }
     @Override

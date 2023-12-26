@@ -195,9 +195,9 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 			} else {
 				String message = String.format("Not enough points: only %s points, %s points required", player.getPoints(), 5);
-				throw new NotEnoughtPointsException(message);
+				throw new NotEnoughPointsException(message);
 			}
-		} catch (NotEnoughtPointsException e) {
+		} catch (NotEnoughPointsException e) {
 			System.err.println(e.getMessage());
 			return false;
 		}

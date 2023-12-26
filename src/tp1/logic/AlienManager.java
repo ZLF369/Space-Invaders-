@@ -86,10 +86,10 @@ public class AlienManager {
 
             boolean shipCondition = ShipFactory.isValidShipType(words[0]);
             boolean positionCondition = isValidPosition(Integer.parseInt(words[1]), Integer.parseInt(words[2]));
-            boolean numberCondition = words[1].contains("[0-9]+") && words[2].contains("[0-9]+"); // Check if the last two words are numbers
+            boolean numberFormat = isInteger(words[1]) && isInteger(words[2]);// Check if the last two words are numbers
 
             try {
-                if (numberCondition) {
+                if (numberFormat) {
                     if (shipCondition) {
                         if (positionCondition) {
 
@@ -113,6 +113,15 @@ public class AlienManager {
         }
     }
 
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 
 
     private boolean isValidPosition(int row, int col) {
@@ -122,9 +131,9 @@ public class AlienManager {
     public void checkOnBorder() { //check if any alien is on the border
         for (GameObject gameObject : game.getContainer().getObjects()) {
             if ((Objects.equals(gameObject.getMessage(), Messages.REGULAR_ALIEN_SYMBOL)
-                            || Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) ||
-                            Objects.equals(gameObject.getMessage(), Messages.EXPLOSIVE_ALIEN_SYMBOL)
-                                    && gameObject.isAlive()) {
+                    || Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) ||
+                    Objects.equals(gameObject.getMessage(), Messages.EXPLOSIVE_ALIEN_SYMBOL)
+                            && gameObject.isAlive()) {
                 if (gameObject.isAlive()
                         && (gameObject.getPos().row + 1 == Game.DIM_Y || gameObject.getPos().row == 0
                         || gameObject.getPos().col + 1 == Game.DIM_X || gameObject.getPos().col == 0)) {
@@ -139,9 +148,9 @@ public class AlienManager {
         boolean onBorder = false;
         for (GameObject gameObject : game.getContainer().getObjects()) {
             if ((Objects.equals(gameObject.getMessage(), Messages.REGULAR_ALIEN_SYMBOL)
-                            || Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) ||
-                            Objects.equals(gameObject.getMessage(), Messages.EXPLOSIVE_ALIEN_SYMBOL)
-                                    && gameObject.isAlive()) {
+                    || Objects.equals(gameObject.getMessage(), Messages.DESTROYER_ALIEN_SYMBOL)) ||
+                    Objects.equals(gameObject.getMessage(), Messages.EXPLOSIVE_ALIEN_SYMBOL)
+                            && gameObject.isAlive()) {
                 if (gameObject.getPos().col == 0 || gameObject.getPos().col == 8 || gameObject.getPos().row == 8) {
                     onBorder = true;
                 }
@@ -199,7 +208,7 @@ public class AlienManager {
             }
         }
     }
-   // ALIEN BOMB GO BOOM LOGIC
+    // ALIEN BOMB GO BOOM LOGIC
 
     public void tryShooting() { //Logic so that the aliens can shoot, for each destroyerAlien
         List<DestroyerAlien> aliensToShoot = new ArrayList<>();
@@ -212,9 +221,9 @@ public class AlienManager {
             }
         }
         for (DestroyerAlien alien : aliensToShoot) { //use some auxiliar aliens to shoot the bomb
-                alien.shootBomb();
-                //if the bomb is not in a valid position, it should be deleted, or if its dead.
-                if (!alien.getBomb().isValidPosition(alien.getBomb().getPos()) && !alien.getBomb().isAlive()){
+            alien.shootBomb();
+            //if the bomb is not in a valid position, it should be deleted, or if its dead.
+            if (!alien.getBomb().isValidPosition(alien.getBomb().getPos()) && !alien.getBomb().isAlive()){
                 alien.setBomb(null);
             }
         }
@@ -233,9 +242,9 @@ public class AlienManager {
 
     private void createUfo() { //if the probability allows it, create a new ufo.
         if (game.getUfoFrequency()){
-        Ufo ufo = new Ufo(game, new Position(8, 0), 1);
-        game.getContainer().add(ufo);
-        activeUfo = ufo;
+            Ufo ufo = new Ufo(game, new Position(8, 0), 1);
+            game.getContainer().add(ufo);
+            activeUfo = ufo;
         }
     }
 
