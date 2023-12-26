@@ -92,7 +92,6 @@ public class AlienManager {
                 if (numberFormat) {
                     if (shipCondition) {
                         if (positionCondition) {
-
                             container.add(ShipFactory.spawnAlienShip(words[0], game,
                                     new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
 
@@ -112,6 +111,7 @@ public class AlienManager {
             }
         }
     }
+
 
     public static boolean isInteger(String s) {
         try {
