@@ -24,4 +24,8 @@ public class ShipFactory {
         }
         return null;
     }
+
+    public static boolean isValidShipType(String word) {
+        return AVAILABLE_ALIEN_SHIPS.stream().anyMatch(ship -> ship.getSymbol().equals(word));
+    }
 }

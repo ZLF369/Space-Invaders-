@@ -1,11 +1,14 @@
 package tp1.logic;
 
 import tp1.control.InitialConfiguration;
+import tp1.exceptions.InitializationException;
 import tp1.logic.gameobjects.*;
 import tp1.view.Messages;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class AlienManager {
@@ -14,14 +17,13 @@ public class AlienManager {
     private Move dir;
     private boolean shouldDescend;
     private Ufo activeUfo;
-
     public AlienManager(Game game) {
         this.game = game;
         dir = Move.LEFT; //direction of the list goes to left by default
     }
 
     //Initialize all the regularAliens, all the destroyerAliens into a subContainer
-    public GameObjectContainer initialize(InitialConfiguration initialConfiguration) {
+    public GameObjectContainer initialize(InitialConfiguration initialConfiguration) throws InitializationException {
         GameObjectContainer container = new GameObjectContainer();
         initializeRegularAliens(container, initialConfiguration);
         initializeDestroyerAliens(container, initialConfiguration);
@@ -32,7 +34,7 @@ public class AlienManager {
         return container;
     }
 
-    private void initializeRegularAliens(GameObjectContainer container, InitialConfiguration initialConfiguration) {
+    private void initializeRegularAliens(GameObjectContainer container, InitialConfiguration initialConfiguration) throws InitializationException {
         Level level = this.game.getLevel();
         if (initialConfiguration == null || initialConfiguration == InitialConfiguration.NONE) {
             for (int row = 0, i = 0; row < level.numRowsRegularAliens; row++) { //logic for creating the dAliens
@@ -50,7 +52,7 @@ public class AlienManager {
         }
     }
 
-    private void initializeDestroyerAliens(GameObjectContainer container, InitialConfiguration initialConfiguration) {
+    private void initializeDestroyerAliens(GameObjectContainer container, InitialConfiguration initialConfiguration) throws InitializationException {
         Level level = this.game.getLevel();
 
         if (initialConfiguration == null || initialConfiguration == InitialConfiguration.NONE) { //if none initialconf
@@ -69,13 +71,54 @@ public class AlienManager {
         }
     }
 
-    private void initializeFromConfiguration(GameObjectContainer container, InitialConfiguration initialConfiguration) {
+    private void initializeFromConfiguration(GameObjectContainer container, InitialConfiguration initialConfiguration) throws InitializationException {
+        // Store the current state
+        List<GameObject> backupList = new ArrayList<>(container.getObjects());
+
         for (String description : initialConfiguration.getShipDescription()) {
             String[] words = description.split(" ");
-            container.add(ShipFactory.spawnAlienShip(words[0], game,
-                    new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
+
+            // Check if there are three words in the description
+            if (words.length != 3) {
+                System.err.println("Initialization error: " + Messages.INCORRECT_ENTRY.formatted(description));
+                continue;
+            }
+
+            boolean shipCondition = ShipFactory.isValidShipType(words[0]);
+            boolean positionCondition = isValidPosition(Integer.parseInt(words[1]), Integer.parseInt(words[2]));
+            boolean numberCondition = words[1].matches("\\d+") && words[2].matches("\\d+");
+
+            try {
+                if (numberCondition) {
+                    if (shipCondition) {
+                        if (positionCondition) {
+                            container.add(ShipFactory.spawnAlienShip(words[0], game,
+                                    new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
+                        } else {
+                            throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
+                        }
+                    } else {
+                        throw new InitializationException(Messages.UNKNOWN_SHIP.formatted(words[0]));
+                    }
+                } else {
+                    throw new InitializationException(Messages.INCORRECT_ENTRY.formatted(description));
+                }
+            } catch (InitializationException e) {
+                // Print the error message
+                System.err.println("Initialization error: " + e.getMessage());
+
+                // Undo changes by restoring the backup list
+                container.getObjects().clear();
+                container.getObjects().addAll(backupList);
+            }
         }
-    } //Add the ships from the configuration file, in their format (type, row, col)
+    }
+
+
+
+    private boolean isValidPosition(int row, int col) {
+        return row >= 0 && row < Game.DIM_X && col >= 0 && col < Game.DIM_Y;
+    }
 
     public void checkOnBorder() { //check if any alien is on the border
         for (GameObject gameObject : game.getContainer().getObjects()) {

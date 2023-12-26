@@ -8,7 +8,7 @@ public interface GameModel {
     boolean shootLaser();
     public boolean shootSuperLaser() throws LaserInFlightException, NotEnoughtPointsException;
     boolean shockWave() throws NoShockWaveException;
-    void reset();
+    void reset() throws InitializationException;
     void reset(InitialConfiguration initialConfiguration) throws InitializationException, CommandExecuteException;
     boolean isFinished();
     void exit();

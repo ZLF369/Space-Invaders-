@@ -25,7 +25,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	private final Level level;
 
-	public Game (Level level, long seed){
+	public Game (Level level, long seed) throws InitializationException {
 		this.level = level;
 		this.seed = seed;
 		this.random = new Random(this.seed);
@@ -38,7 +38,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.currentCycle = currentCycle;
 	}
 
-	private void initGame () {
+	private void initGame () throws InitializationException {
 		this.container = alienManager.initialize(null);
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		addObject(player);
@@ -223,7 +223,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
-	public void reset() { //normal resets
+	public void reset() throws InitializationException { //normal resets
 		emptyContainer();
 		this.container = alienManager.initialize(null);
 		this.random = new Random(this.seed);
