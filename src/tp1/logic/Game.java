@@ -1,10 +1,7 @@
 package tp1.logic;
 
 import tp1.control.InitialConfiguration;
-import tp1.exceptions.CommandExecuteException;
-import tp1.exceptions.InitializationException;
-import tp1.exceptions.NotEnoughtPointsException;
-import tp1.exceptions.OffWorldException;
+import tp1.exceptions.*;
 import tp1.logic.gameobjects.*;
 import tp1.view.Messages;
 
@@ -150,7 +147,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 			if (player.move(move)) {
 				return true;
 			} else {
-				String availableMoves = Messages.ALLOWED_MOVES_MESSAGE;
 				String message = String.format(Messages.OFF_WORLD_MESSAGE, move, player.getPos());
 				throw new OffWorldException(message);
 			}
@@ -167,7 +163,17 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	//methods involving using player shooting actions
 	@Override
 	public boolean shootLaser() {
-		return this.player.shootLaser();
+		try {
+		  if (player.shootLaser())
+			  return true;
+		  else {
+		  	String message = String.format(Messages.LASER_ERROR + "," + Messages.LASER_ALREADY_SHOT);
+		  	throw new LaserInFlightException(message);
+		  }
+		} catch (LaserInFlightException e) {
+            System.err.println(e.getMessage());
+			return false;
+        }
 	}
 
 	@Override
@@ -175,7 +181,18 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		try {
 			if (player.getPoints() >= 5) {
 				player.setPoints(player.getPoints() - 5);
-				return this.player.shootSuperLaser();
+
+				try {
+					if (player.shootSuperLaser())
+						return true;
+					else
+						throw new LaserInFlightException(Messages.LASER_ERROR + "," + Messages.LASER_ALREADY_SHOT);
+				} catch (LaserInFlightException e) {
+					String message = String.format(Messages.LASER_ERROR + "," + Messages.LASER_ALREADY_SHOT);
+					System.err.println(message);
+					return false;
+				}
+
 			} else {
 				String message = String.format("Not enough points: only %s points, %s points required", player.getPoints(), 5);
 				throw new NotEnoughtPointsException(message);
@@ -185,8 +202,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 			return false;
 		}
 	}
-
-
 
 
 	@Override
