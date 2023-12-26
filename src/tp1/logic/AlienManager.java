@@ -86,14 +86,16 @@ public class AlienManager {
 
             boolean shipCondition = ShipFactory.isValidShipType(words[0]);
             boolean positionCondition = isValidPosition(Integer.parseInt(words[1]), Integer.parseInt(words[2]));
-            boolean numberCondition = words[1].matches("\\d+") && words[2].matches("\\d+");
+            boolean numberCondition = words[1].contains("[0-9]+") && words[2].contains("[0-9]+"); // Check if the last two words are numbers
 
             try {
                 if (numberCondition) {
                     if (shipCondition) {
                         if (positionCondition) {
+
                             container.add(ShipFactory.spawnAlienShip(words[0], game,
                                     new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
+
                         } else {
                             throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
                         }
@@ -104,10 +106,7 @@ public class AlienManager {
                     throw new InitializationException(Messages.INCORRECT_ENTRY.formatted(description));
                 }
             } catch (InitializationException e) {
-                // Print the error message
                 System.err.println("Initialization error: " + e.getMessage());
-
-                // Undo changes by restoring the backup list
                 container.getObjects().clear();
                 container.getObjects().addAll(backupList);
             }
