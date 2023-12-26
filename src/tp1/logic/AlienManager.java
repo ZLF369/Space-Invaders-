@@ -34,6 +34,7 @@ public class AlienManager {
         return container;
     }
 
+
     private void initializeRegularAliens(GameObjectContainer container, InitialConfiguration initialConfiguration) throws InitializationException {
         Level level = this.game.getLevel();
         if (initialConfiguration == null || initialConfiguration == InitialConfiguration.NONE) {

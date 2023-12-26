@@ -28,4 +28,8 @@ public class ShipFactory {
     public static boolean isValidShipType(String word) {
         return AVAILABLE_ALIEN_SHIPS.stream().anyMatch(ship -> ship.getSymbol().equals(word));
     }
+
+    public static boolean isDestroyerShip(String shipType) {
+        return shipType.startsWith("D_");
+    }
 }
