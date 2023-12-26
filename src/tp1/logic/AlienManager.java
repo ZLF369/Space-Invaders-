@@ -70,8 +70,6 @@ public class AlienManager {
     }
 
     private void initializeFromConfiguration(GameObjectContainer container, InitialConfiguration initialConfiguration) throws InitializationException {
-        // Store the current state
-        List<GameObject> backupList = new ArrayList<>(container.getObjects());
 
         for (String description : initialConfiguration.getShipDescription()) {
             String[] words = description.split(" ");
@@ -95,41 +93,23 @@ public class AlienManager {
                 positionCondition = false;
             }
 
-            try {
-                if (numberFormat) {
-                    if (shipCondition) {
-                        if (positionCondition) {
-                            container.add(ShipFactory.spawnAlienShip(words[0], game,
-                                    new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
+            if (numberFormat) {
+                if (shipCondition) {
+                    if (positionCondition) {
+                        container.add(ShipFactory.spawnAlienShip(words[0], game,
+                                new Position(Integer.parseInt(words[1]), Integer.parseInt(words[2])), this));
 
-                        } else {
-                            throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
-                        }
                     } else {
-                        throw new InitializationException(Messages.UNKNOWN_SHIP.formatted(words[0]));
+                        throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
                     }
                 } else {
-                    throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
+                    throw new InitializationException(Messages.UNKNOWN_SHIP.formatted(words[0]));
                 }
-            } catch (InitializationException e) {
-                System.err.println("Initialization error: " + e.getMessage());
-                container.getObjects().clear();
-                container.getObjects().addAll(backupList);
+            } else {
+                throw new InitializationException(Messages.INVALID_POSITION.formatted(words[1], words[2]));
             }
         }
     }
-
-
-    public static boolean isInteger(String s) {
-        try {
-            Integer.parseInt(s);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-
 
     private boolean isValidPosition(int row, int col) {
         return row >= 0 && row < Game.DIM_X && col >= 0 && col < Game.DIM_Y;

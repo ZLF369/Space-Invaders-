@@ -143,6 +143,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		}
 		return i;
 	}
+
 	@Override
 	public boolean move(Move move) {
 		try {
@@ -226,7 +227,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public void reset() throws InitializationException { //normal resets
-		emptyContainer();
+
 		this.container = alienManager.initialize(null);
 		this.random = new Random(this.seed);
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
@@ -236,7 +237,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	@Override
 	public void reset(InitialConfiguration initialConfiguration) throws InitializationException, CommandExecuteException{ //the special reset that takes initialConfigurations
-		emptyContainer();
+
 		this.container = alienManager.initialize(initialConfiguration);
 		this.random = new Random(this.seed);
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
@@ -244,22 +245,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.currentCycle = 0;
 	}
 
-	public void saveState() {
-		savedState = new GameObjectContainer();
-		savedState.getObjects().addAll(container.getObjects());
-		// You might need to add additional state-saving logic based on your game's requirements
-	}
-
-	// Method to restore the saved state
-	public void restoreSavedState() {
-		if (savedState != null) {
-			container.getObjects().clear();
-			container.getObjects().addAll(savedState.getObjects());
-			// You might need to add additional state-restoring logic based on your game's requirements
-		}
-	}
-
-	//create a new container, used in resets
 	public void emptyContainer(){
 		this.container = new GameObjectContainer();
 	}

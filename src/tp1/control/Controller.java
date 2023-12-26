@@ -64,9 +64,7 @@ public class Controller {
 					Throwable cause = e.getCause();
 					if (cause != null)
 						System.out.println(cause.getMessage());
-				} catch (NotEnoughPointsException | LaserInFlightException e) {
-                    throw new RuntimeException(e);
-                } catch (NoShockWaveException e) {
+				} catch (NotEnoughPointsException | LaserInFlightException | NoShockWaveException e) {
                     throw new RuntimeException(e);
                 }
         }
