@@ -1,6 +1,7 @@
 package tp1.control.commands;
 
 import tp1.exceptions.CommandParseException;
+import tp1.exceptions.NoShockWaveException;
 import tp1.logic.GameModel;
 import tp1.view.Messages;
 
@@ -13,7 +14,7 @@ public class ShockwaveCommand extends NoParamsCommand{
 //    }
 
     @Override
-    public boolean execute(GameModel game) {
+    public boolean execute(GameModel game) throws NoShockWaveException {
         return game.shockWave();
     }
     @Override

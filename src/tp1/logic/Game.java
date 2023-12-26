@@ -188,7 +188,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 					else
 						throw new LaserInFlightException(Messages.LASER_ERROR + "," + Messages.LASER_ALREADY_SHOT);
 				} catch (LaserInFlightException e) {
-					String message = String.format(Messages.LASER_ERROR + "," + Messages.LASER_ALREADY_SHOT);
+					String message = String.format(Messages.SUPERLASER_ERROR + "," + "Superlaser already shot");
 					System.err.println(message);
 					return false;
 				}
@@ -205,9 +205,21 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 
 	@Override
-	public boolean shockWave() { //apply the shockwave damage
-		player.useShockwave();
-		return true;
+	public boolean shockWave() throws NoShockWaveException { //apply the shockwave damage
+		try{
+			if (player.hasShockWave()){
+				player.useShockwave();
+				return true;
+			}
+			else {
+				String message = String.format(Messages.SHOCKWAVE_ERROR);
+				throw new NoShockWaveException(message);
+			}
+		}
+		catch (NoShockWaveException e) {
+			System.err.println(e.getMessage());
+			return false;
+		}
 	}
 
 	@Override
