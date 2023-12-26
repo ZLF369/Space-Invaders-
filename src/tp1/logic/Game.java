@@ -19,6 +19,8 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private final long seed;
 	private Random random;
 
+	private GameObjectContainer savedState;
+
 	public Level getLevel() {
 		return level;
 	}
@@ -240,6 +242,21 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.player = new UCMShip(this, new Position(DIM_X / 2, DIM_Y - 1), null);
 		this.container.add(player);
 		this.currentCycle = 0;
+	}
+
+	public void saveState() {
+		savedState = new GameObjectContainer();
+		savedState.getObjects().addAll(container.getObjects());
+		// You might need to add additional state-saving logic based on your game's requirements
+	}
+
+	// Method to restore the saved state
+	public void restoreSavedState() {
+		if (savedState != null) {
+			container.getObjects().clear();
+			container.getObjects().addAll(savedState.getObjects());
+			// You might need to add additional state-restoring logic based on your game's requirements
+		}
 	}
 
 	//create a new container, used in resets

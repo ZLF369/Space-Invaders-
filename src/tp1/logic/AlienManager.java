@@ -28,9 +28,6 @@ public class AlienManager {
         initializeRegularAliens(container, initialConfiguration);
         initializeDestroyerAliens(container, initialConfiguration);
 
-//        ExplosiveAlien explosiveAlien = new ExplosiveAlien(this.game, new Position(Game.DIM_X / 2, 6), this);
-//        container.add(explosiveAlien);
-
         return container;
     }
 
@@ -121,6 +118,18 @@ public class AlienManager {
             }
         }
     }
+
+
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+
 
     private boolean isValidPosition(int row, int col) {
         return row >= 0 && row < Game.DIM_X && col >= 0 && col < Game.DIM_Y;
@@ -253,7 +262,6 @@ public class AlienManager {
         }
         return false;
     }
-
 
 
 }
