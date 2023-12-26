@@ -17,7 +17,6 @@ import tp1.view.Messages;
  * Accepts user input and coordinates the game execution logic.
  */
 public class Controller {
-
 	private final GameModel game;
 	private final Scanner scanner;
 	private final GamePrinter printer;
