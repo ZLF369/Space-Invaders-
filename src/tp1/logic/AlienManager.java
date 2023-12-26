@@ -86,10 +86,10 @@ public class AlienManager {
 
             boolean shipCondition = ShipFactory.isValidShipType(words[0]);
             boolean positionCondition = isValidPosition(Integer.parseInt(words[1]), Integer.parseInt(words[2]));
-            boolean numberCondition = words[1].contains("[0-9]+") && words[2].contains("[0-9]+"); // Check if the last two words are numbers
+            boolean numberFormat = isInteger(words[1]) && isInteger(words[2]);// Check if the last two words are numbers
 
             try {
-                if (numberCondition) {
+                if (numberFormat) {
                     if (shipCondition) {
                         if (positionCondition) {
 
@@ -110,6 +110,15 @@ public class AlienManager {
                 container.getObjects().clear();
                 container.getObjects().addAll(backupList);
             }
+        }
+    }
+
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 
