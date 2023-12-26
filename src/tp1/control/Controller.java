@@ -66,8 +66,10 @@ public class Controller {
 						System.out.println(cause.getMessage());
 				} catch (NotEnoughPointsException | LaserInFlightException | NoShockWaveException e) {
                     throw new RuntimeException(e);
-                }
-        }
+                } catch (InitializationException e) {
+					throw new RuntimeException(e);
+				}
+		}
 		printEndMessage();
 		}
 	

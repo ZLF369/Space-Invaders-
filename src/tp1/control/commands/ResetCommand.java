@@ -63,7 +63,7 @@ public class ResetCommand extends Command{
             System.out.println("Command execution error: " + e.getMessage());
             Throwable cause = e.getCause();
             if (cause != null) {
-                System.out.println("Cause: " + cause.getMessage());
+                System.err.println("Cause: " + cause.getMessage());
             }
             return false;
         } catch (InitializationException e) {
