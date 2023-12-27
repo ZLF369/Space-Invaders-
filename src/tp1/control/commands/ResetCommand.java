@@ -74,11 +74,13 @@ public class ResetCommand extends Command{
 
     @Override
     public Command parse(String[] commandWords) {
+        if (matchCommandName(commandWords[0]) && commandWords.length == 1) return new ResetCommand();
+
         if (commandWords.length != 2) return null;
         if (!matchCommandName(commandWords[0])) return null;
 
         try {
-            if ("NONE".equalsIgnoreCase(commandWords[1])) {
+            if ("NONE".equalsIgnoreCase(commandWords[1]) || commandWords[1].isEmpty()) {
                 return new ResetCommand(null);
             } else {
                 InitialConfiguration iC = InitialConfiguration.readFromFile(commandWords[1]);
