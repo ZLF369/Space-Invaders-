@@ -19,8 +19,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	private final long seed;
 	private Random random;
 
-	private GameObjectContainer savedState;
-
 	public Level getLevel() {
 		return level;
 	}
@@ -245,14 +243,9 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.currentCycle = 0;
 	}
 
-	public void emptyContainer(){
-		this.container = new GameObjectContainer();
-	}
-
 	public Random getRandom() {
 		return random;
 	}
-
 
 	//methods to involve the rng (randomness)
 	public boolean shootChance() {

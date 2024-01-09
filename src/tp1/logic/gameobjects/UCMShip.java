@@ -75,19 +75,19 @@ public class UCMShip extends Ship{
         }
     }
 
-    public boolean almostOnBorderLeft(){
+    private boolean almostOnBorderLeft(){
         return super.pos.col == 1;
     }
 
-    public boolean almostOnBorderRight(){
+    private boolean almostOnBorderRight(){
         return super.pos.col == Game.DIM_X - 2;
     }
 
 
-    public boolean onBorderLeft(){
+    private boolean onBorderLeft(){
         return super.pos.col == 0;
     }
-    public boolean onBorderRight(){
+    private boolean onBorderRight(){
         return super.pos.col == Game.DIM_X - 1;
     }
 

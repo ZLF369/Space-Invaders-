@@ -9,6 +9,9 @@ public abstract class EnemyShip extends Ship{
         super(game, pos, life);
     }
 
+    public EnemyShip() {
+        super();
+    }
     @Override
     public int getPoints() {
         return this.points;
@@ -17,10 +20,6 @@ public abstract class EnemyShip extends Ship{
     @Override
     public void setPoints(int points) {
         this.points = points;
-    }
-
-    public EnemyShip() {
-        super();
     }
 
     @Override

@@ -20,8 +20,6 @@ public abstract class EnemyWeapon extends Weapon{
         return false;
     }
 
-
-
     @Override // similar logic to ucmlaser and superlaser
     public boolean receiveAttack(UCMWeapon weapon) {
         if (this.pos.equals(weapon.pos)) {

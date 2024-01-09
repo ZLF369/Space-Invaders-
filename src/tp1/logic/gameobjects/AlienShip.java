@@ -19,7 +19,7 @@ public abstract class AlienShip extends EnemyShip {
 
     protected abstract AlienShip copy(Game game, Position pos, AlienManager am);
 
-    public void move() {
+    private void move() {
         if (dir == Move.LEFT) {
             pos = pos.move(Move.LEFT);
         } else if (dir == Move.RIGHT) {
