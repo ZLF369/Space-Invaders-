@@ -23,7 +23,7 @@ public class UCMShip extends Ship{
         this.dir = Move.NONE;
         this.laser = laser;
         this.laserEnabled = false;
-        hasShockWave = false; //false in real case
+        hasShockWave = true; //false in real case
         this.points = 0;
     }
 
@@ -154,8 +154,9 @@ public class UCMShip extends Ship{
                 // Assuming that the shockwave affects all active objects, call performAttack on each one
                 object.receiveShockwaveDamage(); // You may need to define shockwaveDamage
             }
-            this.hasShockWave = false;
         }
+        this.hasShockWave = false;
     }
+
 
 }
