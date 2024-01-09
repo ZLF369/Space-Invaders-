@@ -143,19 +143,16 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	}
 
 	@Override
-	public boolean move(Move move) {
-		try {
-			if (player.move(move)) {
-				return true;
-			} else {
-				String message = String.format(Messages.OFF_WORLD_MESSAGE, move, player.getPos());
+	public boolean move(Move move) throws NotAllowedMoveException, OffWorldException { //move the player
+		if (move == Move.UP || move == Move.DOWN) throw new NotAllowedMoveException();
+
+		if (player.move(move)) {
+			return true;
+		} else {
+			String message = String.format(Messages.OFF_WORLD_MESSAGE, move, player.getPos());
 				throw new OffWorldException(message);
-			}
-		} catch (OffWorldException e) {
-			System.err.println(e.getMessage());
-			return false;
 		}
-	}
+    }
 
 	public UCMShip getPlayer() {
 		return player;
@@ -163,64 +160,40 @@ public class Game implements GameStatus, GameModel, GameWorld {
 
 	//methods involving using player shooting actions
 	@Override
-	public boolean shootLaser() {
-		try {
+	public boolean shootLaser() throws LaserInFlightException {
 		  if (player.shootLaser())
 			  return true;
 		  else {
 		  	String message = String.format(Messages.LASER_ERROR + "," + Messages.LASER_ALREADY_SHOT);
 		  	throw new LaserInFlightException(message);
 		  }
-		} catch (LaserInFlightException e) {
-            System.err.println(e.getMessage());
-			return false;
-        }
+
 	}
 
 	@Override
-	public boolean shootSuperLaser() {
-		try {
+	public boolean shootSuperLaser() throws LaserInFlightException, NotEnoughPointsException {
 			if (player.getPoints() >= 5) {
 				player.setPoints(player.getPoints() - 5);
-
-				try {
 					if (player.shootSuperLaser())
 						return true;
 					else
 						throw new LaserInFlightException(Messages.LASER_ERROR + "," + Messages.LASER_ALREADY_SHOT);
-				} catch (LaserInFlightException e) {
-					String message = String.format(Messages.SUPERLASER_ERROR + "," + "Superlaser already shot");
-					System.err.println(message);
-					return false;
-				}
 
 			} else {
-				String message = String.format("Not enough points: only %s points, %s points required", player.getPoints(), 5);
-				throw new NotEnoughPointsException(message);
+				throw new NotEnoughPointsException();
 			}
-		} catch (NotEnoughPointsException e) {
-			System.err.println(e.getMessage());
-			return false;
-		}
 	}
 
 
 	@Override
 	public boolean shockWave() throws NoShockWaveException { //apply the shockwave damage
-		try{
 			if (player.hasShockWave()){
 				player.useShockwave();
 				return true;
 			}
 			else {
-				String message = String.format(Messages.SHOCKWAVE_ERROR);
-				throw new NoShockWaveException(message);
+				throw new NoShockWaveException();
 			}
-		}
-		catch (NoShockWaveException e) {
-			System.err.println(e.getMessage());
-			return false;
-		}
 	}
 
 	@Override

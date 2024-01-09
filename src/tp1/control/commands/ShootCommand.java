@@ -8,8 +8,13 @@ import tp1.view.Messages;
 
 public class ShootCommand extends NoParamsCommand {
     @Override
-    public boolean execute(GameModel game) throws CommandExecuteException, LaserInFlightException {
-        return game.shootLaser();
+    public boolean execute(GameModel game) throws CommandExecuteException {
+        try {
+            game.shootLaser();
+        } catch (LaserInFlightException e) {
+            throw new CommandExecuteException("Command execute exception: ", e);
+        }
+        return true;
     }
 
     @Override

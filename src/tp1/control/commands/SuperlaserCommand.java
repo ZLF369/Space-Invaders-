@@ -9,8 +9,13 @@ import tp1.view.Messages;
 
 public class SuperlaserCommand extends NoParamsCommand{
     @Override
-    public boolean execute(GameModel game) throws CommandExecuteException, NotEnoughPointsException, LaserInFlightException {
-        return game.shootSuperLaser();
+    public boolean execute(GameModel game) throws CommandExecuteException {
+        try {
+            game.shootSuperLaser();
+        } catch (LaserInFlightException | NotEnoughPointsException e) {
+            throw new CommandExecuteException("Command execute exception: ", e);
+        }
+        return true;
     }
     @Override
     protected String getName() {

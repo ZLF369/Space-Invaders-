@@ -42,7 +42,7 @@ public class Controller {
 		return words;
 	}
 
-	public void run() throws CommandParseException, CommandExecuteException {
+	public void run() {
 
 		printGame();
 
@@ -57,7 +57,6 @@ public class Controller {
 							game.update();
 							printGame();
 						}
-
 					}
 				} catch (CommandParseException | CommandExecuteException e) {
 					System.err.println(e.getMessage());

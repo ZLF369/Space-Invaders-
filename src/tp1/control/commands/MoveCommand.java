@@ -2,6 +2,8 @@ package tp1.control.commands;
 
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.CommandParseException;
+import tp1.exceptions.NotAllowedMoveException;
+import tp1.exceptions.OffWorldException;
 import tp1.logic.GameModel;
 import tp1.logic.Move;
 import tp1.view.Messages;
@@ -38,14 +40,14 @@ public class MoveCommand extends Command {
 
 	@Override
 	public boolean execute(GameModel game) throws CommandExecuteException {
-		if (move == Move.UP || move == Move.DOWN)
+		try {
+			game.move(move);
 			return true;
-
-		boolean siu = game.move(move);
-		if (!siu)
-			return true;
-
-		return siu;
+		} catch (NotAllowedMoveException e) {
+			throw new CommandExecuteException("Command Execution Error: ", e);
+		} catch (OffWorldException e) {
+			throw new CommandExecuteException("Command Execution Error: ", e);
+		}
 	}
 
 	@Override

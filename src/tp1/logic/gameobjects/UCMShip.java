@@ -16,6 +16,7 @@ public class UCMShip extends Ship{
     private SuperLaser superLaser;
     private boolean hasShockWave;
     private final boolean laserEnabled;
+
     private int points;
 
     public UCMShip(Game game, Position position, UCMLaser laser) {
@@ -23,7 +24,7 @@ public class UCMShip extends Ship{
         this.dir = Move.NONE;
         this.laser = laser;
         this.laserEnabled = false;
-        hasShockWave = true; //false in real case
+        hasShockWave = false; //false in real case
         this.points = 0;
     }
 
