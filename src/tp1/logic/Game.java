@@ -72,7 +72,6 @@ public class Game implements GameStatus, GameModel, GameWorld {
 		this.container.deleteDeadObjects();
 	}
 
-
 	//CALLBACK METHODS
 	@Override
 	public void addObject(GameObject object) {
@@ -82,7 +81,7 @@ public class Game implements GameStatus, GameModel, GameWorld {
 	@Override
 	public void removeObject(GameObject object) {
 		this.container.remove(object);
-	}
+	} //keyibuyong
 
 	@Override
 	public GameObjectContainer getContainer() {

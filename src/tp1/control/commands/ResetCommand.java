@@ -42,34 +42,23 @@ public class ResetCommand extends Command{
     @Override
     public boolean execute(GameModel game) throws CommandExecuteException {
 
-        try{
             if (initialConfiguration == null) {
-                game.reset();
-            }
-            else {
                 try {
-                    game.reset(initialConfiguration);
+                    game.reset();
                     return true;
                 } catch (InitializationException e) {
-                    System.err.println("Initialization error: " + e.getMessage());
-                    Throwable cause = e.getCause();
-                    if (cause != null) {
-                        System.err.println("Cause: " + cause.getMessage());
-                    }
-                    return false;
+                    throw new CommandExecuteException("Command execute exception in Initialization: ", e);
                 }
             }
-        } catch (CommandExecuteException e) {
-            System.err.println("Command execution error: " + e.getMessage());
-            Throwable cause = e.getCause();
-            if (cause != null) {
-                System.err.println("Cause: " + cause.getMessage());
+            else {
+                try{
+                    game.reset(initialConfiguration);
+                    return true;
+                }
+                catch (InitializationException e){
+                    throw new CommandExecuteException("Command execute exception in Initialization: ", e);
+                }
             }
-            return false;
-        } catch (InitializationException e) {
-                 throw new RuntimeException(e);
-             }
-        return false;
     }
 
     @Override
